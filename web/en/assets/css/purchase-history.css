@@ -1,0 +1,356 @@
+:root {
+  --bg-main: #141415;
+  --bg-secong: #18181d;
+  --accent-red: #df040a;
+  --accent-orange: #ff6b27;
+  --shadow-bg: #2b181c;
+  --text-main: #fff;
+  --sidebar-width: 230px;
+}
+
+/* Purchase History Styles */
+.purchase-history {
+    background: var(--bg-secong);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    color: var(--text-main);
+    font-size: 24px;
+    font-weight: 600;
+    
+}
+
+.search-filter {
+    display: flex;
+    gap: 15px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-box input {
+    background: var(--bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 15px 10px 35px;
+    color: var(--text-main);
+    width: 200px;
+    transition: all 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    width: 250px;
+}
+
+.filter-dropdown {
+    position: relative;
+}
+
+.filter-dropdown select {
+    appearance: none;
+    background: var(--bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 35px 10px 15px;
+    color: var(--text-main);
+    cursor: pointer;
+    border: none;
+}
+
+.filter-dropdown i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.purchase-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.purchase-table thead th {
+    background: var(--shadow-bg);
+    color: var(--text-main);
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-red);
+}
+
+.purchase-table tbody tr {
+    transition: all 0.3s;
+    background: var(--bg-main);
+}
+
+.purchase-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.purchase-table tbody tr:hover {
+    background: var(--shadow-bg);
+}
+
+.purchase-table td {
+    padding: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.game-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.invoice-btn {
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+    color: var(--text-main);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(223, 4, 10, 0.3);
+}
+
+.invoice-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(223, 4, 10, 0.4);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.pagination-btn {
+    background: var(--bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-btn:hover:not(.disabled) {
+    background: var(--shadow-bg);
+    border-color: var(--accent-red);
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    color: var(--text-main);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pagination span.active {
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+    box-shadow: 0 2px 8px rgba(223, 4, 10, 0.3);
+}
+
+.pagination span:not(.active):hover {
+    background: var(--shadow-bg);
+}
+
+
+
+/* Add these media queries to your existing CSS */
+
+@media (max-width: 768px) {
+  .purchase-history {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .search-filter {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-box,
+  .filter-dropdown {
+    width: 100%;
+  }
+  
+  .search-box input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .search-box input:focus {
+    width: 100%;
+  }
+  
+  .filter-dropdown select {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .purchase-table {
+    min-width: 0;
+    width: 100%;
+  }
+  
+  .purchase-table thead {
+    display: none;
+  }
+  
+  .purchase-table tbody tr {
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .purchase-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .purchase-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .purchase-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--accent-orange);
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  
+  .game-info {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    width: 100%;
+  }
+  
+  .game-info img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+  }
+  
+  .invoice-btn {
+    margin-left: auto;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .pagination-btn,
+  .pagination span {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .game-info {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .game-info img {
+    margin-bottom: 5px;
+  }
+  
+  .purchase-table td {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .purchase-table td::before {
+    margin-right: 0;
+    margin-bottom: 3px;
+  }
+  
+  .invoice-btn {
+    align-self: flex-end;
+  }
+}

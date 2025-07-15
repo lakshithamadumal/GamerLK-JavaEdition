@@ -1,0 +1,469 @@
+:root {
+  --bg-main: #141415;
+  --bg-secong: #18181d;
+  --accent-red: #df040a;
+  --accent-orange: #ff6b27;
+  --shadow-bg: #2b181c;
+  --text-main: #fff;
+  --sidebar-width: 230px;
+  --gamerlk-font: "Cyberjunkies", "Outfit", Arial, sans-serif;
+}
+@font-face {
+  font-family: "Cyberjunkies";
+  src: url("../fonts/Cyberjunkies.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+::selection {
+  background-color: var(--accent-red);
+  color: var(--text-main);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", Arial, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+#bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(
+    to right,
+    #141415,
+    #171519,
+    #1a161b,
+    #1f171d,
+    #24171d,
+    #25171e,
+    #25181e,
+    #26181f,
+    #221820,
+    #1e1820,
+    #1b181f,
+    #18181d
+  );
+  pointer-events: none;
+}
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  padding: 0 36px 36px 36px;
+}
+.logo {
+  height: 36px;
+  margin-right: 13px;
+}
+
+.brand {
+  font-family: var(--gamerlk-font);
+  letter-spacing: 3px;
+  font-size: 2.15rem;
+}
+
+.sub-brand {
+  color: var(--accent-red);
+  font-family: var(--gamerlk-font);
+}
+
+.login-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 2rem 0;
+}
+
+.login-card {
+  box-shadow: 0 6px 36px 0 var(--shadow-bg);
+  border-radius: 20px;
+  padding: 2.6rem 2.1rem 2rem 2.1rem;
+  width: 350px;
+  max-width: 94vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(7px);
+  border: 1px solid #fff1;
+}
+
+.login-card h2 {
+  font-size: 1.38rem;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.subtitle {
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin: 0 0 1.3rem 0;
+  color: #fff9;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.3rem;
+}
+
+.input-label {
+  width: 100%;
+  margin: 0 auto; /* Center the label container */
+}
+
+.input-label1 {
+  width: 100%;
+  margin: 0 auto; /* Center the label container */
+  display: flex;
+  gap: 1rem; /* Adjust the gap between inputs as needed */
+}
+
+.input-label input {
+  width: 100%;
+  padding: 0.86rem 1rem;
+  border-radius: 9px;
+  border: 1.5px solid #fff3;
+  background: rgba(20, 20, 21, 0.22);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.18s;
+  box-sizing: border-box; /* Add this to include padding in width */
+}
+
+.input-label1 input {
+  width: 100%;
+  padding: 0.86rem 1rem;
+  border-radius: 9px;
+  border: 1.5px solid #fff3;
+  background: rgba(20, 20, 21, 0.22);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.18s;
+  box-sizing: border-box; /* Add this to include padding in width */
+}
+
+.input-label input:focus {
+  border: 1.5px solid var(--accent-red);
+}
+
+.input-label1 input:focus {
+  border: 1.5px solid var(--accent-red);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.94rem;
+  color: #fff;
+  margin: -0.7rem 0 0.1rem 0;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.97rem;
+  opacity: 0.85;
+}
+
+.remember-me input[type="checkbox"] {
+  accent-color: var(--accent-red);
+  width: 13px;
+  height: 13px;
+}
+
+.forgot {
+  text-decoration: none;
+  color: #fff8;
+  transition: color 0.2s;
+  font-size: 0.97rem;
+}
+
+.forgot:hover {
+  color: var(--accent-red);
+}
+
+.login-btn:hover,
+.login-btn:focus {
+  background: linear-gradient(95deg, #df040a 0%, #ff6b27 98%);
+}
+
+.login-btn {
+  background: rgb(20, 20, 21, 0.17);
+  background: linear-gradient(95deg, #ff6b27 0%, #df040a 98%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0.7rem 0 0.5rem 0;
+  color: #fff7;
+  font-size: 0.99rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #fff3;
+  margin: 0 0.6em;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  width: 100%;
+  padding: 0.85rem 0;
+  background: rgb(20, 20, 21, 0.17);
+  background: linear-gradient(95deg, #ffffff1c 0%, #ffffff1c 98%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 16px 0 #0002;
+  margin-bottom: 0.1rem;
+  margin-top: 0.4rem;
+  transition: background 0.18s;
+}
+
+.signup-link {
+  margin-top: 1.4rem;
+  text-align: center;
+  color: #fff7;
+  font-size: 1.06rem;
+  letter-spacing: 0.01em;
+}
+
+.signup-link a {
+  color: var(--accent-red);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 0.29em;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .login-main {
+    padding: 0.5rem 0; /* Further reduced top/bottom padding */
+    justify-content: flex-start; /* Start content closer to top */
+    min-height: auto; /* Allow content to fit without forcing full viewport height */
+  }
+
+  .logo-section {
+    padding: 16px 24px; /* Reduced top padding for logo section */
+  }
+
+  .login-card {
+    padding: 1.5rem 0.8rem;
+    width: 90vw;
+    max-width: 94vw;
+    border-radius: 16px;
+    margin-top: 0.5rem; /* Minimal top margin to avoid extra space */
+  }
+
+  .logo {
+    height: 28px;
+  }
+
+  .brand {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .login-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .login-form {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .input-label input,
+  .input-label1 input {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .input-label1 {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .login-btn,
+  .google-btn {
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .google-btn {
+    gap: 0.7rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .divider {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  .form-row {
+    font-size: 0.85rem;
+    margin: -0.5rem 0 0.1rem 0;
+  }
+
+  .remember-me input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+  }
+
+  .signup-link {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-main {
+    padding: 0.3rem 0;
+  }
+
+  .login-card {
+    padding: 1.2rem 0.6rem;
+  }
+
+  .logo-section {
+    padding: 12px 20px;
+  }
+
+  .brand {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    height: 24px;
+  }
+
+  .input-label input,
+  .input-label1 input {
+    font-size: 0.9rem;
+  }
+
+  .login-btn,
+  .google-btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* Verify */
+
+.verification-code-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+.verification-code-input input {
+  width: 50px;
+  height: 60px;
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid #ff4d4d;
+  border-radius: 8px;
+  background: rgba(223, 4, 10, 0.1);
+  color: white;
+}
+.verification-code-input input:focus {
+  outline: none;
+  border-color: #df040a;
+    box-shadow: 0 0 8px rgba(223, 4, 10, 0.4);
+
+}
+.resend-link {
+  text-align: center;
+  margin-top: 15px;
+  color: #aaa;
+}
+.resend-link a {
+  color: var(--accent-red);
+  text-decoration: none;
+}
+.resend-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .verification-code-input {
+    gap: 6px;
+  }
+  
+  .verification-code-input input {
+    width: 35px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .verification-code-input {
+    gap: 4px;
+  }
+  
+  .verification-code-input input {
+    width: 30px;
+    height: 40px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gamerlk - Level Up Your Gaming Life</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/loader.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/scss/style.scss" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
+      rel="stylesheet" />
+
+    <meta name="description"
+      content="Explore a massive library of PC games to download on GamerLK. From AAA titles to indie hits — fast, verified, and secure.">
+    <meta name="keywords"
+      content="pc game download, free pc games, premium pc games, gamerlk pc games, offline pc games, pc game store, gamerlk download">
+    <meta name="author" content="Laky">
+  </head>
+
+  <body onload="onloadstar();"> 
+    
+         
+    <div class="content">
+      <div class="loading">
+        <p>loading</p>
+        <span></span>
+      </div>
+    </div> 
+    <div class="stars-dot"></div>
+    <div class="sidebar">
+      <div class="logo-section">
+        <span onclick="location.href='index.html'" class="brand">GAMER<span
+            class="sub-brand">L</span>K</span>
+      </div>
+
+      <nav>
+        <!-- Close button for mobile sidebar -->
+        <button class="close-sidebar" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-links">
+          <li class="active" onclick="location.href='index.html'">
+            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
+          </li>
+          <li onclick="location.href='pages/game-store.html'">
+            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
+          </li>
+          <li onclick="location.href='pages/shopping-cart.html'">
+            <span class="nav-icon"><i
+                class="fas fa-shopping-cart"></i></span>Cart
+          </li>
+          <li onclick="location.href='pages/wishlist.html'">
+            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
+          </li>
+          <li onclick="location.href='pages/my-downloads.html'">
+            <span class="nav-icon"><i
+                class="fas fa-download"></i></span>Library
+          </li>
+          <li onclick="location.href='pages/community-board.html'">
+            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-bottom">
+        <ul>
+          <li onclick="location.href='pages/account-settings.html'">
+            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
+          </li>
+          <li onclick="location.href='pages/support-center.html'">
+            <span class="nav-icon"><i
+                class="fas fa-question-circle"></i></span>Help
+          </li>
+          <li class="logout" onclick="location.href='pages/login.html'">
+            <span class="nav-icon"><i
+                class="fas fa-sign-out-alt"></i></span>Logout
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <header>
+        <input class="search-bar" type="text" placeholder="Search orders" />
+        <div class="header-icons">
+          <button class="icon-btn icon-bell">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button class="icon-btn menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <div class="profile" onclick="location.href='./pages/user-profile.html'">
+            <img src="../assets/avatar.png" alt="avatar" />
+            <span>Lakshitha Madumal</span>
+          </div>
+          <!-- Sign Up Hide for  -->
+          <!-- <div class="signup-row">
+            <button onclick="location.href='../pages/login.html'"
+              class="signup-btn">CONNECT</button>
+          </div> -->
+
+        </div>
+      </header>
+
+      <section class="carousel-area">
+        <div class="carousel-banner">
+          <img src="./assets/img/carousel/C1.png" class="carousel-img"
+            alt="game" />
+          <img src="./assets/img/carousel/c2.png" class="carousel-img"
+            alt="Game" />
+          <img src="./assets/img/carousel/c3.png" class="carousel-img"
+            alt="Game" />
+          <img src="./assets/img/carousel/c4.png" class="carousel-img"
+            alt="Game" />
+          <img src="./assets/img/carousel/c5.png" class="carousel-img"
+            alt="Game" />
+
+          <div class="carousel-pagination">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="special-offers">
+        <div class="game-header">
+          <h3>Special offers</h3>
+          <div class="view-all-container">
+            <a href="#" class="view-all-games" id="view-all-toggle">
+              View all <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="offers-list">
+          <div class="offer-card global-img">
+            <a href="./pages/SingleGameView-offer.html">
+              <img src="../assets/Games/g1.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">50% OFF</div>
+          </div>
+          <div class="offer-card global-img">
+            <a href="#">
+              <img src="../assets/Games/g2.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">50% OFF</div>
+          </div>
+          <div class="offer-card global-img">
+            <a href="#">
+              <img src="../assets/Games/g3.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">50% OFF</div>
+          </div>
+          <div class="offer-card global-img">
+            <a href="#">
+              <img src="../assets/Games/g4.jpeg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">50% OFF</div>
+          </div>
+          <div class="offer-card global-img">
+            <a href="#">
+              <img src="../assets/Games/g5.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">50% OFF</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-se">
+        <div class="game-header">
+          <h3>Popular Games</h3>
+          <a href="./pages/game-store.html" class="view-all-games">View all Games
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="game-list">
+          <div class="game-card global-img-game">
+            <a href="./pages/game-details.html">
+              <img src="../assets/Games/g1.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
+            <div class="game-info">
+              <h2 class="game-title">Grand Theft<br> Auto V</h2>
+              <div class="game-price-row">
+                <span>$16.99 USD</span>
+              </div>
+              <div class="game-btn-row">
+                <button class="cart-btn">Add to Cart</button>
+                <span class="heart"><i class="far fa-heart"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="game-card global-img-game">
+            <a href="#">
+              <img src="../assets/Games/g2.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
+            <div class="game-info">
+              <h2 class="game-title">Red Dead Redemption 2</h2>
+              <div class="game-price-row">
+                <span>$16.99 USD</span>
+              </div>
+              <div class="game-btn-row">
+                <button class="cart-btn">Add to Cart</button>
+                <span class="heart"><i class="far fa-heart"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="game-card global-img-game">
+            <a href="#">
+              <img src="../assets/Games/g3.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
+            <div class="game-info">
+              <h2 class="game-title">Far Cry 6</h2><br>
+              <div class="game-price-row">
+                <span>$16.99 USD</span>
+              </div>
+              <div class="game-btn-row">
+                <button class="cart-btn">Add to Cart</button>
+                <span class="heart"><i class="far fa-heart"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="game-card global-img-game">
+            <a href="#">
+              <img src="../assets/Games/g4.jpeg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+            </a>
+            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
+            <div class="game-info">
+              <h2 class="game-title">Kena: Bridge of Spirits</h2>
+              <div class="game-price-row">
+                <span>$16.99 USD</span>
+              </div>
+              <div class="game-btn-row">
+                <button class="cart-btn">Add to Cart</button>
+                <span class="heart"><i class="far fa-heart"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="category-se">
+        <div class="category-header">
+          <h3>Browse Categories</h3>
+          <div class="d-none">
+            <a href="#" class="view-all-games">
+              View all <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="category-list">
+          <div class="category-card global-img-dark">
+            <a href="#">
+              <img src="../assets/Category/c1.jpeg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon gradient-text">
+                Action
+              </div>
+            </a>
+          </div>
+          <div class="category-card global-img-dark">
+            <a href="#">
+              <img src="../assets/Category/c2.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon gradient-text">
+                Adventure
+              </div>
+            </a>
+          </div>
+          <div class="category-card global-img-dark">
+            <a href="#">
+              <img src="../assets/Category/c3.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon gradient-text">
+                Survival
+              </div>
+            </a>
+          </div>
+          <div class="category-card global-img-dark">
+            <a href="#">
+              <img src="../assets/Category/c4.jpeg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon gradient-text">
+                Strategy
+              </div>
+            </a>
+          </div>
+          <div class="category-card global-img-dark">
+            <a href="#">
+              <img src="../assets/Category/c5.jpg" alt="game"
+                class="popup-image" />
+              <div class="hover-icon gradient-text">
+                Horror
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="dev-se">
+
+        <div class="game-header">
+          <h3>Featured Developers</h3>
+          <div class="d-none">
+            <a href="#" class="view-all-games">
+              View all <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="dev-list">
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d1.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d2.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d3.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d4.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d5.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d6.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+          <div class="dev-card global-img-bw">
+            <a href="#">
+              <img src="../assets/Developers/d7.png" alt="game"
+                class="popup-image" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <div class="container">
+          <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for exclusive offers and game
+              releases</p>
+            <form class="subscribe-form">
+              <input class="search-bar-newsletter" type="email"
+                placeholder="Your email address">
+              <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <footer>
+
+        <span class="footer-brand">GAMER<span class="sub-brand">L</span>K</span>
+
+        <div class="footer-nav">
+          <a href="index.html">HOME</a>
+          <a href="pages/game-store.html">STORE</a>
+          <a href="pages/wishlist.html">WATCHLIST</a>
+          <a href="pages/community-board.html">COMMUNITY</a>
+          <a href="pages/support-center.html">HELP</a>
+        </div>
+
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>Copyright ©2025 All rights reserved</p>
+        </div>
+      </footer>
+      <!-- cursor-->
+      <div class="cursor"></div>
+      <div class="cursor-follower"></div>
+      <script src="./assets/js/script.js" defer></script>
+      <script src="./assets/js/includes.js" defer></script>
+      <script src="./assets/js/star.js" defer></script>
+      <script src="./assets/js/loader.js" defer></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    </body>
+
+  </html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gamerlk - My Orders</title>
+    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+    <link rel="stylesheet" href="../assets/css/loader.css" />
+    <link rel="stylesheet" href="../assets/css/purchase-history.css" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
+      rel="stylesheet" />
+
+  </head>
+  <style>
+  .stat-card.games-owned {
+    cursor: pointer;
+  }
+</style>
+
+  <body onload="onloadstar();">
+     
+    <div class="content">
+      <div class="loading">
+        <p>loading</p>
+        <span></span>
+      </div>
+    </div> 
+    <div class="stars-dot"></div>
+    <div class="sidebar">
+      <div class="logo-section">
+        <span onclick="location.href='../index.html'" class="brand">GAMER<span
+            class="sub-brand">L</span>K</span>
+
+      </div>
+      <nav>
+        <!-- Close button for mobile sidebar -->
+        <button class="close-sidebar" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-links">
+          <li onclick="location.href='../index.html'">
+            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
+          </li>
+          <li onclick="location.href='game-store.html'">
+            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
+          </li>
+          <li onclick="location.href='shopping-cart.html'">
+            <span class="nav-icon"><i
+                class="fas fa-shopping-cart"></i></span>Cart
+          </li>
+          <li onclick="location.href='wishlist.html'">
+            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
+          </li>
+          <li onclick="location.href='my-downloads.html'">
+            <span class="nav-icon"><i class="fas fa-download"></i></span>Library
+          </li>
+          <li onclick="location.href='community-board.html'">
+            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-bottom">
+        <ul>
+          <li onclick="location.href='account-settings.html'">
+            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
+          </li>
+          <li onclick="location.href='support-center.html'">
+            <span class="nav-icon"><i
+                class="fas fa-question-circle"></i></span>Help
+          </li>
+          <li class="logout" onclick="location.href='login.html'">
+            <span class="nav-icon"><i
+                class="fas fa-sign-out-alt"></i></span>Logout
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <header>
+        <input class="search-bar" type="text" placeholder="Search orders" />
+        <div class="header-icons">
+          <button class="icon-btn icon-bell">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button class="icon-btn menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="profile" onclick="location.href='user-profile.html'">
+            <img src="../../assets/avatar.png" alt="avatar" />
+            <span>Lakshitha Madumal</span>
+          </div>
+        </div>
+      </header>
+      <!-- Purchase History -->
+      <!-- Purchase History -->
+      <div class="purchase-history">
+        <div class=" game-header">
+          <h3>My Orders</h3>
+          <div class="search-filter">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search purchases...">
+            </div>
+            <div class="filter-dropdown">
+              <select>
+                <option>All Time</option>
+                <option>Last 30 Days</option>
+                <option>Last 6 Months</option>
+                <option>Last Year</option>
+              </select>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="purchase-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Game Name</th>
+                <th>Price</th>
+                <th>Purchase Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Order ID">#GLK-4258</td>
+                <td data-label="Game Name">
+                  <div class="game-info">
+                    <img src="../../assets/Games/g1.jpg" alt="Game Cover">
+                    <span>Cyberpunk 2077</span>
+                  </div>
+                </td>
+                <td data-label="Price">$59.99</td>
+                <td data-label="Purchase Date">May 15, 2023</td>
+                <td data-label="Action">
+                  <button class="invoice-btn" onclick="location.href='../includes/order-invoice.html'">
+                    <i class="fas fa-file-invoice"></i> Invoice
+                  </button>
+                </td>
+
+              </tr>
+              <tr>
+                <td data-label="Order ID">#GLK-4258</td>
+                <td data-label="Game Name">
+                  <div class="game-info">
+                    <img src="../../assets/Games/g1.jpg" alt="Game Cover">
+                    <span>Cyberpunk 2077</span>
+                  </div>
+                </td>
+                <td data-label="Price">$59.99</td>
+                <td data-label="Purchase Date">May 15, 2023</td>
+                <td data-label="Action">
+                  <button class="invoice-btn">
+                    <i class="fas fa-file-invoice"></i> Invoice
+                  </button>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <button class="pagination-btn disabled">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <span class="active">1</span>
+          <span>2</span>
+          <span>3</span>
+          <button class="pagination-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <!-- cursor-->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/star.js" defer></script>
+    <script src="../assets/js/loader.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </body>
+
+</html>

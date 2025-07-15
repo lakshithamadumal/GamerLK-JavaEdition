@@ -1,0 +1,498 @@
+:root {
+  --bg-main: #141415;
+  --bg-second: #18181d;
+  --accent-red: #df040a;
+  --accent-orange: #ff6b27;
+  --text-main: #fff;
+  --text-secondary: #aaa;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Default styles for help-container */
+.help-container {
+  max-width: 1200px;
+  width: 100%; /* Ensure it takes full width up to max-width */
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+.help-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.help-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.help-header p {
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.help-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.help-section:last-child {
+  border-bottom: none;
+}
+
+.help-section h2 {
+  color: var(--accent-orange);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.help-section h2 i {
+  font-size: 1.3rem;
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faq-item {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: var(--bg-second);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background: #1f1f25;
+}
+
+.faq-question {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question i {
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  color: var(--text-secondary);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, margin-top 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  margin-top: 1rem;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #fff3;
+  background: rgba(20, 20, 21, 0.22);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  transition: border 0.18s;
+  box-sizing: border-box; /* Add this to include padding in width */
+  margin-top: 1.3rem;
+}
+
+.contact-form input:focus {
+  border-color: var(--accent-red);
+}
+
+.contact-form textarea:focus {
+  border-color: var(--accent-red);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background: linear-gradient(95deg, #ff6b27 0%, #df040a 98%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-position 0.6s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-position: right center;
+}
+
+.contact-info {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.contact-method i {
+  color: var(--accent-orange);
+  font-size: 1.2rem;
+}
+
+.guide-steps {
+  list-style: none;
+  padding-left: 0;
+}
+
+.guide-steps li {
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-second);
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.guide-steps li:hover {
+  background: #1f1f25;
+}
+
+.guide-steps li::before {
+  content: "→";
+  color: var(--accent-orange);
+  position: absolute;
+  left: 0.5rem;
+}
+
+.notice {
+  background: rgba(223, 4, 10, 0.1);
+  border-left: 3px solid var(--accent-red);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+@media (max-width: 768px) {
+  .help-header h1 {
+    font-size: 2rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.report-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg-second);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.report-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.report-header h1 {
+  color: var(--accent-orange);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.report-header p {
+  color: var(--text-secondary);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #fff3;
+  background: rgba(20, 20, 21, 0.22);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  transition: border 0.18s;
+  box-sizing: border-box; /* Add this to include padding in width */
+}
+
+.form-group input:focus {
+  border-color: var(--accent-red);
+}
+
+.form-group textarea:focus {
+  border-color: var(--accent-red);
+}
+
+.form-group select:focus {
+  border-color: var(--accent-red);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23aaa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+}
+
+.form-select option {
+  background: var(--bg-second);
+  color: var(--text-main);
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.file-upload {
+  margin-top: 1rem;
+}
+
+.file-upload-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.file-upload-box {
+  border: 2px dashed var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload-box:hover {
+  border-color: var(--accent-orange);
+}
+
+.file-upload-box i {
+  font-size: 2rem;
+  color: var(--accent-orange);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.file-upload-box p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.file-preview {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.file-preview-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+.file-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-file {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background: var(--accent-red);
+  color: white;
+  border: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.file-preview-item:hover .remove-file {
+  opacity: 1;
+}
+
+.submit-btn {
+  background: var(--accent-red);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background: #c00308;
+}
+
+.submit-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Issue type options */
+.issue-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+
+.issue-option {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.issue-option:hover {
+  border-color: var(--accent-red);
+}
+
+.issue-option.active {
+  border-color: var(--accent-red);
+  background: rgba(255, 107, 39, 0.1);
+}
+
+.issue-option i {
+  font-size: 1.5rem;
+  color: var(--accent-red);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .report-container {
+    padding: 1.5rem;
+  }
+
+  .issue-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet screens (768px and below) */
+@media (max-width: 768px) {
+  .help-container {
+    padding: 1.5rem; /* Reduce padding for smaller screens */
+  }
+}
+
+/* Mobile screens (576px and below) */
+@media (max-width: 576px) {
+  .help-container {
+    padding: 1rem; /* Further reduce padding for mobile */
+  }
+
+  /* Ensure sections stack vertically */
+  .help-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Adjust font sizes for readability on mobile */
+  .help-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .help-section h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Ensure form inputs are full-width and easier to interact with */
+  .contact-form input,
+  .contact-form textarea,
+  .form-control,
+  .form-select {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  /* Stack issue options vertically */
+  .issue-options {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .issue-option {
+    width: 100%;
+    padding: 0.8rem;
+  }
+}

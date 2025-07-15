@@ -1,0 +1,43 @@
+.global-img {
+    position: relative;
+    overflow: hidden;
+    transition: all .5s ease-out;
+
+    &:after {
+        background: rgba(255, 255, 255, .5);
+        content: "";
+        height: 0;
+        left: 0;
+        opacity: 1;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 9;
+
+    }
+
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        transition: 1.3s all ease;
+    }
+
+    @include md {
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    &:hover {
+        &:after {
+            height: 100%;
+            opacity: 0;
+            transition: all .4s linear;
+        }
+
+        img {
+            transform: scale(1.3);
+        }
+    }
+}

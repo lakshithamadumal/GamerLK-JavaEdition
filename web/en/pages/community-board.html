@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gamerlk - Community Discussions</title>
+    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/community.css" />
+    <link rel="stylesheet" href="../assets/css/loader.css" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body onload="onloadstar();">
+    <div class="content">
+      <div class="loading">
+        <p>loading</p>
+        <span></span>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="logo-section">
+        <span onclick="location.href='../index.html'" class="brand"
+          >GAMER<span class="sub-brand">L</span>K</span
+        >
+      </div>
+      <nav>
+        <!-- Close button for mobile sidebar -->
+        <button class="close-sidebar" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-links">
+          <li onclick="location.href='../index.html'">
+            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
+          </li>
+          <li onclick="location.href='game-store.html'">
+            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
+          </li>
+          <li onclick="location.href='shopping-cart.html'">
+            <span class="nav-icon"><i class="fas fa-shopping-cart"></i></span
+            >Cart
+          </li>
+          <li onclick="location.href='wishlist.html'">
+            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
+          </li>
+          <li onclick="location.href='my-downloads.html'">
+            <span class="nav-icon"><i class="fas fa-download"></i></span>Library
+          </li>
+          <li class="active" onclick="location.href='community-board.html'">
+            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-bottom">
+        <ul>
+          <li onclick="location.href='account-settings.html'">
+            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
+          </li>
+          <li onclick="location.href='support-center.html'">
+            <span class="nav-icon"><i class="fas fa-question-circle"></i></span
+            >Help
+          </li>
+          <li class="logout" onclick="location.href='login.html'">
+            <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span
+            >Logout
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <header>
+        <input class="search-bar" type="text" placeholder="Search orders" />
+        <div class="header-icons">
+          <button class="icon-btn icon-bell">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button class="icon-btn menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="profile" onclick="location.href='user-profile.html'">
+            <img src="../../assets/avatar.png" alt="avatar" />
+            <span>Lakshitha Madumal</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="community-container">
+        <div class="stars-dot"></div>
+
+        <!-- Chat Header with Status -->
+        <div class="chat-header">
+          <div class="chat-title">
+            <div class="status-indicator">
+              <span class="status-dot"></span>
+              <span>128 Gamers Online</span>
+            </div>
+          </div>
+          <div class="chat-actions">
+            <button class="action-btn" title="Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-messages">
+          <!-- Empty State -->
+          <div class="empty-state">
+            <div class="empty-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <h3>Community Chat</h3>
+            <p>Start the conversation! Your messages will appear here.</p>
+            <button class="cta-btn">How it works?</button>
+          </div>
+
+          <!-- Message Template (hidden) -->
+          <div class="message received d-none">
+            <div class="message-avatar">
+              <img src="../../assets/avatar.png" alt="User" />
+              <span class="online-badge"></span>
+            </div>
+            <div class="message-content">
+              <div class="message-header">
+                <span class="username">GameQueen99</span>
+                <span class="timestamp">Today, 2:30 PM</span>
+              </div>
+              <div class="message-text">
+                Just finished the new campaign! Who's up for some multiplayer?
+              </div>
+              <div class="message-reactions">
+                <span class="reaction">👍 3</span>
+                <span class="reaction">❤️ 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message Input Area -->
+        <div class="chat-input-container">
+          <div class="input-tools">
+            <button class="tool-btn">
+              <i class="fas fa-plus"></i>
+            </button>
+            <button class="tool-btn">
+              <i class="fas fa-image"></i>
+            </button>
+            <button class="tool-btn">
+              <i class="fas fa-gift"></i>
+            </button>
+          </div>
+          <div class="message-input-wrapper">
+            <input
+              type="text"
+              class="message-input"
+              placeholder="Type your message..."
+              aria-label="Type your message"
+            />
+            <button class="emoji-btn">
+              <i class="far fa-smile"></i>
+            </button>
+          </div>
+          <button class="send-btn" aria-label="Send message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+    <!-- cursor-->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/star.js" defer></script>
+    <script src="../assets/js/loader.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      // Enhanced Community Chat Functionality with Working Messaging
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatMessages = document.querySelector(".chat-messages");
+        const messageInput = document.querySelector(".message-input");
+        const sendBtn = document.querySelector(".send-btn");
+        const emptyState = document.querySelector(".empty-state");
+
+        // Sample data
+        const sampleUsers = [
+          {
+            name: "ProGamerX",
+            avatar: "../../assets/avatar.png?username=ProGamerX",
+          },
+          {
+            name: "GameQueen99",
+            avatar:
+              "https://avatar.iran.liara.run/public/girl?username=GameQueen99",
+          },
+          {
+            name: "NoobSlayer",
+            avatar: "../../assets/avatar.png?username=NoobSlayer",
+          },
+        ];
+
+        const sampleMessages = [
+          "Hey gamers! What's everyone playing today?",
+          "Just reached level 100! 🎉",
+          "Looking for teammates for ranked matches",
+          "This new update is amazing!",
+          "Any tips for beginners?",
+        ];
+
+        // Initialize chat
+        let messages = [];
+
+        // Function to render all messages
+        function renderMessages() {
+          chatMessages.innerHTML = "";
+
+          if (messages.length === 0) {
+            emptyState.style.display = "flex";
+            return;
+          }
+
+          emptyState.style.display = "none";
+
+          messages.forEach((msg) => {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${
+              msg.isSent ? "sent" : "received"
+            }`;
+
+            messageDiv.innerHTML = `
+        <div class="message-avatar">
+          <img src="${msg.avatar}" alt="${msg.sender}">
+          ${!msg.isSent ? '<span class="online-badge"></span>' : ""}
+        </div>
+        <div class="message-content">
+          <div class="message-header">
+            ${!msg.isSent ? `<span class="username">${msg.sender}</span>` : ""}
+            <span class="timestamp">${msg.time}</span>
+          </div>
+          <div class="message-text">${msg.text}</div>
+          ${
+            msg.reactions
+              ? `
+          <div class="message-reactions">
+            ${msg.reactions
+              .map((r) => `<span class="reaction">${r.emoji} ${r.count}</span>`)
+              .join("")}
+          </div>`
+              : ""
+          }
+        </div>
+      `;
+
+            chatMessages.appendChild(messageDiv);
+          });
+
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to add new message
+        function addMessage(text, isSent = false, user = null) {
+          const now = new Date();
+          const timeString = now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          const newMsg = {
+            text,
+            isSent,
+            time: timeString,
+            sender: isSent ? "You" : user ? user.name : "Unknown",
+            avatar: isSent
+              ? "../../assets/avatar.png"
+              : user
+              ? user.avatar
+              : "https://avatar.iran.liara.run/public/girl",
+            reactions:
+              !isSent && Math.random() > 0.7
+                ? [
+                    {
+                      emoji: ["👍", "❤️", "😂", "🎮", "🔥"][
+                        Math.floor(Math.random() * 5)
+                      ],
+                      count: Math.floor(Math.random() * 5) + 1,
+                    },
+                  ]
+                : null,
+          };
+
+          messages.push(newMsg);
+          renderMessages();
+
+          // If not sent by user, simulate reply after delay
+          if (isSent) {
+            setTimeout(() => {
+              const randomUser =
+                sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+              const randomMessage =
+                sampleMessages[
+                  Math.floor(Math.random() * sampleMessages.length)
+                ];
+              addMessage(randomMessage, false, randomUser);
+            }, 1000 + Math.random() * 2000);
+          }
+        }
+
+        // Send message function
+        function sendMessage() {
+          const messageText = messageInput.value.trim();
+          if (messageText) {
+            addMessage(messageText, true);
+            messageInput.value = "";
+            messageInput.focus();
+          }
+        }
+
+        // Event listeners
+        sendBtn.addEventListener("click", sendMessage);
+
+        messageInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+
+        // Initial welcome message
+        setTimeout(() => {
+          addMessage(
+            "Welcome to GamerLK Community! Start chatting with fellow gamers.",
+            false,
+            {
+              name: "System",
+              avatar: "../../assets/favicon.png",
+            }
+          );
+        }, 500);
+
+        // Initial render
+        renderMessages();
+      });
+    </script>
+  </body>
+</html>
