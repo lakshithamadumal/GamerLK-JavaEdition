@@ -15,7 +15,6 @@
             href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     </head>
-
     <body>
         <div id="bg-gradient"></div>
         <div id="starfield"></div>
@@ -44,9 +43,11 @@
                             placeholder="Password"
                             required />
                     </label>
-                    <button onclick="Register();" type="button"
-                        class="login-btn">Create
-                        Account</button>
+                    <button id="registerBtn" onclick="Register();" type="button"
+                        class="login-btn">
+                        <span id="btnText">Create Account</span>
+                    </button>
+
                 </form>
                 <div class="divider"><span>or</span></div>
                 <button class="google-btn">

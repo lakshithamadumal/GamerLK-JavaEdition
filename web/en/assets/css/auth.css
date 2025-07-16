@@ -8,6 +8,7 @@
   --sidebar-width: 230px;
   --gamerlk-font: "Cyberjunkies", "Outfit", Arial, sans-serif;
 }
+
 @font-face {
   font-family: "Cyberjunkies";
   src: url("../fonts/Cyberjunkies.ttf") format("truetype");
@@ -34,21 +35,19 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: linear-gradient(
-    to right,
-    #141415,
-    #171519,
-    #1a161b,
-    #1f171d,
-    #24171d,
-    #25171e,
-    #25181e,
-    #26181f,
-    #221820,
-    #1e1820,
-    #1b181f,
-    #18181d
-  );
+  background-image: linear-gradient(to right,
+      #141415,
+      #171519,
+      #1a161b,
+      #1f171d,
+      #24171d,
+      #25171e,
+      #25181e,
+      #26181f,
+      #221820,
+      #1e1820,
+      #1b181f,
+      #18181d);
   pointer-events: none;
 }
 
@@ -63,6 +62,7 @@ body {
   align-items: center;
   padding: 0 36px 36px 36px;
 }
+
 .logo {
   height: 36px;
   margin-right: 13px;
@@ -110,6 +110,7 @@ body {
   margin-bottom: 0.5rem;
   text-align: center;
 }
+
 .subtitle {
   font-size: 1.05rem;
   font-weight: 400;
@@ -127,14 +128,17 @@ body {
 
 .input-label {
   width: 100%;
-  margin: 0 auto; /* Center the label container */
+  margin: 0 auto;
+  /* Center the label container */
 }
 
 .input-label1 {
   width: 100%;
-  margin: 0 auto; /* Center the label container */
+  margin: 0 auto;
+  /* Center the label container */
   display: flex;
-  gap: 1rem; /* Adjust the gap between inputs as needed */
+  gap: 1rem;
+  /* Adjust the gap between inputs as needed */
 }
 
 .input-label input {
@@ -147,7 +151,8 @@ body {
   font-size: 1rem;
   outline: none;
   transition: border 0.18s;
-  box-sizing: border-box; /* Add this to include padding in width */
+  box-sizing: border-box;
+  /* Add this to include padding in width */
 }
 
 .input-label1 input {
@@ -160,7 +165,8 @@ body {
   font-size: 1rem;
   outline: none;
   transition: border 0.18s;
-  box-sizing: border-box; /* Add this to include padding in width */
+  box-sizing: border-box;
+  /* Add this to include padding in width */
 }
 
 .input-label input:focus {
@@ -287,13 +293,17 @@ body {
 /* Responsive */
 @media (max-width: 500px) {
   .login-main {
-    padding: 0.5rem 0; /* Further reduced top/bottom padding */
-    justify-content: flex-start; /* Start content closer to top */
-    min-height: auto; /* Allow content to fit without forcing full viewport height */
+    padding: 0.5rem 0;
+    /* Further reduced top/bottom padding */
+    justify-content: flex-start;
+    /* Start content closer to top */
+    min-height: auto;
+    /* Allow content to fit without forcing full viewport height */
   }
 
   .logo-section {
-    padding: 16px 24px; /* Reduced top padding for logo section */
+    padding: 16px 24px;
+    /* Reduced top padding for logo section */
   }
 
   .login-card {
@@ -301,7 +311,8 @@ body {
     width: 90vw;
     max-width: 94vw;
     border-radius: 16px;
-    margin-top: 0.5rem; /* Minimal top margin to avoid extra space */
+    margin-top: 0.5rem;
+    /* Minimal top margin to avoid extra space */
   }
 
   .logo {
@@ -414,6 +425,7 @@ body {
   gap: 10px;
   margin: 20px 0;
 }
+
 .verification-code-input input {
   width: 50px;
   height: 60px;
@@ -424,21 +436,25 @@ body {
   background: rgba(223, 4, 10, 0.1);
   color: white;
 }
+
 .verification-code-input input:focus {
   outline: none;
   border-color: #df040a;
-    box-shadow: 0 0 8px rgba(223, 4, 10, 0.4);
+  box-shadow: 0 0 8px rgba(223, 4, 10, 0.4);
 
 }
+
 .resend-link {
   text-align: center;
   margin-top: 15px;
   color: #aaa;
 }
+
 .resend-link a {
   color: var(--accent-red);
   text-decoration: none;
 }
+
 .resend-link a:hover {
   text-decoration: underline;
 }
@@ -448,7 +464,7 @@ body {
   .verification-code-input {
     gap: 6px;
   }
-  
+
   .verification-code-input input {
     width: 35px;
     height: 45px;
@@ -460,10 +476,34 @@ body {
   .verification-code-input {
     gap: 4px;
   }
-  
+
   .verification-code-input input {
     width: 30px;
     height: 40px;
     font-size: 18px;
+  }
+}
+
+
+/* Spinner */
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
