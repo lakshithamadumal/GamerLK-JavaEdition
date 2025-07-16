@@ -55,7 +55,7 @@ public class SignUp extends HttpServlet {
         } else if (password.isEmpty()) {
             responseObject.addProperty("message", "Password Required");
         } else if (!Util.isPasswordValid(password)) {
-            responseObject.addProperty("message", "Password Not Strong Enough");
+            responseObject.addProperty("message", "Password must be between 1 to 8 characters");
         } else {
 
             SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -69,7 +69,7 @@ public class SignUp extends HttpServlet {
                 responseObject.addProperty("message", "Email Already Registered");
             } else {
 
-                //Status is Active
+                //Status is Processing
                 Criteria criteriaStatus = s.createCriteria(Status.class);
                 Criterion criterionStatus = Restrictions.eq("value", "Processing");
                 criteriaStatus.add(criterionStatus);

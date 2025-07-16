@@ -9,7 +9,7 @@ async function Register() {
 
     // Disable the button + show spinner
     registerBtn.disabled = true;
-    btnText.innerHTML = `<span class="spinner"></span> Sending...`;
+    btnText.innerHTML = `<span class="spinner"></span> Creating...`;
 
     const user = {
         firstName,

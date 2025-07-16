@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/auth.css">
+
+    <!-- Alert -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <style>
     </style>
   </head>
@@ -20,10 +24,11 @@
         <div class="logo-section">
           <span class="brand">GAMER<span class="sub-brand">L</span>K</span>
         </div>
-        
+
         <h2>Verify Your Email</h2>
-        <p class="subtitle">We sent a 6-digit code to <strong>your@email.com</strong></p>
-        
+        <p class="subtitle">We sent a 6-digit code to
+          <strong id="emailAddress"></strong></p>
+
         <!-- Verification Code Input -->
         <form class="login-form" autocomplete="off">
           <div class="verification-code-input">
@@ -33,20 +38,24 @@
             <input type="text" maxlength="1" pattern="[0-9]" required />
             <input type="text" maxlength="1" pattern="[0-9]" required />
             <input type="text" maxlength="1" pattern="[0-9]" required />
-          </div>          
-          <button type="button" onclick="VerifyAccount();" class="login-btn">Verify & Continue</button>
+          </div>
+          <button id="verifyBtn" type="button" onclick="VerifyAccount();"
+            class="login-btn"><span id="btnText">Verify & Continue</span></button>
         </form>
-        
+
         <div class="resend-link">
           Didn't receive the code? <a href="#">Resend Code</a>
         </div>
       </div>
       <div class="back-to-login">
-          <a href="login.html">← Back to Login</a>
-        </div>
+        <a href="login.html">← Back to Login</a>
+      </div>
     </main>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/verify-email.js"></script>
+    <!-- Alert -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
       // Auto-focus and move between inputs
       const inputs = document.querySelectorAll('.verification-code-input input');

@@ -16,6 +16,6 @@ public class Util {
     }
 
     public static boolean isPasswordValid(String password) {
-        return password.matches("^.{1,7}$");
+        return password.matches("^.{1,8}$");
     }
 }
