@@ -45,8 +45,12 @@ async function Login() {
         if (json.status) {
             if (json.message === "Not Verified User") {
                 window.location = "/Gamerlk/en/pages/verify-email.html";
-            } else {
+            } else if (json.message === "Successful Login") {
                 window.location = "/Gamerlk/en/index.html";
+            } else {
+                notyf.error(json.message);
+                resetButton();
+
             }
         } else {
             notyf.error(json.message);

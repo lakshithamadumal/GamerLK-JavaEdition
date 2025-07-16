@@ -49,11 +49,11 @@ public class SignUp extends HttpServlet {
         } else if (lastName.isEmpty()) {
             responseObject.addProperty("message", "Last Name Required");
         } else if (email.isEmpty()) {
-            responseObject.addProperty("message", "Email Required");
+            responseObject.addProperty("message", "Email Required Here");
         } else if (!Util.isEmailValid(email)) {
-            responseObject.addProperty("message", "Invalid Email");
+            responseObject.addProperty("message", "Invalid Email Address");
         } else if (password.isEmpty()) {
-            responseObject.addProperty("message", "Password Required");
+            responseObject.addProperty("message", "Password Required Here");
         } else if (!Util.isPasswordValid(password)) {
             responseObject.addProperty("message", "Password must be between 1 to 8 characters");
         } else {

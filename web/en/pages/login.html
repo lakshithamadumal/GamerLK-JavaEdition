@@ -9,6 +9,9 @@
       href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/auth.css">
+    <!-- Alert -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
   </head>
   <body>
     <div id="bg-gradient"></div>
@@ -22,10 +25,12 @@
         <p class="subtitle">Access Your Game Library</p>
         <form class="login-form" autocomplete="off">
           <label class="input-label">
-            <input id="email" type="email" placeholder="Email address" required />
+            <input id="email" type="email" placeholder="Email address"
+              required />
           </label>
           <label class="input-label">
-            <input id="password" type="password" placeholder="Password" required />
+            <input id="password" type="password" placeholder="Password"
+              required />
           </label>
           <div class="form-row">
             <label class="remember-me">
@@ -34,7 +39,8 @@
             </label>
             <a href="reset-password.html" class="forgot">Forgot Password</a>
           </div>
-          <button id="loginBtn" onclick="Login();" type="button" class="login-btn"><span id="btnText">Login</span></button>
+          <button id="loginBtn" onclick="Login();" type="button"
+            class="login-btn"><span id="btnText">Login</span></button>
         </form>
         <div class="divider"><span>or</span></div>
         <button class="google-btn">
@@ -59,5 +65,8 @@
     </main>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/login.js"></script>
+    <!-- Alert -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   </body>
 </html>

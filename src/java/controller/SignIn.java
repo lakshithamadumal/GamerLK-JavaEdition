@@ -36,11 +36,11 @@ public class SignIn extends HttpServlet {
         responseObject.addProperty("status", Boolean.FALSE);
 
         if (email.isEmpty()) {
-            responseObject.addProperty("message", "Email Required");
+            responseObject.addProperty("message", "Email Required Here");
         } else if (!Util.isEmailValid(email)) {
-            responseObject.addProperty("message", "Invalid Email");
+            responseObject.addProperty("message", "Invalid Email Address");
         } else if (password.isEmpty()) {
-            responseObject.addProperty("message", "Password Required");
+            responseObject.addProperty("message", "Password Required Here");
         } else {
             //Search User
             SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -55,25 +55,27 @@ public class SignIn extends HttpServlet {
             criteriaUser.add(criterionPassword);
 
             if (criteriaUser.list().isEmpty()) {
-                responseObject.addProperty("message", "Invalid User");
+                responseObject.addProperty("message", "Incorrect User Credentials");
             } else {
                 User u = (User) criteriaUser.list().get(0);
                 responseObject.addProperty("status", Boolean.TRUE);
                 HttpSession ses = request.getSession();
 
-                if (true) {//Not Verify and Suspended
-
-                    //Codessssssss
-                    
+                if (u.getStatus().getValue().equals("Processing")) {//Not Verify and Suspended
                     //Session Managemnrt
                     ses.setAttribute("email", email);
                     //Session Managemnrt
                     responseObject.addProperty("message", "Not Verified User");
 
-                } else {
+                } else if (u.getStatus().getValue().equals("Active")) {
+
                     ses.setAttribute("user", u);
                     responseObject.addProperty("message", "Successful Login");
+
+                } else {
+                    responseObject.addProperty("message", "Your Account Suspended");
                 }
+
             }
             s.close();
         }
