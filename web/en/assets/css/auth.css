@@ -507,3 +507,21 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+/* Reset Password */
+.back-to-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-to-login a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.back-to-login a:hover {
+  color: #fff;
+}
