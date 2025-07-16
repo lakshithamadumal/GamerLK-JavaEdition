@@ -23,7 +23,7 @@ async function Login() {
     const SignInJson = JSON.stringify(SignIn);
 
     const response = await fetch(
-        "../../SignIp",
+        "../../SignIn",
         {
             method: "POST",
             body: SignInJson,

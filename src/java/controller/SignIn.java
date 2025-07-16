@@ -18,8 +18,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-@WebServlet(name = "SignIp", urlPatterns = {"/SignIp"})
-public class SignIp extends HttpServlet {
+@WebServlet(name = "SignIn", urlPatterns = {"/SignIn"})
+public class SignIn extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
