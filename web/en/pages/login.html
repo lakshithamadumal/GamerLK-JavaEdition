@@ -22,10 +22,10 @@
         <p class="subtitle">Access Your Game Library</p>
         <form class="login-form" autocomplete="off">
           <label class="input-label">
-            <input type="email" placeholder="Email address" required />
+            <input id="email" type="email" placeholder="Email address" required />
           </label>
           <label class="input-label">
-            <input type="password" placeholder="Password" required />
+            <input id="password" type="password" placeholder="Password" required />
           </label>
           <div class="form-row">
             <label class="remember-me">
@@ -34,7 +34,7 @@
             </label>
             <a href="reset-password.html" class="forgot">Forgot Password</a>
           </div>
-          <button onclick="location.href='../index.html'" type="submit" class="login-btn">Login</button>
+          <button id="loginBtn" onclick="Login();" type="button" class="login-btn"><span id="btnText">Login</span></button>
         </form>
         <div class="divider"><span>or</span></div>
         <button class="google-btn">
@@ -58,5 +58,6 @@
       </div>
     </main>
     <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/login.js"></script>
   </body>
 </html>
