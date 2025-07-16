@@ -35,7 +35,7 @@
             <input type="text" maxlength="1" pattern="[0-9]" required />
           </div>
           
-          <button type="submit" class="login-btn">Verify & Continue</button>
+          <button type="button" onclick="VerifyAccount();" class="login-btn">Verify & Continue</button>
         </form>
         
         <div class="resend-link">
@@ -47,6 +47,7 @@
         </div>
     </main>
     <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/verify-email.js"></script>
     <script>
       // Auto-focus and move between inputs
       const inputs = document.querySelectorAll('.verification-code-input input');
