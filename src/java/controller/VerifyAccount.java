@@ -44,43 +44,47 @@ public class VerifyAccount extends HttpServlet {
             //Get Verification Code in Fontend
             JsonObject verification = gson.fromJson(request.getReader(), JsonObject.class);
             String verificationCode = verification.get("verificationCode").getAsString();
-
-            //Create Session Factory
-            SessionFactory sf = HibernateUtil.getSessionFactory();
-            Session s = sf.openSession();
-
-            Criteria criteriaUser = s.createCriteria(User.class);
-
-            //Like a AND Search
-            Criterion criterionEmail = Restrictions.eq("email", email);
-            Criterion criterionVerificationCode = Restrictions.eq("verification", verificationCode);
-
-            criteriaUser.add(criterionEmail);
-            criteriaUser.add(criterionVerificationCode);
-
-            if (criteriaUser.list().isEmpty()) {//Email එකට ගැලපෙන්නෙ නැ Verify Code එක
-                responseObject.addProperty("message", "Invalid Verification Code");
+            if (verificationCode.isEmpty()) {
+                responseObject.addProperty("message", "Verification Code Required");
             } else {
-                //Status is Processing to Active
-                Criteria criteriaStatus = s.createCriteria(Status.class);
-                Criterion criterionStatus = Restrictions.eq("value", "Active");
-                criteriaStatus.add(criterionStatus);
 
-                Status processingStatus = (Status) criteriaStatus.uniqueResult(); // get the matching "Active" status
+                //Create Session Factory
+                SessionFactory sf = HibernateUtil.getSessionFactory();
+                Session s = sf.openSession();
 
-                User user = (User) criteriaUser.list().get(0);
-                user.setStatus(processingStatus); //Change to Status to Active
+                Criteria criteriaUser = s.createCriteria(User.class);
 
-                s.update(user);
-                s.beginTransaction().commit();
-                s.close();
+                //Like a AND Search
+                Criterion criterionEmail = Restrictions.eq("email", email);
+                Criterion criterionVerificationCode = Restrictions.eq("verification", verificationCode);
 
-                //Store user in the session
-                ses.setAttribute("user", user);
+                criteriaUser.add(criterionEmail);
+                criteriaUser.add(criterionVerificationCode);
 
-                responseObject.addProperty("status", Boolean.TRUE);
-                responseObject.addProperty("message", "Verification Successful");
+                if (criteriaUser.list().isEmpty()) {//Email එකට ගැලපෙන්නෙ නැ Verify Code එක
+                    responseObject.addProperty("message", "Invalid Verification Code");
+                } else {
+                    //Status is Processing to Active
+                    Criteria criteriaStatus = s.createCriteria(Status.class);
+                    Criterion criterionStatus = Restrictions.eq("value", "Active");
+                    criteriaStatus.add(criterionStatus);
 
+                    Status processingStatus = (Status) criteriaStatus.uniqueResult(); // get the matching "Active" status
+
+                    User user = (User) criteriaUser.list().get(0);
+                    user.setStatus(processingStatus); //Change to Status to Active
+
+                    s.update(user);
+                    s.beginTransaction().commit();
+                    s.close();
+
+                    //Store user in the session
+                    ses.setAttribute("user", user);
+
+                    responseObject.addProperty("status", Boolean.TRUE);
+                    responseObject.addProperty("message", "Verification Successful");
+
+                }
             }
         }
         String responseText = gson.toJson(responseObject);
