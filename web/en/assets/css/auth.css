@@ -431,7 +431,7 @@ body {
   height: 60px;
   font-size: 24px;
   text-align: center;
-  border: 2px solid #ff4d4d;
+  border: 2px solid #df040a;
   border-radius: 8px;
   background: rgba(223, 4, 10, 0.1);
   color: white;
@@ -439,7 +439,7 @@ body {
 
 .verification-code-input input:focus {
   outline: none;
-  border-color: #df040a;
+  border-color: #ff4d4d;
   box-shadow: 0 0 8px rgba(223, 4, 10, 0.4);
 
 }
