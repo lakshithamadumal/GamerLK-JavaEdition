@@ -7,9 +7,11 @@ async function VerifyAccount() {
         verificationCode += input.value.trim();
     });
 
+
     const verification = {
         verificationCode: verificationCode
     };
+
 
     const response = await fetch("../../VerifyAccount", {
         method: "POST",

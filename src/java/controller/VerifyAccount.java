@@ -20,6 +20,12 @@ public class VerifyAccount extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("done");
+        Gson gson = new Gson();
+        JsonObject verification = gson.fromJson(request.getReader(), JsonObject.class);
+
+        String verificationCode = verification.get("verificationCode").getAsString();
+        
+        
+    
     }
 }
