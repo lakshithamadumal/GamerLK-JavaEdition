@@ -21,49 +21,70 @@
       rel="stylesheet" />
   </head>
   <style>
+  .price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-.price-wrapper {
+  .original-price {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .offer-price {
+    color: #4CAF50;
+    /* Green color for the offer */
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+  }
+
+  .offer-price::after {
+    content: "OFFER";
+    position: absolute;
+    top: -12px;
+    right: -35px;
+    background: linear-gradient(95deg, #ff6b27 0%, #df040a 98%);
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .release-date {
+  font-style: italic;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.original-price {
-  text-decoration: line-through;
-  color: #aaa;
+  gap: 8px;
+  border-radius: 20px;
   font-size: 0.9rem;
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.offer-price {
-  color: #4CAF50; /* Green color for the offer */
-  font-weight: 600;
-  font-size: 1rem;
-  position: relative;
+.release-date i {
+  color: var(--accent-orange);
+  font-size: 0.9rem;
 }
 
-.offer-price::after {
-  content: "OFFER";
-  position: absolute;
-  top: -12px;
-  right: -35px;
-  background: linear-gradient(95deg, #ff6b27 0%, #df040a 98%);
-  color: white;
-  font-size: 0.6rem;
-  padding: 2px 5px;
-  border-radius: 3px;
-  font-weight: bold;
+@media (max-width: 768px) {
+  .release-date {
+    margin-top: 5px;
+  }
 }
-  </style>
+
+</style>
 
   <body onload="onloadstar();">
-     
+
     <div class="content">
       <div class="loading">
         <p>loading</p>
         <span></span>
       </div>
-    </div> 
+    </div>
     <div class="stars-dot"></div>
     <div class="sidebar">
       <div class="logo-section">
@@ -91,8 +112,7 @@
             <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
           </li>
           <li onclick="location.href='my-downloads.html'">
-            <span class="nav-icon"><i
-                class="fas fa-download"></i></span>Library
+            <span class="nav-icon"><i class="fas fa-download"></i></span>Library
           </li>
           <li onclick="location.href='community-board.html'">
             <span class="nav-icon"><i class="fas fa-users"></i></span>Community
@@ -152,6 +172,10 @@
             <div class="card-gradient"></div>
             <div class="SingleView-detail-content">
               <h2>Stray</h2>
+              <div class="release-date">
+                <i>Released</i>
+                <span>July 19, 2022</span>
+              </div>
               <!-- Offer Badge -->
               <!-- <div class="offer-label">100% OFF</div> -->
 
@@ -191,13 +215,81 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section class="requirements-section">
+        <div class="requirements-header">
+          <h3>System Requirements</h3>
+        </div>
+        <div class="requirements-container">
+          <div class="requirements-card">
+            <div class="requirements-card-header">
+              <i class="fas fa-desktop"></i>
+              <h4>Minimum</h4>
+            </div>
+            <ul class="requirements-list">
+              <li>
+                <span class="requirement-label">OS:</span>
+                <span class="requirement-value">Windows 10 (64-bit)</span>
+              </li>
+              <li>
+                <span class="requirement-label">Processor:</span>
+                <span class="requirement-value">Intel Core i5-2300 | AMD
+                  FX-6300</span>
+              </li>
+              <li>
+                <span class="requirement-label">Memory:</span>
+                <span class="requirement-value">8 GB RAM</span>
+              </li>
+              <li>
+                <span class="requirement-label">Graphics:</span>
+                <span class="requirement-value">NVIDIA GTX 760 | AMD Radeon HD
+                  7870</span>
+              </li>
+              <li>
+                <span class="requirement-label">Storage:</span>
+                <span class="requirement-value">30 GB available space</span>
+              </li>
+            </ul>
+          </div>
 
+          <div class="requirements-card">
+            <div class="requirements-card-header">
+              <i class="fas fa-rocket"></i>
+              <h4>Recommended</h4>
+            </div>
+            <ul class="requirements-list">
+              <li>
+                <span class="requirement-label">OS:</span>
+                <span class="requirement-value">Windows 10 (64-bit)</span>
+              </li>
+              <li>
+                <span class="requirement-label">Processor:</span>
+                <span class="requirement-value">Intel Core i7-4770K | AMD Ryzen
+                  5 1500X</span>
+              </li>
+              <li>
+                <span class="requirement-label">Memory:</span>
+                <span class="requirement-value">16 GB RAM</span>
+              </li>
+              <li>
+                <span class="requirement-label">Graphics:</span>
+                <span class="requirement-value">NVIDIA GTX 1060 | AMD Radeon RX
+                  580</span>
+              </li>
+              <li>
+                <span class="requirement-label">Storage:</span>
+                <span class="requirement-value">30 GB available space</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <section class="game-se">
         <div class="game-header">
           <h3>Featured Games</h3>
-          <a href="./pages/game-store.html" class="view-all-games">View all Games
+          <a href="./pages/game-store.html" class="view-all-games">View all
+            Games
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
