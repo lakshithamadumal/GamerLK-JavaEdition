@@ -5,26 +5,33 @@
         <meta charset="utf-8" />
         <title>Sign In | Gamerlk - Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
-        <meta name="author" content="Zoyothemes"/>
+        <meta name="description"
+            content="A fully featured admin theme which can be used to build CRM, CMS, etc." />
+        <meta name="author" content="Zoyothemes" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="../assets/favicon.png">
 
         <!-- App css -->
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css"
+            id="app-style" />
 
         <link rel="stylesheet" href="assets/loader/loader.css">
 
         <!-- Icons -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.min.css" rel="stylesheet"
+            type="text/css" />
+
+        <!-- Alert -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     </head>
 
     <body class="bg-white">
 
-                <!-- Loader -->
+        <!-- Loader -->
         <div class="loader">
             <div class="animation"></div>
         </div>
@@ -41,26 +48,42 @@
                                 <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
                                     <div class="mb-4 p-0 text-center">
                                         <a href="index.html" class="auth-logo">
-                                            <img src="../assets/logo-dark.png" alt="logo-dark" class="mx-auto" height="28" />
+                                            <img src="../assets/logo-dark.png"
+                                                alt="logo-dark" class="mx-auto"
+                                                height="28" />
                                         </a>
                                     </div>
-                                    
+
                                     <div class="pt-0">
                                         <form action="index.html" class="my-4">
                                             <div class="form-group mb-3">
-                                                <label for="emailaddress" class="form-label">Email</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                                <label for="emailaddress"
+                                                    class="form-label">Email</label>
+                                                <input class="form-control"
+                                                    type="email" id="email"
+                                                    required
+                                                    placeholder="Enter your email">
                                             </div>
 
                                             <div class="form-group mb-3">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" id="password" required="" placeholder="Enter your password">
+                                                <label for="password"
+                                                    class="form-label">Password</label>
+                                                <input class="form-control"
+                                                    type="password"
+                                                    id="password" required
+                                                    placeholder="Enter your password">
                                             </div>
-                                            
+
                                             <div class="form-group mb-0 row">
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-primary" type="submit"> Signin </button>
+                                                        <button id="signinBtn"
+                                                            onclick="SignIn();"
+                                                            class="btn btn-primary"
+                                                            type="button"><span
+                                                                id="btnText">
+                                                                Sign In </span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,7 +98,8 @@
                         <div class="account-page-bg p-md-5 p-4">
                             <div class="text-center">
                                 <div class="auth-image">
-                                    <img src="assets/images/svg/signin.svg" class="mx-auto img-fluid"  alt="images">
+                                    <img src="assets/images/svg/signin.svg"
+                                        class="mx-auto img-fluid" alt="images">
                                 </div>
                             </div>
                         </div>
@@ -91,13 +115,18 @@
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
-        <script src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script
+            src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script
+            src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
         <script src="assets/libs/feather-icons/feather.min.js"></script>
 
         <!-- App js-->
         <script src="assets/js/app.js"></script>
         <script src="assets/loader/loader.js"></script>
-        
+        <script src="assets/js/auth-signin.js"></script>
+        <!-- Alert -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     </body>
 </html>
