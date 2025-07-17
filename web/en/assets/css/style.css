@@ -813,11 +813,31 @@ header {
   padding: 10px 32px;
   transition: background-position 0.6s ease-in-out;
   cursor: pointer;
+
+  /* Add pulsing animation */
+  animation: pulse 2s infinite;
 }
 
 .signup-btn:hover {
   background-position: right center;
 }
+
+/* Keyframes for pulsing */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 107, 39, 0.6);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 107, 39, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 107, 39, 0);
+  }
+}
+
 
 .cart-btn:hover {
   background-position: right center;
