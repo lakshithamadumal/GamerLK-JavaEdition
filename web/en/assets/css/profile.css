@@ -292,3 +292,36 @@
     box-shadow: 0 0 0 0 rgba(75, 181, 67, 0);
   }
 }
+
+
+/* Suspended badge styles */
+.profile-suspended {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff3333; /* Red color for suspended */
+  background: rgba(255, 51, 51, 0.15);
+  padding: 6px 12px;
+  border-radius: 50px;
+  margin-top: 8px;
+  animation: shake 2s infinite;
+}
+
+.profile-suspended i {
+  font-size: 0.9rem;
+}
+
+/* Shaking animation for suspended badge */
+@keyframes shake {
+0% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.4); /* Red shadow start */
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 51, 51, 0); /* Red shadow expand */
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0); /* Red shadow fade */
+  }
+}

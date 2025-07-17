@@ -28,14 +28,14 @@
 
   </style>
 
-  <body onload="onloadstar();">
-     
+  <body>
+
     <div class="content">
       <div class="loading">
         <p>loading</p>
         <span></span>
       </div>
-    </div> 
+    </div>
     <div class="stars-dot"></div>
     <div class="sidebar">
       <div class="logo-section">
@@ -115,48 +115,51 @@
                   src="../../assets/avatar.png"
                   alt="Profile Picture" />
               </div>
-              <h1 class="profile-name">
-                Lakshitha <span class="sub-brand">Madumal</span>
-              </h1>
-              <p class="profile-email">lakshitha@email.com</p>
-              <div class="profile-verified">
+              <h1 class="profile-name" id="ProfileFullName"></h1>
+              <p class="profile-email" id="ProfileEmail"></p>
+
+              <div class="profile-verified" style="display: none;">
                 <i class="fas fa-check-circle"></i>
                 <span>Verified Account</span>
               </div>
-            </div>
 
-            <div class="profile-stats">
-              <div class="stat-card games-owned"
-                onclick="location.href='order-history.html'"
-                style="cursor: pointer;">
-                <div class="stat-value">12</div>
-                <div class="stat-label">Purchase History</div>
+              <div class="profile-suspended" style="display: none;">
+                <i class="fas fa-ban"></i>
+                <span>Suspended Account</span>
               </div>
 
-              <div class="stat-card downloads"
-                onclick="location.href='shopping-cart.html'"
-                style="cursor: pointer;">
-                <div class="stat-value">5</div>
-                <div class="stat-label">Cart</div>
-              </div>
-              <div class="stat-card watchlist"
-                onclick="location.href='wishlist.html'"
-                style="cursor: pointer;">
-                <div class="stat-value">3</div>
-                <div class="stat-label">Watchlist</div>
+              <div class="profile-stats">
+                <div class="stat-card games-owned"
+                  onclick="location.href='order-history.html'"
+                  style="cursor: pointer;">
+                  <div class="stat-value">12</div>
+                  <div class="stat-label">Purchase History</div>
+                </div>
+
+                <div class="stat-card downloads"
+                  onclick="location.href='shopping-cart.html'"
+                  style="cursor: pointer;">
+                  <div class="stat-value">5</div>
+                  <div class="stat-label">Cart</div>
+                </div>
+                <div class="stat-card watchlist"
+                  onclick="location.href='wishlist.html'"
+                  style="cursor: pointer;">
+                  <div class="stat-value">3</div>
+                  <div class="stat-label">Watchlist</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </main>
+      </div>
+      <!-- cursor-->
+      <div class="cursor"></div>
+      <div class="cursor-follower"></div>
+      <script src="../assets/js/script.js" defer></script>
+      <script src="../assets/js/loader.js" defer></script>
+      <script src="../assets/js/get-user-details.js" defer></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  </body>
-</html>
+    </body>
+  </html>

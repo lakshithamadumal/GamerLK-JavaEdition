@@ -10,7 +10,7 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/profile.css" />
-        <link rel="stylesheet" href="../assets/css/loader.css" />
+    <link rel="stylesheet" href="../assets/css/loader.css" />
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -22,14 +22,14 @@
 
   </head>
 
-  <body onload="onloadstar();">
-         
+  <body>
+
     <div class="content">
       <div class="loading">
         <p>loading</p>
         <span></span>
       </div>
-    </div> 
+    </div>
     <div class="stars-dot"></div>
     <div class="sidebar">
       <div class="logo-section">
@@ -67,7 +67,7 @@
       </nav>
       <div class="sidebar-bottom">
         <ul>
-          <li  onclick="location.href='account-settings.html'">
+          <li onclick="location.href='account-settings.html'">
             <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
           </li>
           <li onclick="location.href='support-center.html'">
@@ -111,42 +111,39 @@
               </div>
               <div class="name-fields">
                 <div class="form-group">
-                  <label for="firstName">First Name</label>
+                  <label for="SettingsFirstName">First Name</label>
                   <input
                     type="text"
-                    id="firstName"
                     class="form-control"
-                    value="Lakshitha"
+                    id="SettingsFirstName"
                     required />
                 </div>
+
                 <div class="form-group">
-                  <label for="lastName">Last Name</label>
+                  <label for="SettingsLastName">Last Name</label>
                   <input
                     type="text"
-                    id="lastName"
                     class="form-control"
-                    value="Madumal"
+                    id="SettingsLastName"
                     required />
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="email">Email Address</label>
+                <label for="SettingsEmail">Email Address</label>
                 <input
                   type="email"
-                  id="email"
+                  id="SettingsEmail"
                   class="form-control"
-                  value="lakshitha@email.com"
                   required />
               </div>
 
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="SettingsPassword">Password</label>
                 <input
                   type="password"
-                  id="password"
-                  class="form-control"
-                  placeholder="Enter new password" />
+                  id="SettingsPassword"
+                  class="form-control" />
               </div>
 
               <button type="submit" class="save-btn">Update Profile</button>
@@ -159,8 +156,9 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
     <script src="../assets/js/loader.js" defer></script>
+    <script src="../assets/js/get-user-details-settings.js" defer></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </body>

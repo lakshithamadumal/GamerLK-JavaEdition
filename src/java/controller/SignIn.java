@@ -73,7 +73,8 @@ public class SignIn extends HttpServlet {
                     responseObject.addProperty("message", "Successful Login");
 
                 } else {
-                    responseObject.addProperty("message", "Your Account Suspended");
+                    ses.setAttribute("user", u);
+                    responseObject.addProperty("message", "Successful Login");
                 }
 
             }
