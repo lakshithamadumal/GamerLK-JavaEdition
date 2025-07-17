@@ -1146,26 +1146,40 @@ header {
 .game-lable {
   position: absolute;
   top: 10px;
-  /* Adjust the distance from the top */
   right: 10px;
-  /* Adjust the distance from the right */
   background: linear-gradient(45deg, #ff6b27, #df040a);
-  /* Gradient background */
   color: #fff;
-  /* Text color */
   font-size: 0.9rem;
-  /* Font size */
   font-weight: bold;
-  /* Bold text */
   padding: 5px 10px;
-  /* Padding around the text */
   border-radius: 5px;
-  /* Rounded corners */
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  /* Optional shadow for better visibility */
   z-index: 10;
-  /* Ensure it appears above the image */
+
+  /* Pulsing box-shadow animation */
+  animation: pulseShadow 2s infinite;
 }
+
+/* Keyframes for glowing box-shadow pulse */
+@keyframes pulseShadow {
+  0% {
+    box-shadow:
+      0 0 10px rgba(255, 107, 39, 0.6),  /* orange */
+      0 0 20px rgba(223, 4, 10, 0.3);    /* red */
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(255, 107, 39, 0.9),  /* orange stronger */
+      0 0 30px rgba(223, 4, 10, 0.6);    /* red stronger */
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(255, 107, 39, 0.6),
+      0 0 20px rgba(223, 4, 10, 0.3);
+  }
+}
+
+
 
 .offer-card a,
 .game-card a,
@@ -2976,3 +2990,7 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
 }
+
+
+
+
