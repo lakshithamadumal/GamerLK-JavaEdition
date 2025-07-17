@@ -12,7 +12,7 @@ async function SignIn() {
 
     function resetButton() {
         signinBtn.disabled = false;
-        btnText.innerHTML = "Create Account";
+        btnText.innerHTML = "Sign In";
     }
 
     const SignIn = {
