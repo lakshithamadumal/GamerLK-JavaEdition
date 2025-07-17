@@ -116,7 +116,16 @@ body {
   font-weight: 400;
   margin: 0 0 1.3rem 0;
   color: #fff9;
+  text-align: center; /* Center the lines */
 }
+
+.subtitleEmail {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff9;
+  display: inline-block; /* Keep it inline but allow centering */
+}
+
 
 .login-form {
   width: 100%;

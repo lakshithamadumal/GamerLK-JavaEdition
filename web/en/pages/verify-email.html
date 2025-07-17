@@ -16,7 +16,7 @@
     <style>
     </style>
   </head>
-  <body>
+  <body">
     <div id="bg-gradient"></div>
     <div id="starfield"></div>
     <main class="login-main">
@@ -26,8 +26,10 @@
         </div>
 
         <h2>Verify Your Email</h2>
-        <p class="subtitle">We sent a 6-digit code to your Email Address
-          <strong id="emailAddress"></strong></p>
+        <p class="subtitle">
+          We sent a 6-digit code to<br>
+          <span class="subtitleEmail" id="getemailAddress"></span>
+        </p>
 
         <!-- Verification Code Input -->
         <form class="login-form" autocomplete="off">
@@ -40,7 +42,8 @@
             <input type="text" maxlength="1" pattern="[0-9]" required />
           </div>
           <button id="verifyBtn" type="button" onclick="VerifyAccount();"
-            class="login-btn"><span id="btnText">Verify & Continue</span></button>
+            class="login-btn"><span id="btnText">Verify &
+              Continue</span></button>
         </form>
 
         <div class="resend-link">
@@ -53,6 +56,7 @@
     </main>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/verify-email.js"></script>
+    <script src="../assets/js/get-email.js"></script>
     <!-- Alert -->
     <script
       src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
