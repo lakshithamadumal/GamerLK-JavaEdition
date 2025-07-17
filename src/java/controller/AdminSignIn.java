@@ -66,6 +66,8 @@ public class AdminSignIn extends HttpServlet {
                 Admin a = (Admin) criteriaAdmin.list().get(0);
                 responseObject.addProperty("status", Boolean.TRUE);
                 HttpSession ses = request.getSession();
+                ses.setAttribute("admin", a);
+
             }
             s.close();
         }
