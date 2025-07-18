@@ -5,6 +5,7 @@ window.onload = async function () {
     const download = document.querySelector(".DownloadTo");
     const community = document.querySelector(".CommunityTo");
     const logout = document.querySelector(".LogoutTo");
+    const settings = document.querySelector(".SettingsTo");
 
     try {
         const response = await fetch("../GetUserDetails");
@@ -23,6 +24,7 @@ window.onload = async function () {
         download.style.display = "none";
         community.style.display = "none";
         logout.style.display = "none";
+        settings.style.display = "none";
     }
 
     staronindex(); 
