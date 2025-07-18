@@ -13,7 +13,35 @@
     <!-- Alert -->
     <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
+  <style>
+    /* You can put this in your global CSS */
+.swal2-popup.dark-modal {
+    border-radius: 16px;
+    box-shadow: 0 0 300px rgba(255, 63, 34, 0.2); /* glowing orange vibe */
+}
+
+.swal2-confirm.confirm-btn {
+    border-radius: 8px;
+    font-weight: bold;
+    background-image: linear-gradient(145deg, #df040a, #FF5722);
+    color: white;
+}
+
+.swal2-cancel.cancel-btn {
+    border-radius: 8px;
+    background-color: #2E2E2E;
+    color: #bbb;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #df040a !important;
+    color: #df040a !important;
+}
+
+  </style>
 
   <body>
     <div id="bg-gradient"></div>
@@ -32,8 +60,9 @@
               id="email">
           </label>
 
-          <button type="button" class="login-btn" onclick="GetEmail();">Send
-            Verification Code</button>
+          <button type="button" id="sendBtn" class="login-btn"
+            onclick="GetEmail();"><span id="btnText">Send
+              Verification Code</span></button>
         </form>
         <div class="back-to-login">
           <a href="login.html">← Back to Login</a>
@@ -45,6 +74,10 @@
     <!-- Alert -->
     <script
       src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   </body>
 
 </html>
