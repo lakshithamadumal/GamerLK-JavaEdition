@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Mail;
 import model.Util;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -46,8 +47,6 @@ public class ResetPassword extends HttpServlet {
 
             if (password.isEmpty()) {
                 responseObject.addProperty("message", "Password Required Here");
-            } else if (!Util.isPasswordValid(password)) {
-                responseObject.addProperty("message", "Password must be between 1 to 8 characters");
             } else {
                 SessionFactory sf = HibernateUtil.getSessionFactory();
                 Session s = sf.openSession();
@@ -64,8 +63,46 @@ public class ResetPassword extends HttpServlet {
                     s.beginTransaction();
                     s.update(u);
                     s.getTransaction().commit();
-                    s.close();
 
+                    //Send Email
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String emailBody = ""
+                                    + "<div style='max-width: 500px; margin: 20px auto; background: white; border-radius: 12px; "
+                                    + "overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); font-family: Outfit, sans-serif;'>"
+                                    + "<div style='background: linear-gradient(135deg, #df040a, #ff6b27); padding: 30px; text-align: center;'>"
+                                    + "  <div style='padding: 0 36px 26px 36px;'>"
+                                    + "    <span style='font-family: Cyberjunkies, Outfit, Arial, sans-serif; letter-spacing: 3px; font-size: 2.15rem; color: #fff;'>"
+                                    + "      <strong>GAMERLK</strong>"
+                                    + "    </span>"
+                                    + "  </div>"
+                                    + "  <h1 style='color: white; font-size: 24px; margin: 0; font-weight: 700;'>Password Reset Successful</h1>"
+                                    + "</div>"
+                                    + "<div style='padding: 30px; text-align: center;'>"
+                                    + "  <p style='font-size: 16px; line-height: 1.6; margin-bottom: 10px;'>"
+                                    + "Hello " + email + ",<br />Your password has been <strong>successfully reset</strong>. You can now log in using your new password."
+                                    + "  </p>"
+                                    + "  <div style='margin: 25px 0; font-size: 18px; font-weight: 700; color: #df040a; "
+                                    + "background: rgba(223, 4, 10, 0.1); padding: 15px; border-radius: 8px; display: inline-block;'>"
+                                    + "Password Reset Complete"
+                                    + "  </div>"
+                                    + "  <p style='font-size: 14px; color: #666; margin-top: 30px;'>"
+                                    + "If this wasn't you, please reset your password again immediately and contact our support team."
+                                    + "  </p>"
+                                    + "</div>"
+                                    + "<div style='background: #141415; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; "
+                                    + "color: rgba(255, 255, 255, 0.7); font-size: 12px; text-align: center;'>"
+                                    + "  <p style='margin: 0;'>© 2025 <strong>Gamerlk</strong>. All rights reserved.</p>"
+                                    + "</div>"
+                                    + "</div>";
+
+                            Mail.sendMail(email, "Your Gamerlk Password Has Been Reset", emailBody);
+
+                        }
+                    }).start();
+
+                    s.close();
 
                     responseObject.addProperty("status", Boolean.TRUE);
                     responseObject.addProperty("message", "Password Reset Successful");
