@@ -10,6 +10,9 @@
       href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
       rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/auth.css">
+    <!-- Alert -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
   </head>
 
   <body>
@@ -25,11 +28,12 @@
         <form class="login-form" autocomplete="off">
           <!-- Inside your form, replace this: -->
           <label class="input-label">
-            <input type="email" placeholder="Your Email" required
+            <input type="email" placeholder="Your Email" id="email" required
               id="email">
           </label>
 
-          <button type="submit" class="login-btn">Send Verification Code</button>
+          <button type="button" class="login-btn" onclick="GetEmail();">Send
+            Verification Code</button>
         </form>
         <div class="back-to-login">
           <a href="login.html">← Back to Login</a>
@@ -37,6 +41,10 @@
       </div>
     </main>
     <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/reset-password.js"></script>
+    <!-- Alert -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   </body>
 
 </html>
