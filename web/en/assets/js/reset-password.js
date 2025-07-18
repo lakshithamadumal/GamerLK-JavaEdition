@@ -86,3 +86,93 @@ async function GetEmail() {
         btnText.innerHTML = "Send Verification Code";
     }
 }
+
+
+
+
+async function ResetPassword() {
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        },
+        duration: 3000
+    });
+
+    const newPassword = document.getElementById('newPassword');
+    const confirmPassword = document.getElementById('confirmPassword');
+
+    const newPass = newPassword.value.trim();
+    const confirmPass = confirmPassword.value.trim();
+
+    // Check for empty fields
+    if (newPass === '') {
+        notyf.error('Password Required Here')
+        resetButton();
+
+    } else if (confirmPass === '') {
+        notyf.error('Password Required Here')
+        resetButton();
+
+    } else if (newPass !== confirmPass) {
+        notyf.error("Password Doesn't Match");
+        resetButton();
+
+    } else {
+
+        const resetBtn = document.getElementById("resetBtn");
+        const btnText = document.getElementById("btnText");
+
+        // Disable the button + show spinner
+        resetBtn.disabled = true;
+        btnText.innerHTML = `<span class="spinner"></span> Resetting...`;
+
+        const ResetPW = {
+            confirmPass: confirmPass
+        };
+
+        const response = await fetch("../../ResetPassword", {
+            method: "POST",
+            body: JSON.stringify(ResetPW),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+
+        if (response.ok) {
+            const json = await response.json();
+            if (json.status) {
+                notyf.success("Password Reset Successful!");
+
+                // Disable button to prevent double submissions
+                resetBtn.disabled = true;
+                btnText.innerHTML = "Redirecting...";
+
+                // Wait 5 seconds before redirecting
+                setTimeout(() => {
+                    window.location = "/Gamerlk/en/pages/login.html";
+                }, 3000);
+            }
+            else {
+                if (json.message === "Email Not Found") {
+                    notyf.error("Email Not Found!");
+                    resetButton();
+                } else {
+                    notyf.error(json.message);
+                    resetButton();
+                }
+            }
+
+        } else {
+            notyf.error("Password Reset failed. Please try again later.");
+            resetButton();
+        }
+
+    }
+
+    function resetButton() {
+        resetBtn.disabled = false;
+        btnText.innerHTML = "Reset Password";
+    }
+}
