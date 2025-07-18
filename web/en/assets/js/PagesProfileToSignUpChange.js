@@ -7,7 +7,7 @@ window.onload = async function () {
     const logout = document.querySelector(".LogoutTo");
 
     try {
-        const response = await fetch("../GetUserDetails");
+        const response = await fetch("../../GetUserDetails");
 
         if (!response.ok) {
             throw new Error("User not logged in");

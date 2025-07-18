@@ -21,14 +21,14 @@
       rel="stylesheet" />
   </head>
 
-  <body onload="onloadstar();">
-         
+  <body>
+
     <div class="content">
       <div class="loading">
         <p>loading</p>
         <span></span>
       </div>
-    </div> 
+    </div>
     <div class="stars-dot"></div>
     <div class="sidebar">
       <div class="logo-section">
@@ -48,18 +48,19 @@
           <li onclick="location.href='game-store.html'">
             <span class="nav-icon"><i class="fas fa-store"></i></span>Store
           </li>
-          <li onclick="location.href='shopping-cart.html'">
+          <li onclick="location.href='shopping-cart.html'" class="CartTo">
             <span class="nav-icon"><i
                 class="fas fa-shopping-cart"></i></span>Cart
           </li>
           <li class="active" onclick="location.href='wishlist.html'">
             <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
           </li>
-          <li onclick="location.href='my-downloads.html'">
+          <li onclick="location.href='my-downloads.html'" class="DownloadTo">
             <span class="nav-icon"><i
                 class="fas fa-download"></i></span>Library
           </li>
-          <li onclick="location.href='community-board.html'">
+          <li onclick="location.href='community-board.html'"
+            class="CommunityTo">
             <span class="nav-icon"><i class="fas fa-users"></i></span>Community
           </li>
         </ul>
@@ -73,7 +74,7 @@
             <span class="nav-icon"><i
                 class="fas fa-question-circle"></i></span>Help
           </li>
-          <li class="logout" onclick="location.href='login.html'">
+          <li class="logout LogoutTo" onclick="location.href='login.html'">
             <span class="nav-icon"><i
                 class="fas fa-sign-out-alt"></i></span>Logout
           </li>
@@ -90,9 +91,15 @@
           <button class="icon-btn menu-toggle">
             <i class="fas fa-bars"></i>
           </button>
-          <div class="profile" onclick="location.href='user-profile.html'">
+
+          <div class="profile ProfileTo" onclick="location.href='user-profile.html'">
             <img src="../../assets/avatar.png" alt="avatar" />
-            <span>Lakshitha Madumal</span>
+            <span id="NavFullName"></span>
+          </div>
+
+          <div class="signup-row SignUpTo">
+            <button onclick="location.href='../../en/pages/login.html'"
+              class="signup-btn">CONNECT</button>
           </div>
         </div>
       </header>
@@ -209,9 +216,9 @@
     <div class="cursor-follower"></div>
     <script src="../assets/js/script.js" defer></script>
     <script src="../assets/js/includes.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
     <script src="../assets/js/loader.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/PagesProfileToSignUpChange.js" defer></script>
 
   </body>
 
