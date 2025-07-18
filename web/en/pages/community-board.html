@@ -7,25 +7,22 @@
     <link rel="icon" href="../../assets/favicon.png" type="image/png" />
     <link
       href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/community.css" />
     <link rel="stylesheet" href="../assets/css/loader.css" />
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
   </head>
 
-  <body onload="onloadstar();">
+  <body>
     <div class="content">
       <div class="loading">
         <p>loading</p>
@@ -34,9 +31,8 @@
     </div>
     <div class="sidebar">
       <div class="logo-section">
-        <span onclick="location.href='../index.html'" class="brand"
-          >GAMER<span class="sub-brand">L</span>K</span
-        >
+        <span onclick="location.href='../index.html'" class="brand">GAMER<span
+            class="sub-brand">L</span>K</span>
       </div>
       <nav>
         <!-- Close button for mobile sidebar -->
@@ -51,8 +47,8 @@
             <span class="nav-icon"><i class="fas fa-store"></i></span>Store
           </li>
           <li onclick="location.href='shopping-cart.html'">
-            <span class="nav-icon"><i class="fas fa-shopping-cart"></i></span
-            >Cart
+            <span class="nav-icon"><i
+                class="fas fa-shopping-cart"></i></span>Cart
           </li>
           <li onclick="location.href='wishlist.html'">
             <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
@@ -71,12 +67,12 @@
             <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
           </li>
           <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i class="fas fa-question-circle"></i></span
-            >Help
+            <span class="nav-icon"><i
+                class="fas fa-question-circle"></i></span>Help
           </li>
           <li class="logout" onclick="location.href='login.html'">
-            <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span
-            >Logout
+            <span class="nav-icon"><i
+                class="fas fa-sign-out-alt"></i></span>Logout
           </li>
         </ul>
       </div>
@@ -93,7 +89,7 @@
           </button>
           <div class="profile" onclick="location.href='user-profile.html'">
             <img src="../../assets/avatar.png" alt="avatar" />
-            <span>Lakshitha Madumal</span>
+            <span id="NavFullName"></span>
           </div>
         </div>
       </header>
@@ -168,8 +164,7 @@
               type="text"
               class="message-input"
               placeholder="Type your message..."
-              aria-label="Type your message"
-            />
+              aria-label="Type your message" />
             <button class="emoji-btn">
               <i class="far fa-smile"></i>
             </button>
@@ -185,9 +180,10 @@
     <div class="cursor-follower"></div>
 
     <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
     <script src="../assets/js/loader.js" defer></script>
+    <script src="../assets/js/get-nav-name.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/ProfileToSignUpChange.js" defer></script>
 
     <script>
       // Enhanced Community Chat Functionality with Working Messaging

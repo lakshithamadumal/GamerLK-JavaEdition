@@ -9,6 +9,7 @@ window.onload = async function () {
         document.getElementById("SettingsEmail").value = json.email;
         document.getElementById("SettingsPassword").value = json.password;
 
+        document.getElementById("NavFullName").innerHTML = `${json.firstName} ${json.lastName}`;
 
         console.log()
     }

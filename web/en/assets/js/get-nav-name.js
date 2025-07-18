@@ -1,37 +1,11 @@
 window.onload = async function () {
-
     const response = await fetch("../../GetUserDetails");
     if (response.ok) {
         const json = await response.json();
 
-
-        document.getElementById("ProfileFullName").innerHTML = `${json.firstName} <span class="sub-brand">${json.lastName}</span>`;
-        document.getElementById("ProfileEmail").innerHTML = `${json.email}`;
-
         document.getElementById("NavFullName").innerHTML = `${json.firstName} ${json.lastName}`;
-
-
-        // Check status and toggle visibility
-        const verifiedDiv = document.querySelector(".profile-verified");
-        const suspendedDiv = document.querySelector(".profile-suspended");
-
-        if (json.status === "Active") {
-            verifiedDiv.style.display = "block";
-            suspendedDiv.style.display = "none";
-        } else {
-            verifiedDiv.style.display = "none";
-            suspendedDiv.style.display = "block";
-        }
-
-    }
-    else {
-
     }
 
-
-
-
-    // Star
     const stardotContainer = document.querySelector(".stars-dot");
 
     // Clear any existing stars (optional if the function is called once)
