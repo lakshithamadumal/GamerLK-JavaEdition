@@ -28,7 +28,7 @@
     <meta name="author" content="Laky">
   </head>
 
-  <body onload="onloadstar();"> 
+  <body> 
     
          
     <div class="content">
@@ -56,18 +56,18 @@
           <li onclick="location.href='pages/game-store.html'">
             <span class="nav-icon"><i class="fas fa-store"></i></span>Store
           </li>
-          <li onclick="location.href='pages/shopping-cart.html'">
+          <li onclick="location.href='pages/shopping-cart.html'" class="CartTo">
             <span class="nav-icon"><i
                 class="fas fa-shopping-cart"></i></span>Cart
           </li>
           <li onclick="location.href='pages/wishlist.html'">
             <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
           </li>
-          <li onclick="location.href='pages/my-downloads.html'">
+          <li onclick="location.href='pages/my-downloads.html'" class="DownloadTo">
             <span class="nav-icon"><i
                 class="fas fa-download"></i></span>Library
           </li>
-          <li onclick="location.href='pages/community-board.html'">
+          <li onclick="location.href='pages/community-board.html'" class="CommunityTo">
             <span class="nav-icon"><i class="fas fa-users"></i></span>Community
           </li>
         </ul>
@@ -81,7 +81,7 @@
             <span class="nav-icon"><i
                 class="fas fa-question-circle"></i></span>Help
           </li>
-          <li class="logout" onclick="LogOut();">
+          <li class="logout LogoutTo" onclick="LogOut();">
             <span class="nav-icon" ><i
                 class="fas fa-sign-out-alt"></i></span>Logout
           </li>
@@ -92,22 +92,25 @@
       <header>
         <input class="search-bar" type="text" placeholder="Search orders" />
         <div class="header-icons">
+
           <button class="icon-btn icon-bell">
             <i class="fas fa-bell"></i>
           </button>
+
           <button class="icon-btn menu-toggle">
             <i class="fas fa-bars"></i>
           </button>
 
-          <div class="profile" onclick="location.href='./pages/user-profile.html'">
+          <div class="profile ProfileTo" onclick="location.href='./pages/user-profile.html'">
             <img src="../assets/avatar.png" alt="avatar" />
-            <span>Lakshitha Madumal</span>
+            <span id="NavFullName"></span>
           </div>
+
           <!-- Sign Up Hide for  -->
-          <!-- <div class="signup-row">
+          <div class="signup-row SignUpTo">
             <button onclick="location.href='../en/pages/login.html'"
               class="signup-btn">CONNECT</button>
-          </div> -->
+          </div>
 
         </div>
       </header>
@@ -445,9 +448,9 @@
       <div class="cursor-follower"></div>
       <script src="./assets/js/script.js" defer></script>
       <script src="./assets/js/includes.js" defer></script>
-      <script src="./assets/js/star.js" defer></script>
       <script src="./assets/js/logout.js" defer></script>
       <script src="./assets/js/loader.js" defer></script>
+      <script src="./assets/js/ProfileToSignUpChange.js" defer></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     </body>
