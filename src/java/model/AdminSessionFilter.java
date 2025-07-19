@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Laky
  */
-@WebFilter(urlPatterns = {"/en/pages/login.html", "/en/pages/register.html", "/en/pages/verify-email.html"})
+@WebFilter(urlPatterns = {"/admin/auth-signin.html"})
 public class AdminSessionFilter implements Filter {
 
     @Override
@@ -34,8 +34,8 @@ public class AdminSessionFilter implements Filter {
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
 
-        if (session != null && session.getAttribute("user") != null) {
-            response.sendRedirect(request.getContextPath() + "/en/index.html");
+        if (session != null && session.getAttribute("admin") != null) {
+            response.sendRedirect(request.getContextPath() + "/admin/index.html");
         } else {
             chain.doFilter(request, response);
         }
