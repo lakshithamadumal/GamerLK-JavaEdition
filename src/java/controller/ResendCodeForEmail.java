@@ -2,11 +2,9 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import hibernate.HibernateUtil;
-import hibernate.Status;
 import hibernate.User;
 import java.io.IOException;
-import java.util.Date;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,70 +23,45 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Laky
  */
-@WebServlet(name = "SignUp", urlPatterns = {"/SignUp"})
-public class SignUp extends HttpServlet {
+@WebServlet(name = "ResendCodeForEmail", urlPatterns = {"/ResendCodeForEmail"})
+public class ResendCodeForEmail extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Gson gson = new Gson();
-        JsonObject user = gson.fromJson(request.getReader(), JsonObject.class);
-
-        String firstName = user.get("firstName").getAsString();
-        String lastName = user.get("lastName").getAsString();
-        String email = user.get("email").getAsString();
-        String password = user.get("password").getAsString();
-
-        //Validation
         JsonObject responseObject = new JsonObject();
-        responseObject.addProperty("status", Boolean.FALSE);
+        responseObject.addProperty("status", false);
+        HttpSession session = request.getSession();
 
-        if (firstName.isEmpty()) {
-            responseObject.addProperty("message", "First Name Required");
-        } else if (lastName.isEmpty()) {
-            responseObject.addProperty("message", "Last Name Required");
-        } else if (email.isEmpty()) {
-            responseObject.addProperty("message", "Email Required Here");
-        } else if (!Util.isEmailValid(email)) {
-            responseObject.addProperty("message", "Invalid Email Address");
-        } else if (password.isEmpty()) {
-            responseObject.addProperty("message", "Password Required Here");
-        } else if (!Util.isPasswordValid(password)) {
-            responseObject.addProperty("message", "Password must be between 1 to 8 characters");
-        } else {
-
-            SessionFactory sf = HibernateUtil.getSessionFactory();
+        if (session != null && session.getAttribute("email") != null) {
+            String email = session.getAttribute("email").toString();
+            responseObject.addProperty("message", "Email found");
+            SessionFactory sf = hibernate.HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
 
-            //Have A User
-            Criteria criteriaEmail = s.createCriteria(User.class);
-            criteriaEmail.add(Restrictions.eq("email", email));
+            //search user email
+            Criteria c1 = s.createCriteria(User.class);
+            Criterion crt1 = Restrictions.eq("email", email);
 
-            if (!criteriaEmail.list().isEmpty()) {
-                responseObject.addProperty("message", "Email Already Registered");
+            c1.add(crt1);
+
+            if (c1.list().isEmpty()) {
+                responseObject.addProperty("message", "User not found");
             } else {
 
-                //Status is Processing
-                Criteria criteriaStatus = s.createCriteria(Status.class);
-                Criterion criterionStatus = Restrictions.eq("value", "Processing");
-                criteriaStatus.add(criterionStatus);
+                User user = (User) c1.list().get(0);
 
-                Status processingStatus = (Status) criteriaStatus.uniqueResult(); // get the matching "Processing" status
+                responseObject.addProperty("status", true);
 
-                User u = new User();
-                u.setFirst_name(firstName);
-                u.setLast_name(lastName);
-                u.setEmail(email);
-                u.setPassword(password);
-                u.setCreated_at(new Date());
-                u.setStatus(processingStatus);
+                session.setAttribute("email", email);
 
                 //Get Verify Code
                 String verificationCode = Util.generateCode();
-                u.setVerification(verificationCode);
+                user.setVerification(verificationCode);
+                String firstName = user.getFirst_name();
 
-                s.save(u);
+                s.update(user);
                 s.beginTransaction().commit();
 
                 //Send Email
@@ -131,19 +104,14 @@ public class SignUp extends HttpServlet {
                     }
                 }).start();
 
-                //Session Managemnrt to Get Email to Verify
-                HttpSession ses = request.getSession();
-                ses.setAttribute("email", email);
-                //Session Managemnrt
+                responseObject.addProperty("message", "User found");
+                session.setAttribute("lastCodeSentTime", System.currentTimeMillis());
 
-                // Set timestamp for resend cooldown
-                ses.setAttribute("lastCodeSentTime", System.currentTimeMillis());
-
-                //Change Status and Success
-                responseObject.addProperty("status", Boolean.TRUE);
-                responseObject.addProperty("message", "Registration successful!");
             }
             s.close();
+
+        } else {
+            responseObject.addProperty("message", "Email not found");
         }
 
         String responseText = gson.toJson(responseObject);
