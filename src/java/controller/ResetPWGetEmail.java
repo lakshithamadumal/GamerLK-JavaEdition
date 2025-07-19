@@ -117,7 +117,9 @@ public class ResetPWGetEmail extends HttpServlet {
                             Mail.sendMail(email, "Reset Your Gamerlk Password", emailBody);
                         }
                     }).start();
-
+                    
+                    // Set timestamp for resend cooldown
+                    ses.setAttribute("lastCodeSentTime", System.currentTimeMillis());
                 }
             }
             s.close();

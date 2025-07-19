@@ -464,8 +464,14 @@ body {
   text-decoration: none;
 }
 
-.resend-link a:hover {
+.resend-link a:hover:not(.disabled) {
   text-decoration: underline;
+}
+
+.resend-link a.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Mobile responsiveness */
