@@ -11,5 +11,9 @@
         <mapping class="hibernate.User"/>
         <mapping class="hibernate.Status"/>
         <mapping class="hibernate.Admin"/>
+        <mapping class="hibernate.Category"/>
+        <mapping class="hibernate.Developer"/>
+        <mapping class="hibernate.Mode"/>
+        <mapping class="hibernate.Requirement"/>
     </session-factory>
 </hibernate-configuration>
