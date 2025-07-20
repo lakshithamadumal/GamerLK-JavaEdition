@@ -715,7 +715,6 @@ header {
   font-size: 1.09rem;
   margin-bottom: 13px;
   margin-top: 35px;
-  
 }
 
 .btn-row {
@@ -837,7 +836,6 @@ header {
     box-shadow: 0 0 0 0 rgba(255, 107, 39, 0);
   }
 }
-
 
 .cart-btn:hover {
   background-position: right center;
@@ -1163,23 +1161,17 @@ header {
 /* Keyframes for glowing box-shadow pulse */
 @keyframes pulseShadow {
   0% {
-    box-shadow:
-      0 0 10px rgba(255, 107, 39, 0.6),  /* orange */
-      0 0 20px rgba(223, 4, 10, 0.3);    /* red */
+    box-shadow: 0 0 10px rgba(255, 107, 39, 0.6),
+      /* orange */ 0 0 20px rgba(223, 4, 10, 0.3); /* red */
   }
   50% {
-    box-shadow:
-      0 0 18px rgba(255, 107, 39, 0.9),  /* orange stronger */
-      0 0 30px rgba(223, 4, 10, 0.6);    /* red stronger */
+    box-shadow: 0 0 18px rgba(255, 107, 39, 0.9),
+      /* orange stronger */ 0 0 30px rgba(223, 4, 10, 0.6); /* red stronger */
   }
   100% {
-    box-shadow:
-      0 0 10px rgba(255, 107, 39, 0.6),
-      0 0 20px rgba(223, 4, 10, 0.3);
+    box-shadow: 0 0 10px rgba(255, 107, 39, 0.6), 0 0 20px rgba(223, 4, 10, 0.3);
   }
 }
-
-
 
 .offer-card a,
 .game-card a,
@@ -2670,8 +2662,7 @@ footer {
     rgba(44, 22, 40, 1) 100%
   );
   border-radius: 22px;
-    position: relative;
-
+  position: relative;
 }
 
 .stars {
@@ -2936,9 +2927,6 @@ footer {
   }
 }
 
-
-
-
 /* empty cart */
 /* Empty Cart Styles */
 .empty-cart-section {
@@ -2991,121 +2979,123 @@ footer {
   box-shadow: 0 6px 20px rgba(110, 69, 226, 0.4);
 }
 
+/* Game Reqament */
+/* Requirements Section Styles */
+.requirements-section {
+  margin-top: 50px;
+  padding: 30px 0;
+}
 
+.requirements-header {
+  margin-bottom: 25px;
+}
 
+.requirements-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  margin-left: 4px;
+}
 
-  /* Game Reqament */
-  /* Requirements Section Styles */
-  .requirements-section {
-    margin-top: 50px;
-    padding: 30px 0;
-  }
+.requirements-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 
-  .requirements-header {
-    margin-bottom: 25px;
-  }
+.requirements-card {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  .requirements-header h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 18px;
-    margin-left: 4px;
-  }
+.requirements-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
 
+.requirements-card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.requirements-card-header i {
+  font-size: 1.5rem;
+  color: var(--accent-red);
+}
+
+.requirements-card-header h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requirements-list li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.requirement-label {
+  font-weight: 600;
+  color: var(--accent-orange);
+  min-width: 100px;
+  display: inline-block;
+}
+
+.requirement-value {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .requirements-container {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .requirements-card {
-    flex: 1;
-    min-width: 300px;
-    background: rgba(255, 255, 255, 0.025);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .requirements-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-
-  .requirements-card-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .requirements-card-header i {
-    font-size: 1.5rem;
-    color: var(--accent-red);
-  }
-
-  .requirements-card-header h4 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .requirements-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    min-width: 100%;
   }
 
   .requirements-list li {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
   }
 
   .requirement-label {
-    font-weight: 600;
-    color: var(--accent-orange);
-    min-width: 100px;
-    display: inline-block;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .requirements-card {
+    padding: 20px;
   }
 
-  .requirement-value {
-    flex: 1;
-    color: rgba(255, 255, 255, 0.9);
+  .requirements-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
+}
 
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .requirements-container {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .requirements-card {
-      min-width: 100%;
-    }
-
-    .requirements-list li {
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .requirement-label {
-      min-width: auto;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .requirements-card {
-      padding: 20px;
-    }
-
-    .requirements-card-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-  }
+.swal2-popup.shadow-custom {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* subtle dark glow */
+  border-radius: 12px;
+}

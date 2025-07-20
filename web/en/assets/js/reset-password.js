@@ -149,10 +149,10 @@ async function ResetPassword() {
                 resetBtn.disabled = true;
                 btnText.innerHTML = "Redirecting...";
 
-                // Wait 5 seconds before redirecting
+                // Wait 2 seconds before redirecting
                 setTimeout(() => {
                     window.location = "/Gamerlk/en/pages/login.html";
-                }, 3000);
+                }, 2000);
             }
             else {
                 if (json.message === "Email Not Found") {

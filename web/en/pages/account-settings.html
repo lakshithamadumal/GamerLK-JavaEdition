@@ -1,164 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamerlk - Account Settings</title>
-    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/profile.css" />
-    <link rel="stylesheet" href="../assets/css/loader.css" />
-
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet" />
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
-      rel="stylesheet" />
-
-  </head>
-
-  <body>
-
-    <div class="content">
-      <div class="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div>
-    <div class="stars-dot"></div>
-    <div class="sidebar">
-      <div class="logo-section">
-        <span onclick="location.href='../index.html'" class="brand">GAMER<span
-            class="sub-brand">L</span>K</span>
-
-      </div>
-      <nav>
-        <!-- Close button for mobile sidebar -->
-        <button class="close-sidebar" aria-label="Close sidebar">
-          <i class="fas fa-times"></i>
-        </button>
-        <ul class="nav-links">
-          <li onclick="location.href='../index.html'">
-            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
-          </li>
-          <li onclick="location.href='game-store.html'">
-            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
-          </li>
-          <li onclick="location.href='shopping-cart.html'">
-            <span class="nav-icon"><i
-                class="fas fa-shopping-cart"></i></span>Cart
-          </li>
-          <li onclick="location.href='wishlist.html'">
-            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
-          </li>
-          <li onclick="location.href='my-downloads.html'">
-            <span class="nav-icon"><i
-                class="fas fa-download"></i></span>Library
-          </li>
-          <li onclick="location.href='community-board.html'">
-            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-bottom">
-        <ul>
-          <li onclick="location.href='account-settings.html'">
-            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
-          </li>
-          <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i
-                class="fas fa-question-circle"></i></span>Help
-          </li>
-          <li class="logout"  onclick="LogOut();">
-            <span class="nav-icon"><i
-                class="fas fa-sign-out-alt"></i></span>Logout
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-      <header>
-        <input class="search-bar" type="text" placeholder="Search orders" />
-        <div class="header-icons">
-          <button class="icon-btn icon-bell">
-            <i class="fas fa-bell"></i>
-          </button>
-          <button class="icon-btn menu-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="profile" onclick="location.href='user-profile.html'">
-            <img src="../../assets/avatar.png" alt="avatar" />
-            <span id="NavFullName"></span>
-          </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - Account Settings</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/profile.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
+            </div>
         </div>
-      </header>
-
-      <main class="profile-main" style="padding-top: 40px">
-        <div
-          class="profile-card"
-          style="max-width: 900px; width: 100%; padding: 2.5rem">
-          <div class="profile-container">
-            <form class="profile-form">
-              <div class="profile-avatar profile-header">
-                <img
-                  src="../../assets/avatar.png"
-                  alt="Profile Picture" />
-              </div>
-              <div class="name-fields">
-                <div class="form-group">
-                  <label for="SettingsFirstName">First Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="SettingsFirstName"
-                    required />
-                </div>
-
-                <div class="form-group">
-                  <label for="SettingsLastName">Last Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="SettingsLastName"
-                    required />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="SettingsEmail">Email Address</label>
-                <input
-                  type="email"
-                  id="SettingsEmail"
-                  class="form-control"
-                  required disabled />
-              </div>
-
-              <div class="form-group">
-                <label for="SettingsPassword">Password</label>
-                <input
-                  type="password"
-                  id="SettingsPassword"
-                  class="form-control" />
-              </div>
-
-              <button type="submit" class="save-btn">Update Profile</button>
-            </form>
-          </div>
+        <div class="stars-dot"></div>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">GAMER
+                    <span class="sub-brand">L</span>K</span>
+            </div>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li onclick="location.href='community-board.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
+            </div>
         </div>
-      </main>
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="../assets/js/logout.js" defer></script>
-    <script src="../assets/js/get-user-details-settings.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </body>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                </div>
+            </header>
+            <main class="profile-main" style="padding-top: 40px">
+                <div class="profile-card" style="max-width: 900px; width: 100%; padding: 2.5rem">
+                    <div class="profile-container">
+                        <form class="profile-form">
+                            <div class="profile-avatar profile-header">
+                                <img src="../../assets/avatar.png" alt="Profile Picture">
+                            </div>
+                            <div class="name-fields">
+                                <div class="form-group">
+                                    <label for="SettingsFirstName">First Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="SettingsFirstName"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label for="SettingsLastName">Last Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="SettingsLastName"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="SettingsEmail">Email Address</label>
+                                <input
+                                    type="email"
+                                    id="SettingsEmail"
+                                    class="form-control"
+                                    required
+                                    disabled
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="SettingsPassword">Password</label>
+                                <input type="password" id="SettingsPassword" class="form-control">
+                            </div>
+                            <button type="submit" class="save-btn">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <script src="../assets/js/get-user-details-settings.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    </body>
 </html>
