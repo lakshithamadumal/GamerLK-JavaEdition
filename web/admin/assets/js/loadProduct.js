@@ -1,5 +1,4 @@
 window.onload = async function () {
-
     const response = await fetch("../LoadProductData");
 
     if (response.ok) {
@@ -9,8 +8,22 @@ window.onload = async function () {
             loadSelect("gameCategory", json.categoryList, "name");
             loadSelect("gameDeveloper", json.developerList, "name");
             loadSelect("gameMod", json.modeList, "name");
-            loadSelect("gameMin", json.requirementList, "os");
-            loadSelect("gameMax", json.requirementList, "os");
+            loadSelect("gameMin", json.requirementList, "name");
+
+            // Disable gameMax initially
+            const gameMaxSelect = document.getElementById("gameMax");
+            gameMaxSelect.disabled = true;
+
+            // Add event to gameMin
+            document.getElementById("gameMin").addEventListener("change", function () {
+                const selectedMinId = this.value;
+
+                // Enable max select
+                gameMaxSelect.disabled = false;
+
+                // Reload max select excluding selectedMinId
+                loadMaxSelect("gameMax", json.requirementList, "name", selectedMinId);
+            });
 
         } else {
             document.getElementById("message").innerHTML = "Unable to get product data!";
@@ -18,22 +31,35 @@ window.onload = async function () {
     } else {
         document.getElementById("message").innerHTML = "Unable to get product data! Please try again later.";
     }
-
 }
 
 
 function loadSelect(selectId, list, property) {
-
     const select = document.getElementById(selectId);
-
+    
     list.forEach(item => {
         const option = document.createElement("option");
         option.value = item.id;
-        option.innerHTML = item[property];
+        option.textContent = item[property];
         select.appendChild(option);
     });
-
 }
+
+// 🛠️ Fix: Add skipId param and check with string comparison
+function loadMaxSelect(selectId, list, property, skipId) {
+    const select = document.getElementById(selectId);
+    select.innerHTML = ""; // clear old
+
+    list.forEach(item => {
+        if (item.id.toString() !== skipId.toString()) { // make sure type-safe
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.textContent = item[property];
+            select.appendChild(option);
+        }
+    });
+}
+
 
 
 async function addGame() {

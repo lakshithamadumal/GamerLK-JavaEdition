@@ -21,30 +21,20 @@ public class Requirement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "os", length = 45, nullable = false)
-    private String os;
-
-    @Column(name = "memory", length = 45, nullable = false)
-    private String memory;
-
-    @Column(name = "processor", length = 45, nullable = false)
-    private String processor;
-
-    @Column(name = "graphics", length = 45, nullable = false)
-    private String graphics;
-
-    @Column(name = "storage", length = 45, nullable = false)
-    private String storage;
-
-    public Requirement() {
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getOs() {
@@ -86,4 +76,26 @@ public class Requirement implements Serializable {
     public void setStorage(String storage) {
         this.storage = storage;
     }
+
+    @Column(name = "name", length = 45, nullable = false)
+    private String name;
+
+    @Column(name = "os", length = 45, nullable = false)
+    private String os;
+
+    @Column(name = "memory", length = 45, nullable = false)
+    private String memory;
+
+    @Column(name = "processor", length = 45, nullable = false)
+    private String processor;
+
+    @Column(name = "graphics", length = 45, nullable = false)
+    private String graphics;
+
+    @Column(name = "storage", length = 45, nullable = false)
+    private String storage;
+
+    public Requirement() {
+    }
+
 }
