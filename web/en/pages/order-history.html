@@ -1,204 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - My Orders</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/profile.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link rel="stylesheet" href="../assets/css/purchase-history.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <style>
+    .stat-card.games-owned {
+        cursor: pointer;
+    }
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamerlk - My Orders</title>
-    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/profile.css" />
-    <link rel="stylesheet" href="../assets/css/loader.css" />
-    <link rel="stylesheet" href="../assets/css/purchase-history.css" />
+    .modal-overlay {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        /* Darkened background */
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet" />
+    .modal-overlay.active {
+        display: flex;
+        /* Show modal when active */
+    }
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
-      rel="stylesheet" />
+    .close-modal-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
 
-  </head>
-  <style>
-  .stat-card.games-owned {
-    cursor: pointer;
-  }
-</style>
+    .close-modal-btn:hover {
+        color: var(--accent-orange);
+    }
 
-  <body>
-     
-    <div class="content">
-      <div class="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div> 
-    <div class="stars-dot"></div>
-    <div class="sidebar">
-      <div class="logo-section">
-        <span onclick="location.href='../index.html'" class="brand">GAMER<span
-            class="sub-brand">L</span>K</span>
+    @media (max-width: 480px) {
+        .game-card {
+            width: 90%;
+        }
+    }
 
-      </div>
-      <nav>
-        <!-- Close button for mobile sidebar -->
-        <button class="close-sidebar" aria-label="Close sidebar">
-          <i class="fas fa-times"></i>
-        </button>
-        <ul class="nav-links">
-          <li onclick="location.href='../index.html'">
-            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
-          </li>
-          <li onclick="location.href='game-store.html'">
-            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
-          </li>
-          <li onclick="location.href='shopping-cart.html'">
-            <span class="nav-icon"><i
-                class="fas fa-shopping-cart"></i></span>Cart
-          </li>
-          <li onclick="location.href='wishlist.html'">
-            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
-          </li>
-          <li onclick="location.href='my-downloads.html'">
-            <span class="nav-icon"><i class="fas fa-download"></i></span>Library
-          </li>
-          <li onclick="location.href='community-board.html'">
-            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-bottom">
-        <ul>
-          <li onclick="location.href='account-settings.html'">
-            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
-          </li>
-          <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i
-                class="fas fa-question-circle"></i></span>Help
-          </li>
-          <li class="logout"  onclick="LogOut();">
-            <span class="nav-icon"><i
-                class="fas fa-sign-out-alt"></i></span>Logout
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-      <header>
-        <input class="search-bar" type="text" placeholder="Search orders" />
-        <div class="header-icons">
-          <button class="icon-btn icon-bell">
-            <i class="fas fa-bell"></i>
-          </button>
-          <button class="icon-btn menu-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="profile" onclick="location.href='user-profile.html'">
-            <img src="../../assets/avatar.png" alt="avatar" />
-            <span id="NavFullName"></span>
-          </div>
-        </div>
-      </header>
-      <!-- Purchase History -->
-      <!-- Purchase History -->
-      <div class="purchase-history">
-        <div class=" game-header">
-          <h3>My Orders</h3>
-          <div class="search-filter">
-            <div class="search-box">
-              <i class="fas fa-search"></i>
-              <input type="text" placeholder="Search purchases...">
+    .game-card {
+        background-color: var(--bg-second);
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid var(--card-border);
+    }
+
+    .game-cover {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+            url('https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg') center/cover;
+        position: relative;
+    }
+
+    .game-title {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .rating-content {
+        padding: 25px;
+    }
+
+    .rating-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .stars-container {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 25px 0;
+    }
+
+    .star {
+        font-size: 2.2rem;
+        color: #3a3a3f;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .star:hover {
+        transform: scale(1.15);
+    }
+
+    .star.active {
+        color: var(--accent-orange);
+        text-shadow: 0 0 10px rgba(255, 107, 39, 0.4);
+    }
+
+    .star.hovered {
+        color: var(--accent-orange);
+        opacity: 0.7;
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, var(--accent-red), #b00309);
+        color: white;
+        border: none;
+        padding: 14px 0;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(223, 4, 10, 0.3);
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(223, 4, 10, 0.4);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+        background: #555;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .rating-feedback {
+        text-align: center;
+        min-height: 24px;
+        margin-top: 15px;
+        font-size: 15px;
+        color: var(--accent-orange);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .rating-feedback.show {
+        opacity: 1;
+    }
+
+    .emoji-feedback {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    @media (max-width: 480px) {
+        .game-card {
+            max-width: 100%;
+        }
+
+        .game-title {
+            font-size: 24px;
+        }
+    }
+    </style>
+    <body>
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
             </div>
-            <div class="filter-dropdown">
-              <select>
-                <option>All Time</option>
-                <option>Last 30 Days</option>
-                <option>Last 6 Months</option>
-                <option>Last Year</option>
-              </select>
-              <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="stars-dot"></div>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
-          </div>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li onclick="location.href='community-board.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <div class="table-container">
-          <table class="purchase-table">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Game Name</th>
-                <th>Price</th>
-                <th>Purchase Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Order ID">#GLK-4258</td>
-                <td data-label="Game Name">
-                  <div class="game-info">
-                    <img src="../../assets/Games/g1.jpg" alt="Game Cover">
-                    <span>Cyberpunk 2077</span>
-                  </div>
-                </td>
-                <td data-label="Price">$59.99</td>
-                <td data-label="Purchase Date">May 15, 2023</td>
-                <td data-label="Action">
-                  <button class="invoice-btn" onclick="location.href='../includes/order-invoice.html'">
-                    <i class="fas fa-file-invoice"></i> Invoice
-                  </button>
-                </td>
-
-              </tr>
-              <tr>
-                <td data-label="Order ID">#GLK-4258</td>
-                <td data-label="Game Name">
-                  <div class="game-info">
-                    <img src="../../assets/Games/g1.jpg" alt="Game Cover">
-                    <span>Cyberpunk 2077</span>
-                  </div>
-                </td>
-                <td data-label="Price">$59.99</td>
-                <td data-label="Purchase Date">May 15, 2023</td>
-                <td data-label="Action">
-                  <button class="invoice-btn">
-                    <i class="fas fa-file-invoice"></i> Invoice
-                  </button>
-                </td>
-
-              </tr>
-
-            </tbody>
-          </table>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                </div>
+            </header>
+            <!-- Purchase History -->
+            <!-- Purchase History -->
+            <div class="purchase-history">
+                <div class=" game-header">
+                    <h3>My Orders</h3>
+                    <div class="search-filter">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search purchases...">
+                        </div>
+                        <div class="filter-dropdown">
+                            <select>
+                                <option>All Time</option>
+                                <option>Last 30 Days</option>
+                                <option>Last 6 Months</option>
+                                <option>Last Year</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="purchase-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Game Name</th>
+                                <th>Price</th>
+                                <th>Purchase Date</th>
+                                <th>Rate Now</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Order ID">#GLK-4258</td>
+                                <td data-label="Game Name">
+                                    <div class="game-info">
+                                        <img src="../../assets/Games/g1.jpg" alt="Game Cover">
+                                        <span>Cyberpunk 2077</span>
+                                    </div>
+                                </td>
+                                <td data-label="Price">$59.99</td>
+                                <td data-label="Purchase Date">May 15, 2023</td>
+                                <td data-label="Action">
+                                    <button class="invoice-btn" onclick="openRatingModal()">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </td>
+                                <td data-label="Action">
+                                    <button class="invoice-btn" onclick="location.href='../includes/order-invoice.html'">
+                                        <i class="fas fa-file-invoice"></i>
+                                        Invoice
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Order ID">#GLK-4258</td>
+                                <td data-label="Game Name">
+                                    <div class="game-info">
+                                        <img src="../../assets/Games/g1.jpg" alt="Game Cover">
+                                        <span>Cyberpunk 2077</span>
+                                    </div>
+                                </td>
+                                <td data-label="Price">$59.99</td>
+                                <td data-label="Purchase Date">May 15, 2023</td>
+                                <td data-label="Action">
+                                    <button class="invoice-btn" onclick="openRatingModal()">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </td>
+                                <td data-label="Action">
+                                    <button class="invoice-btn">
+                                        <i class="fas fa-file-invoice"></i>
+                                        Invoice
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button class="pagination-btn disabled">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-
-        <div class="pagination">
-          <button class="pagination-btn disabled">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <span class="active">1</span>
-          <span>2</span>
-          <span>3</span>
-          <button class="pagination-btn">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+        <!-- Modal Overlay -->
+        <!-- Modal Overlay -->
+        <div class="modal-overlay" id="ratingModal">
+            <div class="game-card">
+                <div class="game-cover">
+                    <div class="game-title">GTA V</div>
+                </div>
+                <div class="rating-content">
+                    <div class="rating-title">How would you rate this game?</div>
+                    <div class="stars-container">
+                        <div class="star" data-rating="1">★</div>
+                        <div class="star" data-rating="2">★</div>
+                        <div class="star" data-rating="3">★</div>
+                        <div class="star" data-rating="4">★</div>
+                        <div class="star" data-rating="5">★</div>
+                    </div>
+                    <button class="submit-btn" id="submitBtn">Submit Rating</button>
+                    <div class="rating-feedback" id="ratingFeedback">
+                        <div class="emoji-feedback" id="emojiFeedback"></div>
+                        <div id="messageFeedback"></div>
+                    </div>
+                    <button class="close-modal-btn" onclick="closeRatingModal()">✕</button>
+                </div>
+            </div>
         </div>
-      </div>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/get-nav-name.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <script>
+        function openRatingModal() {
+            const modal = document.getElementById('ratingModal');
+            modal.classList.add('active');
 
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/get-nav-name.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/logout.js" defer></script>
+            // Reset rating when modal opens
+            selectedRating = 0;
+            hoveredRating = 0;
+            updateStars();
+            updateFeedbackPreview();
+            submitBtn.disabled = false; // Re-enable submit button
+            ratingFeedback.classList.remove('show');
+            emojiFeedback.textContent = '';
+            messageFeedback.textContent = '';
+        }
 
-  </body>
+        function closeRatingModal() {
+            const modal = document.getElementById('ratingModal');
+            modal.classList.remove('active');
+        }
 
+        // Optional: Close modal when clicking outside the game-card
+        document.getElementById('ratingModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('ratingModal')) {
+                closeRatingModal();
+            }
+        });
+        </script>
+        <script>
+        const stars = document.querySelectorAll('.star');
+        const submitBtn = document.getElementById('submitBtn');
+        const ratingFeedback = document.getElementById('ratingFeedback');
+        const emojiFeedback = document.getElementById('emojiFeedback');
+        const messageFeedback = document.getElementById('messageFeedback');
+        
+        let selectedRating = 0;
+        let hoveredRating = 0;
+
+        // Star rating interaction
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-rating'));
+                updateStars();
+                updateFeedbackPreview();
+            });
+            
+            star.addEventListener('mouseover', () => {
+                hoveredRating = parseInt(star.getAttribute('data-rating'));
+                updateStars();
+            });
+            
+            star.addEventListener('mouseout', () => {
+                hoveredRating = 0;
+                updateStars();
+            });
+        });
+        
+        // Submit button handler
+        submitBtn.addEventListener('click', () => {
+            if (selectedRating > 0) {
+                showFinalFeedback();
+                submitBtn.disabled = true;
+            } else {
+                showTemporaryMessage('Please select a rating first!');
+            }
+        });
+        
+        function updateStars() {
+            stars.forEach(star => {
+                const rating = parseInt(star.getAttribute('data-rating'));
+                
+                star.classList.remove('active', 'hovered');
+                
+                if (hoveredRating > 0) {
+                    if (rating <= hoveredRating) {
+                        star.classList.add('hovered');
+                    }
+                } else if (selectedRating > 0 && rating <= selectedRating) {
+                    star.classList.add('active');
+                }
+            });
+        }
+        
+        function updateFeedbackPreview() {
+            if (selectedRating > 0) {
+                ratingFeedback.classList.add('show');
+                
+                switch(selectedRating) {
+                    case 1:
+                        messageFeedback.textContent = 'Poor';
+                        break;
+                    case 2:
+                        messageFeedback.textContent = 'Fair';
+                        break;
+                    case 3:
+                        messageFeedback.textContent = 'Average';
+                        break;
+                    case 4:
+                        messageFeedback.textContent = 'Good';
+                        break;
+                    case 5:
+                        messageFeedback.textContent = 'Excellent!';
+                        break;
+                }
+            } else {
+                ratingFeedback.classList.remove('show');
+            }
+        }
+        
+        function showFinalFeedback() {
+            emojiFeedback.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                emojiFeedback.style.transform = 'scale(1)';
+            }, 300);
+            
+            messageFeedback.textContent = `Thanks for your ${selectedRating}-star rating of GTA V!`;
+        }
+        
+        function showTemporaryMessage(message) {
+            const originalMessage = messageFeedback.textContent;
+            messageFeedback.textContent = message;
+            
+            setTimeout(() => {
+                messageFeedback.textContent = originalMessage;
+            }, 2000);
+        }
+        </script>
+    </body>
 </html>
