@@ -1,22 +1,27 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    // Get current page as "index.html" or "pages/xxx.html"
+    let currentPage = window.location.pathname.replace(/^.*\/en\//, "");
+
+    // Set fetch path based on current page
+    let fetchPath = currentPage === "index.html" ? "../GetUserDetails" : "../../GetUserDetails";
+
     try {
-        const response = await fetch("../GetUserDetails");
+        const response = await fetch(fetchPath);
         if (response.ok) {
             const user = await response.json();
 
             const allowedPages = [
                 "index.html",
-                "pages/game-store.html",
-                "pages/user-profile.html",
                 "pages/account-settings.html",
+                "pages/game-store.html",
+                "pages/my-downloads.html",
+                "pages/order-history.html",
+                "pages/support-center.html",
+                "pages/user-profile.html",
                 "pages/wishlist.html",
-                "pages/game-details.html",
-                "pages/my-downloads.html"
+                "pages/game-details.html"
             ];
 
-            const currentPage = window.location.pathname.split("/").pop();
-
-            // Only show alert once per session
             const suspendedAlertShown = sessionStorage.getItem("suspendedAlertShown");
             const welcomeAlertShown = sessionStorage.getItem("welcomeAlertShown");
 
@@ -48,13 +53,20 @@ document.addEventListener("DOMContentLoaded", async function () {
                         confirmButtonColor: "#df040a",
                         customClass: { popup: 'shadow-custom' }
                     }).then(() => {
-                        window.location.href = "index.html";
+                        window.location.href = "../index.html";
                     });
                 }
 
-                document.querySelectorAll("aside.sidebar a").forEach(function (link) {
-                    const href = link.getAttribute("href");
-                    if (!allowedPages.includes(href)) {
+                document.querySelectorAll("a, [onclick]").forEach(function (link) {
+                    let href = link.getAttribute("href");
+                    if (!href) {
+                        const onclick = link.getAttribute("onclick");
+                        if (onclick && onclick.includes("location.href")) {
+                            href = onclick.match(/location\.href=['"]([^'"]+)['"]/);
+                            href = href ? href[1] : null;
+                        }
+                    }
+                    if (href && !allowedPages.includes(href)) {
                         link.addEventListener("click", function (e) {
                             e.preventDefault();
                             Swal.fire({
@@ -95,3 +107,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Handle error if needed
     }
 });
+
+
+
+
+
+
+function getCurrentPage() {
+    const path = window.location.pathname; // e.g. "/project/index.html"
+    const page = path.split("/").pop();    // get last part => "index.html"
+    return page;
+}
+
+// 🔍 Usage
+const currentPage = getCurrentPage();
+console.log("You're on:", currentPage);
