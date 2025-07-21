@@ -4,64 +4,91 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (response.ok) {
             const user = await response.json();
 
-            // If user is inactive, show suspended message
+            const allowedPages = [
+                "index.html",
+                "pages/game-store.html",
+                "pages/user-profile.html",
+                "pages/account-settings.html",
+                "pages/wishlist.html",
+                "pages/game-details.html",
+                "pages/my-downloads.html"
+            ];
+
+            const currentPage = window.location.pathname.split("/").pop();
+
+            // Only show alert once per session
+            const suspendedAlertShown = sessionStorage.getItem("suspendedAlertShown");
+            const welcomeAlertShown = sessionStorage.getItem("welcomeAlertShown");
+
             if (user.status === "Inactive") {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Account Suspended",
-                    text: "You only have limited access",
-                    confirmButtonText: "OK",
-                    background: "#141415",           // --bg-main
-                    color: "#ffffff",                // text color
-                    iconColor: "#ff6b27",            // --accent-orange
-                    confirmButtonColor: "#df040a",   // --accent-red
-                    customClass: {
-                        popup: 'shadow-custom'
-                    }
-                });
-
-                // Allow only specific pages
-                document.querySelectorAll(
-                    'aside.sidebar a[href="pages/game-store.html"], ' +
-                    'aside.sidebar a[href="pages/game-details.html"], ' +
-                    'aside.sidebar a[href="pages/wishlist.html"], ' +
-                    'aside.sidebar a[href="pages/my-downloads.html"]'
-                ).forEach(function (link) {
-                    link.addEventListener("click", function (e) {
-                        e.preventDefault();
+                if (allowedPages.includes(currentPage)) {
+                    if (!suspendedAlertShown) {
                         Swal.fire({
-                            icon: "error",
-                            title: "Access Denied",
-                            text: "Suspended users cannot access this page.",
+                            icon: "warning",
+                            title: "Account Suspended",
+                            text: "You only have limited access",
                             confirmButtonText: "OK",
-                            background: "#141415",           // --bg-main
-                            color: "#ffffff",                // white text for contrast
-                            iconColor: "#df040a",            // --accent-red
-                            confirmButtonColor: "#df040a",   // same red for consistency
-                            customClass: {
-                                popup: 'shadow-custom'
-                            }
+                            background: "#141415",
+                            color: "#ffffff",
+                            iconColor: "#ff6b27",
+                            confirmButtonColor: "#df040a",
+                            customClass: { popup: 'shadow-custom' }
                         });
-
+                        sessionStorage.setItem("suspendedAlertShown", "true");
+                    }
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Access Denied",
+                        text: "Suspended users cannot access this page.",
+                        confirmButtonText: "OK",
+                        background: "#141415",
+                        color: "#ffffff",
+                        iconColor: "#df040a",
+                        confirmButtonColor: "#df040a",
+                        customClass: { popup: 'shadow-custom' }
+                    }).then(() => {
+                        window.location.href = "index.html";
                     });
-                });
-            } else if (user.status === "Inactive") {
-                const fullName = `${json.firstName} ${json.lastName}`;
+                }
 
-                Swal.fire({
-                    icon: "success",
-                    title: `Welcome, ${fullName}!`,
-                    text: "Enjoy your experience.",
-                    confirmButtonText: "Got it",
-                    background: "#141415",           // --bg-main
-                    color: "#ffffff",                // text color
-                    iconColor: "#ff6b27",            // --accent-orange
-                    confirmButtonColor: "#df040a",   // --accent-red
-                    customClass: {
-                        popup: 'shadow-custom'
+                document.querySelectorAll("aside.sidebar a").forEach(function (link) {
+                    const href = link.getAttribute("href");
+                    if (!allowedPages.includes(href)) {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            Swal.fire({
+                                icon: "error",
+                                title: "Access Denied",
+                                text: "Suspended users cannot access this page.",
+                                confirmButtonText: "OK",
+                                background: "#141415",
+                                color: "#ffffff",
+                                iconColor: "#df040a",
+                                confirmButtonColor: "#df040a",
+                                customClass: { popup: 'shadow-custom' }
+                            });
+                        });
                     }
                 });
-
+            } else if (user.status === "Active") {
+                if (!welcomeAlertShown) {
+                    const fullName = `${user.firstName} ${user.lastName}`;
+                    Swal.fire({
+                        icon: "success",
+                        title: `Welcome, ${fullName}!`,
+                        text: "Enjoy your experience.",
+                        confirmButtonText: "Got it",
+                        background: "#141415",
+                        color: "#ffffff",
+                        iconColor: "#28a745",
+                        confirmButtonColor: "#28a745",
+                        customClass: {
+                            popup: 'shadow-custom swal-rounded'
+                        }
+                    });
+                    sessionStorage.setItem("welcomeAlertShown", "true");
+                }
             }
         }
     } catch (e) {

@@ -1,192 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamerlk - Community Discussions</title>
-    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/community.css" />
-    <link rel="stylesheet" href="../assets/css/loader.css" />
-
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet" />
-
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
-      rel="stylesheet" />
-  </head>
-
-  <body>
-    <div class="content">
-      <div class="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div>
-    <div class="sidebar">
-      <div class="logo-section">
-        <span onclick="location.href='../index.html'" class="brand">GAMER<span
-            class="sub-brand">L</span>K</span>
-      </div>
-      <nav>
-        <!-- Close button for mobile sidebar -->
-        <button class="close-sidebar" aria-label="Close sidebar">
-          <i class="fas fa-times"></i>
-        </button>
-        <ul class="nav-links">
-          <li onclick="location.href='../index.html'">
-            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
-          </li>
-          <li onclick="location.href='game-store.html'">
-            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
-          </li>
-          <li onclick="location.href='shopping-cart.html'">
-            <span class="nav-icon"><i
-                class="fas fa-shopping-cart"></i></span>Cart
-          </li>
-          <li onclick="location.href='wishlist.html'">
-            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
-          </li>
-          <li onclick="location.href='my-downloads.html'">
-            <span class="nav-icon"><i class="fas fa-download"></i></span>Library
-          </li>
-          <li class="active" onclick="location.href='community-board.html'">
-            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-bottom">
-        <ul>
-          <li onclick="location.href='account-settings.html'">
-            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
-          </li>
-          <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i
-                class="fas fa-question-circle"></i></span>Help
-          </li>
-          <li class="logout"  onclick="LogOut();">
-            <span class="nav-icon"><i
-                class="fas fa-sign-out-alt"></i></span>Logout
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-      <header>
-        <input class="search-bar" type="text" placeholder="Search orders" />
-        <div class="header-icons">
-          <button class="icon-btn icon-bell">
-            <i class="fas fa-bell"></i>
-          </button>
-          <button class="icon-btn menu-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="profile" onclick="location.href='user-profile.html'">
-            <img src="../../assets/avatar.png" alt="avatar" />
-            <span id="NavFullName"></span>
-          </div>
-        </div>
-      </header>
-
-      <section class="community-container">
-        <div class="stars-dot"></div>
-
-        <!-- Chat Header with Status -->
-        <div class="chat-header">
-          <div class="chat-title">
-            <div class="status-indicator">
-              <span class="status-dot"></span>
-              <span>128 Gamers Online</span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - Community Discussions</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/community.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
             </div>
-          </div>
-          <div class="chat-actions">
-            <button class="action-btn" title="Search">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
         </div>
-
-        <!-- Chat Messages Area -->
-        <div class="chat-messages">
-          <!-- Empty State -->
-          <div class="empty-state">
-            <div class="empty-icon">
-              <i class="fas fa-gamepad"></i>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
-            <h3>Community Chat</h3>
-            <p>Start the conversation! Your messages will appear here.</p>
-            <button class="cta-btn">How it works?</button>
-          </div>
-
-          <!-- Message Template (hidden) -->
-          <div class="message received d-none">
-            <div class="message-avatar">
-              <img src="../../assets/avatar.png" alt="User" />
-              <span class="online-badge"></span>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li class="active" onclick="location.href='community-board.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
             </div>
-            <div class="message-content">
-              <div class="message-header">
-                <span class="username">GameQueen99</span>
-                <span class="timestamp">Today, 2:30 PM</span>
-              </div>
-              <div class="message-text">
-                Just finished the new campaign! Who's up for some multiplayer?
-              </div>
-              <div class="message-reactions">
-                <span class="reaction">👍 3</span>
-                <span class="reaction">❤️ 2</span>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <!-- Message Input Area -->
-        <div class="chat-input-container">
-          <div class="input-tools">
-            <button class="tool-btn">
-              <i class="fas fa-plus"></i>
-            </button>
-            <button class="tool-btn">
-              <i class="fas fa-image"></i>
-            </button>
-            <button class="tool-btn">
-              <i class="fas fa-gift"></i>
-            </button>
-          </div>
-          <div class="message-input-wrapper">
-            <input
-              type="text"
-              class="message-input"
-              placeholder="Type your message..."
-              aria-label="Type your message" />
-            <button class="emoji-btn">
-              <i class="far fa-smile"></i>
-            </button>
-          </div>
-          <button class="send-btn" aria-label="Send message">
-            <i class="fas fa-paper-plane"></i>
-          </button>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                </div>
+            </header>
+            <section class="community-container">
+                <div class="stars-dot"></div>
+                <!-- Chat Header with Status -->
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span>128 Gamers Online</span>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="action-btn" title="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Chat Messages Area -->
+                <div class="chat-messages">
+                    <!-- Empty State -->
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Community Chat</h3>
+                        <p>Start the conversation! Your messages will appear here.</p>
+                        <button class="cta-btn">How it works?</button>
+                    </div>
+                    <!-- Message Template (hidden) -->
+                    <div class="message received d-none">
+                        <div class="message-avatar">
+                            <img src="../../assets/avatar.png" alt="User">
+                            <span class="online-badge"></span>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="username">GameQueen99</span>
+                                <span class="timestamp">Today, 2:30 PM</span>
+                            </div>
+                            <div class="message-text">
+                                Just finished the new campaign! Who's up for some multiplayer?
+                            </div>
+                            <div class="message-reactions">
+                                <span class="reaction">👍 3</span>
+                                <span class="reaction">❤️ 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message Input Area -->
+                <div class="chat-input-container">
+                    <div class="input-tools">
+                        <button class="tool-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="tool-btn">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button class="tool-btn">
+                            <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                    <div class="message-input-wrapper">
+                        <input
+                            type="text"
+                            class="message-input"
+                            placeholder="Type your message..."
+                            aria-label="Type your message"
+                        >
+                        <button class="emoji-btn">
+                            <i class="far fa-smile"></i>
+                        </button>
+                    </div>
+                    <button class="send-btn" aria-label="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </section>
         </div>
-      </section>
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="../assets/js/get-nav-name.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/ProfileToSignUpChange.js" defer></script>
-    <script src="../assets/js/logout.js" defer></script>
-
-    <script>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="../assets/js/get-nav-name.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/ProfileToSignUpChange.js" defer></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script>
       // Enhanced Community Chat Functionality with Working Messaging
       document.addEventListener("DOMContentLoaded", function () {
         const chatMessages = document.querySelector(".chat-messages");
@@ -351,6 +362,6 @@
         // Initial render
         renderMessages();
       });
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
