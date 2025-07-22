@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Mail;
 import model.Util;
 import org.hibernate.Criteria;
@@ -32,61 +33,40 @@ public class UpdateProfile extends HttpServlet {
         Gson gson = new Gson();
         JsonObject user = gson.fromJson(request.getReader(), JsonObject.class);
 
-        String firstName = user.get("firstName").getAsString();
-        String lastName = user.get("lastName").getAsString();
         String email = user.get("email").getAsString();
         String newPassword = user.get("newPassword").getAsString();
         String conformPassword = user.get("conformPassword").getAsString();
 
-        //Validation
         JsonObject responseObject = new JsonObject();
-        responseObject.addProperty("status", Boolean.FALSE);
+        responseObject.addProperty("status", false); // default fail
 
-        boolean hasError = false;
-
-        if (firstName.isEmpty()) {
-            responseObject.addProperty("message", "First Name Required");
-            hasError = true;
-        } else if (lastName.isEmpty()) {
-            responseObject.addProperty("message", "Last Name Required");
-            hasError = true;
-        }
-
-// Password fields validation only if at least one is filled
-        if (!newPassword.isEmpty() || !conformPassword.isEmpty()) {
-            if (newPassword.isEmpty() || conformPassword.isEmpty()) {
-                responseObject.addProperty("message", "Both Password are required");
-                hasError = true;
-            } else if (!newPassword.equals(conformPassword)) {
-                responseObject.addProperty("message", "Passwords do not match");
-                hasError = true;
-            }
-        }
-
-        if (!hasError) {
-
+        // Check if at least one password field is filled
+        if (newPassword.isEmpty() && conformPassword.isEmpty()) {
+            responseObject.addProperty("message", "Nothing to update.");
+        } else if (newPassword.isEmpty() || conformPassword.isEmpty()) {
+            responseObject.addProperty("message", "Both password fields are required.");
+        } else if (!newPassword.equals(conformPassword)) {
+            responseObject.addProperty("message", "Passwords do not match.");
+        } else {
+            // Proceed with password update
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
 
-            //Have A User
-            Criteria criteriaEmail = s.createCriteria(User.class);
-            criteriaEmail.add(Restrictions.eq("email", email));
-            User u = (User) criteriaEmail.uniqueResult();
+            Criteria criteria = s.createCriteria(User.class);
+            criteria.add(Restrictions.eq("email", email));
+            User u = (User) criteria.uniqueResult();
 
-            if (!criteriaEmail.list().isEmpty()) {
-                u.setFirst_name(firstName);
-                u.setLast_name(lastName);
-                if (!newPassword.isEmpty()) {
-                    u.setPassword(conformPassword);
-                }
-
+            if (u != null) {
                 s.beginTransaction();
+                u.setPassword(conformPassword); 
                 s.update(u);
                 s.getTransaction().commit();
 
-                responseObject.addProperty("UpdatedfirstName", u.getFirst_name());
-                responseObject.addProperty("Updatedlastname", u.getLast_name());
-                responseObject.addProperty("UpdatedPassword", u.getPassword());
+                // invalidate current session
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    session.invalidate();
+                }
 
                 responseObject.addProperty("status", true);
                 responseObject.addProperty("message", "User Profile Updated!");

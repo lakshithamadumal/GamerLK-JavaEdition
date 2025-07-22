@@ -1,7 +1,5 @@
 async function UpdateProfile() {
 
-    const firstName = document.getElementById('SettingsFirstName').value;
-    const lastName = document.getElementById('SettingsLastName').value;
     const email = document.getElementById('SettingsEmail').value;
     const newPassword = document.getElementById('SettingsNewPassword').value;
     const conformPassword = document.getElementById('SettingsConformPassword').value;
@@ -15,8 +13,6 @@ async function UpdateProfile() {
     btnText.innerHTML = `<span class="spinner"></span> Updating...`;
 
     const Updateuser = {
-        firstName,
-        lastName,
         email,
         newPassword,
         conformPassword
@@ -40,18 +36,10 @@ async function UpdateProfile() {
     if (response.ok) {
         const json = await response.json();
         if (json.status) {
-            notyf.success("Profile Updated Successfully");
-
-            // Update input fields
-            document.getElementById("SettingsFirstName").value = json.UpdatedfirstName;
-            document.getElementById("SettingsLastName").value = json.Updatedlastname;
-            document.getElementById("SettingsEmail").value = json.UpdatedEmail;
-
-            // Update UI (navbar or wherever you show name)
-            document.getElementById("NavFullName").innerHTML = `${json.UpdatedfirstName} ${json.Updatedlastname}`;
-
-            resetButton();
-        } else {
+            notyf.success("Password Updated Successfully");
+            setTimeout(() => window.location.reload(), 1500);
+        }
+        else {
             notyf.error(json.message);
             resetButton();
         }
