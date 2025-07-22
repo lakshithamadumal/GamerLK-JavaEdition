@@ -8,7 +8,7 @@ async function loadSingleProductData() {
         const json = await response.json();
         if (json.status) {
 
-            document.getElementById("thumb-image").src = "../../assets/Games\\" + json.product.id + "\\thumb-image.png";
+            document.getElementById("thumb-image").src = "../../assets/Games\\" + json.product.id + "\\thumb-image.jpg";
 
             //product deatails
             document.getElementById("product-title").innerHTML = json.product.title;
@@ -21,7 +21,15 @@ async function loadSingleProductData() {
 
             document.getElementById("release-date").innerHTML = formattedDate;
             document.getElementById("product-description").innerHTML = json.product.description;
-            document.getElementById("product-price").innerHTML = "$" + json.product.price + " USD";
+
+            // Format price with 2 decimal places and comma separator
+            const formattedPrice = Number(json.product.price).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            });
+            document.getElementById("product-price").innerHTML = formattedPrice;
+
             document.getElementById("product-category").innerHTML = json.product.category_id.name;
             document.getElementById("product-mode").innerHTML = json.product.mode_id.name;
             document.getElementById("product-tag").innerHTML = json.product.tag;
