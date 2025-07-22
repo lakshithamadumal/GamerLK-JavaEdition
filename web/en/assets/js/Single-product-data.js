@@ -12,7 +12,14 @@ async function loadSingleProductData() {
 
             //product deatails
             document.getElementById("product-title").innerHTML = json.product.title;
-            document.getElementById("release-date").innerHTML = json.product.release_date;
+
+            // Format date without time
+            const rawDate = json.product.release_date;
+            const dateObj = new Date(rawDate);
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString('en-US', options);
+
+            document.getElementById("release-date").innerHTML = formattedDate;
             document.getElementById("product-description").innerHTML = json.product.description;
             document.getElementById("product-price").innerHTML = "$" + json.product.price + " USD";
             document.getElementById("product-category").innerHTML = json.product.category_id.name;
@@ -34,10 +41,10 @@ async function loadSingleProductData() {
             document.getElementById("recGraphics").innerHTML = json.product.rec_requirement_id.graphics;
             document.getElementById("recStorage").innerHTML = json.product.rec_requirement_id.storage + " GB available space";
         } else {
-            window.location = "../../index.html";
+            window.location = "../index.html";
         }
     } else {
-        window.location = "../../index.html";
+        window.location = "../index.html";
     }
 
 }
