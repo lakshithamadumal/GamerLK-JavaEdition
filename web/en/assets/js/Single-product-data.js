@@ -1,7 +1,7 @@
 async function loadSingleProductData() {
 
     const productId = new URLSearchParams(window.location.search).get('id');
-    console.log(productId);
+    //console.log(productId);
 
     const response = await fetch("../../LoadSingleProduct?id=" + productId);
     if (response.ok) {
@@ -48,6 +48,37 @@ async function loadSingleProductData() {
             document.getElementById("recMemory").innerHTML = json.product.rec_requirement_id.memory + " GB RAM";
             document.getElementById("recGraphics").innerHTML = json.product.rec_requirement_id.graphics;
             document.getElementById("recStorage").innerHTML = json.product.rec_requirement_id.storage + " GB available space";
+
+
+            //add-to-cart-main
+            const addToCartButton = document.getElementById("add-to-cart-main");
+            addToCartButton.addEventListener(
+                "click", (e) => {
+                    addToCart(json.product.id);
+                    e.preventDefault();
+                }
+            );
+            //add-to-cart-main
+
+            let FratureProductMain = document.getElementById("feature-product-main");
+            let FratureProduct = document.getElementById("feature-product");
+
+            FratureProductMain.innerHTML = "";
+            json.productList.forEach(item => {
+
+                let productCloneHtml = FratureProduct.cloneNode(true);
+                productCloneHtml.querySelector("#feature-product-a1").href = "game-details.html?id=" + item.id;
+                productCloneHtml.querySelector("#feature-product-image").src = "../../assets/Games\\" + item.id + "\\thumb-image.jpg";
+                productCloneHtml.querySelector("#feature-product-title").innerHTML = item.title;
+                productCloneHtml.querySelector("#feature-product-price").innerHTML = new Intl.NumberFormat(
+                    "en-US",
+                    { minimumFractionDigits: 2 }
+                ).format(item.price);
+
+                FratureProductMain.appendChild(productCloneHtml);
+
+            });
+
         } else {
             window.location = "../index.html";
         }
@@ -56,3 +87,42 @@ async function loadSingleProductData() {
     }
 
 }
+
+
+function addToCart(productId) {
+    console.log(productId);
+}
+
+
+
+
+
+
+
+
+
+
+
+// function addToCart() {
+//     const productId = new URLSearchParams(window.location.search).get('id');
+//     console.log(productId);
+
+//     fetch("../../AddToCart?productId=" + productId, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.status) {
+//             alert("Product added to cart successfully!");
+//         } else {
+//             alert("Failed to add product to cart.");
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//         alert("An error occurred while adding the product to the cart.");
+//     });
+// }

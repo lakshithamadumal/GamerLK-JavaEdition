@@ -2,9 +2,11 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import hibernate.Category;
 import hibernate.HibernateUtil;
 import hibernate.Product;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,11 +42,15 @@ public class LoadSingleProduct extends HttpServlet {
                 Product product = (Product) s.get(Product.class, Integer.valueOf(productId));
                 if (product != null && product.getStatus_id().getValue().equals("Active")) {
 
+                    // Get products from same category except current product
                     Criteria criteriaProduct = s.createCriteria(Product.class);
+                    criteriaProduct.add(Restrictions.eq("category_id", product.getCategory_id()));
                     criteriaProduct.add(Restrictions.ne("id", product.getId()));
-                    criteriaProduct.setMaxResults(6);
+                    criteriaProduct.setMaxResults(4);
+                    List<Product> ProductList = criteriaProduct.list();
 
                     responseObject.add("product", gson.toJsonTree(product));
+                    responseObject.add("productList", gson.toJsonTree(ProductList)); // <-- Add this line!
                     responseObject.addProperty("status", true);
                 } else {
                     responseObject.addProperty("message", "Product Not Found!");
