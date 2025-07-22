@@ -1,4 +1,4 @@
-window.onload = async function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const profile = document.querySelector(".ProfileTo");
     const signup = document.querySelector(".SignUpTo");
     const cart = document.querySelector(".CartTo");
@@ -29,7 +29,7 @@ window.onload = async function () {
     }
 
     staronindex();
-};
+});
 
 function staronindex() {
 
