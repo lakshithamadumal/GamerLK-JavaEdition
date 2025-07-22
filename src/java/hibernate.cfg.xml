@@ -15,5 +15,6 @@
         <mapping class="hibernate.Developer"/>
         <mapping class="hibernate.Mode"/>
         <mapping class="hibernate.Requirement"/>
+        <mapping class="hibernate.Product"/>
     </session-factory>
 </hibernate-configuration>
