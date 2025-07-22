@@ -70,10 +70,11 @@ async function loadSingleProductData() {
                 productCloneHtml.querySelector("#feature-product-a1").href = "game-details.html?id=" + item.id;
                 productCloneHtml.querySelector("#feature-product-image").src = "../../assets/Games\\" + item.id + "\\thumb-image.jpg";
                 productCloneHtml.querySelector("#feature-product-title").innerHTML = item.title;
-                productCloneHtml.querySelector("#feature-product-price").innerHTML = new Intl.NumberFormat(
+                productCloneHtml.querySelector("#feature-product-price").innerHTML = "$" + new Intl.NumberFormat(
                     "en-US",
                     { minimumFractionDigits: 2 }
                 ).format(item.price);
+
 
                 FratureProductMain.appendChild(productCloneHtml);
 
