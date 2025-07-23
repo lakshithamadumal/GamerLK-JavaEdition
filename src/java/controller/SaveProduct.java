@@ -7,6 +7,7 @@ import hibernate.Mode;
 import hibernate.Product;
 import hibernate.Requirement;
 import hibernate.Status;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -44,6 +45,7 @@ public class SaveProduct extends HttpServlet {
         String gameTag = request.getParameter("gameTag");
         String gameMin = request.getParameter("gameMin");
         String gameMax = request.getParameter("gameMax");
+        //Image Uploading
         Part thumbnailImage = request.getPart("thumbnailImage");
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -75,9 +77,15 @@ public class SaveProduct extends HttpServlet {
 
         p.setCreated_at(new java.util.Date());
 
-        s.save(p);
-        s.beginTransaction().commit();
-        s.close();
+//        s.save(p);
+//        s.beginTransaction().commit();
+//        s.close();
+
+        String appPath = getServletContext().getRealPath("");
+        String newPath = appPath.replace("build\\web", "web\\assets\\Games");
+        File f = new File(newPath, "11");
+        f.mkdir();
+
     }
 
 }
