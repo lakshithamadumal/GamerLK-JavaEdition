@@ -10,6 +10,8 @@ import hibernate.Status;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -80,11 +82,13 @@ public class SaveProduct extends HttpServlet {
 //        s.save(p);
 //        s.beginTransaction().commit();
 //        s.close();
-
         String appPath = getServletContext().getRealPath("");
         String newPath = appPath.replace("build\\web", "web\\assets\\Games");
-        File f = new File(newPath, "11");
-        f.mkdir();
+        File productFolder = new File(newPath, "10");
+        productFolder.mkdir();
+
+        File fileImage = new File(productFolder, "thumb-image.jpg");
+        Files.copy(thumbnailImage.getInputStream(), fileImage.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
     }
 
