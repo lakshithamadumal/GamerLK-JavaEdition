@@ -76,7 +76,6 @@ async function addGame() {
     const gameTag = document.getElementById("gameTag").value;
     const gameMin = document.getElementById("gameMin").value;
     const gameMax = document.getElementById("gameMax").value;
-    const cardImage = document.getElementById("cardImage").files[0];
     const thumbnailImage = document.getElementById("thumbnailImage").files[0];
 
 
@@ -93,7 +92,6 @@ async function addGame() {
     form.append("gameTag", gameTag);
     form.append("gameMin", gameMin);
     form.append("gameMax", gameMax);
-    form.append("cardImage", cardImage);
     form.append("thumbnailImage", thumbnailImage);
 
     const response = await fetch("../SaveProduct", {

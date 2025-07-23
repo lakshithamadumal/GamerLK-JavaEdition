@@ -34,7 +34,6 @@ public class SaveProduct extends HttpServlet {
         String gameTag = request.getParameter("gameTag");
         String gameMin = request.getParameter("gameMin");
         String gameMax = request.getParameter("gameMax");
-        Part cardImage = request.getPart("cardImage");
         Part thumbnailImage = request.getPart("thumbnailImage");
 
         System.out.println("Game Name: " + gameName);
@@ -49,7 +48,6 @@ public class SaveProduct extends HttpServlet {
         System.out.println("Game Tag: " + gameTag);
         System.out.println("Minimum Requirement: " + gameMin);
         System.out.println("Maximum Requirement: " + gameMax);
-        System.out.println("Card Image: " + cardImage.getSubmittedFileName());
         System.out.println("Thumbnail Image: " + thumbnailImage.getSubmittedFileName());
 
     }
