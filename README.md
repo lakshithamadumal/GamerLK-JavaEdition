@@ -62,7 +62,7 @@ cd Gamerlk/backend/
 7️⃣ Start frontend via `Live Server` (VSCode) or simply open `index.html`  
 8️⃣ Visit:  
 ```url
-http://localhost:8080/GamerLK/
+http://localhost:8080/GamerLK/en
 ```
 
 ---
