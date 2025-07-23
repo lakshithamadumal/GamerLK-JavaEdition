@@ -64,6 +64,9 @@ cd Gamerlk/backend/
 ```url
 http://localhost:8080/GamerLK/en
 ```
+```url
+http://localhost:8080/GamerLK/admin
+```
 
 ---
 
