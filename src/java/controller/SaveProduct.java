@@ -73,7 +73,7 @@ public class SaveProduct extends HttpServlet {
         p.setOffer(0);
         p.setStatus_id(status);
 
-        p.setCreated_at(java.sql.Date.valueOf(java.time.LocalDate.now()));
+        p.setCreated_at(new java.util.Date());
 
     }
 
