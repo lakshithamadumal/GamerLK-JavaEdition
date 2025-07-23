@@ -36,7 +36,7 @@ window.onload = async function () {
 
 function loadSelect(selectId, list, property) {
     const select = document.getElementById(selectId);
-    
+
     list.forEach(item => {
         const option = document.createElement("option");
         option.value = item.id;
@@ -99,6 +99,44 @@ async function addGame() {
         body: form,
     });
 
-    const result = await response.text();
-    console.log("Server Response:", result);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Added',
+                text: json.message,
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                location.reload();
+            });
+        } else {
+            // Check for "Admin Not found" message
+            if (json.message === "Admin Not found") {
+                Swal.fire({
+                    icon: 'error',
+                    title: json.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    location.reload();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: json.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        }
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Log In failed. Please try again later.',
+            showConfirmButton: false
+        });
+    }
+
 }
