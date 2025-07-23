@@ -1,14 +1,24 @@
 package controller;
 
+import hibernate.Category;
+import hibernate.Developer;
+import hibernate.HibernateUtil;
+import hibernate.Mode;
+import hibernate.Product;
+import hibernate.Requirement;
+import hibernate.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http. HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -36,19 +46,34 @@ public class SaveProduct extends HttpServlet {
         String gameMax = request.getParameter("gameMax");
         Part thumbnailImage = request.getPart("thumbnailImage");
 
-        System.out.println("Game Name: " + gameName);
-        System.out.println("Game Description: " + gameDescription);
-        System.out.println("Game Price: " + gamePrice);
-        System.out.println("Game Link: " + gameLink);
-        System.out.println("Game Size: " + gameSize);
-        System.out.println("Game Date: " + gameDate);
-        System.out.println("Game Category: " + gameCategory);
-        System.out.println("Game Mode: " + gameMod);
-        System.out.println("Game Developer: " + gameDeveloper);
-        System.out.println("Game Tag: " + gameTag);
-        System.out.println("Minimum Requirement: " + gameMin);
-        System.out.println("Maximum Requirement: " + gameMax);
-        System.out.println("Thumbnail Image: " + thumbnailImage.getSubmittedFileName());
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session s = sf.openSession();
+
+        Category category = (Category) s.load(Category.class, Integer.parseInt(gameCategory));
+        Mode mode = (Mode) s.load(Mode.class, Integer.parseInt(gameMod));
+        Developer developer = (Developer) s.load(Developer.class, Integer.parseInt(gameDeveloper));
+        Requirement minRequirement = (Requirement) s.load(Requirement.class, Integer.parseInt(gameMin));
+        Requirement maxRequirement = (Requirement) s.load(Requirement.class, Integer.parseInt(gameMax));
+        Status status = (Status) s.load(Status.class, 1); //Active
+
+        Product p = new Product();
+        p.setCategory_id(category);
+        p.setMode_id(mode);
+        p.setDeveloper_id(developer);
+        p.setMin_requirement_id(minRequirement);
+        p.setRec_requirement_id(maxRequirement);
+
+        p.setTitle(gameName);
+        p.setDescription(gameDescription);
+        p.setPrice(Double.parseDouble(gamePrice));
+        p.setGame_link(gameLink);
+        p.setGame_size(Double.parseDouble(gameSize));
+        p.setRelease_date(Date.valueOf(gameDate));
+        p.setTag(gameTag);
+        p.setOffer(0);
+        p.setStatus_id(status);
+
+        p.setCreated_at(java.sql.Date.valueOf(java.time.LocalDate.now()));
 
     }
 
