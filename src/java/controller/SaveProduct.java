@@ -30,11 +30,11 @@ import org.hibernate.SessionFactory;
 @MultipartConfig
 @WebServlet(name = "SaveProduct", urlPatterns = {"/SaveProduct"})
 public class SaveProduct extends HttpServlet {
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String gameName = request.getParameter("gameName");
         String gameDescription = request.getParameter("gameDescription");
         String gamePrice = request.getParameter("gamePrice");
@@ -49,10 +49,10 @@ public class SaveProduct extends HttpServlet {
         String gameMax = request.getParameter("gameMax");
         //Image Uploading
         Part thumbnailImage = request.getPart("thumbnailImage");
-
+        
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
-
+        
         Category category = (Category) s.load(Category.class, Integer.parseInt(gameCategory));
         Mode mode = (Mode) s.load(Mode.class, Integer.parseInt(gameMod));
         Developer developer = (Developer) s.load(Developer.class, Integer.parseInt(gameDeveloper));
@@ -66,7 +66,7 @@ public class SaveProduct extends HttpServlet {
         p.setDeveloper_id(developer);
         p.setMin_requirement_id(minRequirement);
         p.setRec_requirement_id(maxRequirement);
-
+        
         p.setTitle(gameName);
         p.setDescription(gameDescription);
         p.setPrice(Double.parseDouble(gamePrice));
@@ -76,20 +76,21 @@ public class SaveProduct extends HttpServlet {
         p.setTag(gameTag);
         p.setOffer(0);
         p.setStatus_id(status);
-
+        
         p.setCreated_at(new java.util.Date());
-
-//        s.save(p);
-//        s.beginTransaction().commit();
-//        s.close();
+        
+        int Productid = (int) s.save(p);
+        s.beginTransaction().commit();
+        s.close();
+        
         String appPath = getServletContext().getRealPath("");
         String newPath = appPath.replace("build\\web", "web\\assets\\Games");
-        File productFolder = new File(newPath, "10");
+        File productFolder = new File(newPath, String.valueOf(Productid));
         productFolder.mkdir();
-
+        
         File fileImage = new File(productFolder, "thumb-image.jpg");
         Files.copy(thumbnailImage.getInputStream(), fileImage.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
+        
     }
-
+    
 }
