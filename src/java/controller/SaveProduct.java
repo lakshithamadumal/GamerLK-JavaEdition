@@ -75,6 +75,9 @@ public class SaveProduct extends HttpServlet {
 
         p.setCreated_at(new java.util.Date());
 
+        s.save(p);
+        s.beginTransaction().commit();
+        s.close();
     }
 
 }
