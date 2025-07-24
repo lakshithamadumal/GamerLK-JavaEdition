@@ -122,6 +122,13 @@ async function addGame() {
                 }).then(() => {
                     location.reload();
                 });
+            } else if (json.message === "Game Already Added") {
+                Swal.fire({
+                    icon: 'info',
+                    title: json.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
             } else {
                 Swal.fire({
                     icon: 'error',

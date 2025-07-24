@@ -9,6 +9,7 @@ import hibernate.Mode;
 import hibernate.Product;
 import hibernate.Requirement;
 import hibernate.Status;
+import hibernate.User;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import model.Util;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -58,115 +61,124 @@ public class SaveProduct extends HttpServlet {
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", false);
 
-        //Validation
-        if (request.getSession().getAttribute("admin") == null) {
-            responseObject.addProperty("message", "Admin Not found");
-        } else if (gameName.isEmpty()) {
-            responseObject.addProperty("message", "Game Name Required");
-        } else if (gameDescription.isEmpty()) {
-            responseObject.addProperty("message", "Game Description Required");
-        } else if (gamePrice.isEmpty()) {
-            responseObject.addProperty("message", "Game Price Required");
-        } else if (!Util.isPrice(gamePrice)) {
-            responseObject.addProperty("message", "Invalid Game Price");
-        } else if (gameLink.isEmpty()) {
-            responseObject.addProperty("message", "Game Download Link Required");
-        } else if (!Util.isLinkValid(gameLink)) {
-            responseObject.addProperty("message", "Invalid Game Download Link");
-        } else if (gameSize.isEmpty()) {
-            responseObject.addProperty("message", "Game Size Required");
-        } else if (!Util.isPrice(gameSize)) {
-            responseObject.addProperty("message", "Invalid Game Size");
-        } else if (gameDate.isEmpty()) {
-            responseObject.addProperty("message", "Release date Required");
+        //Have a Product
+        Criteria criteriaProduct = s.createCriteria(Product.class);
+        criteriaProduct.add(Restrictions.eq("game_link", gameLink));
+
+        if (!criteriaProduct.list().isEmpty()) {
+            responseObject.addProperty("message", "Game Already Added");
         } else {
 
-            // Category Validation
-            if (!Util.isInteger(gameCategory) || Integer.parseInt(gameCategory) <= 0) {
-                responseObject.addProperty("message", "Please select a valid Game Category");
+            //Validation
+            if (request.getSession().getAttribute("admin") == null) {
+                responseObject.addProperty("message", "Admin Not found");
+            } else if (gameName.isEmpty()) {
+                responseObject.addProperty("message", "Game Name Required");
+            } else if (gameDescription.isEmpty()) {
+                responseObject.addProperty("message", "Game Description Required");
+            } else if (gamePrice.isEmpty()) {
+                responseObject.addProperty("message", "Game Price Required");
+            } else if (!Util.isPrice(gamePrice)) {
+                responseObject.addProperty("message", "Invalid Game Price");
+            } else if (gameLink.isEmpty()) {
+                responseObject.addProperty("message", "Game Download Link Required");
+            } else if (!Util.isLinkValid(gameLink)) {
+                responseObject.addProperty("message", "Invalid Game Download Link");
+            } else if (gameSize.isEmpty()) {
+                responseObject.addProperty("message", "Game Size Required");
+            } else if (!Util.isPrice(gameSize)) {
+                responseObject.addProperty("message", "Invalid Game Size");
+            } else if (gameDate.isEmpty()) {
+                responseObject.addProperty("message", "Release date Required");
             } else {
-                Category category = (Category) s.get(Category.class, Integer.parseInt(gameCategory));
-                if (category == null) {
-                    responseObject.addProperty("message", "Invalid Game Category");
-                } // Mode Validation
-                else if (!Util.isInteger(gameMod) || Integer.parseInt(gameMod) <= 0) {
-                    responseObject.addProperty("message", "Please select a valid Game Mode");
+
+                // Category Validation
+                if (!Util.isInteger(gameCategory) || Integer.parseInt(gameCategory) <= 0) {
+                    responseObject.addProperty("message", "Please select a valid Game Category");
                 } else {
-                    Mode mode = (Mode) s.get(Mode.class, Integer.parseInt(gameMod));
-                    if (mode == null) {
-                        responseObject.addProperty("message", "Invalid Game Mode");
-                    } // Developer Validation
-                    else if (!Util.isInteger(gameDeveloper) || Integer.parseInt(gameDeveloper) <= 0) {
-                        responseObject.addProperty("message", "Please select a valid Developer");
+                    Category category = (Category) s.get(Category.class, Integer.parseInt(gameCategory));
+                    if (category == null) {
+                        responseObject.addProperty("message", "Invalid Game Category");
+                    } // Mode Validation
+                    else if (!Util.isInteger(gameMod) || Integer.parseInt(gameMod) <= 0) {
+                        responseObject.addProperty("message", "Please select a valid Game Mode");
                     } else {
-                        Developer developer = (Developer) s.get(Developer.class, Integer.parseInt(gameDeveloper));
-                        if (developer == null) {
-                            responseObject.addProperty("message", "Invalid Developer");
-                        } // Tag Empty Check Only
-                        else if (gameTag == null || gameTag.trim().isEmpty()) {
-                            responseObject.addProperty("message", "Game Tag Required");
-                        } // Minimum Requirement
-                        else if (!Util.isInteger(gameMin) || Integer.parseInt(gameMin) <= 0) {
-                            responseObject.addProperty("message", "Please select a valid Minimum Requirement");
+                        Mode mode = (Mode) s.get(Mode.class, Integer.parseInt(gameMod));
+                        if (mode == null) {
+                            responseObject.addProperty("message", "Invalid Game Mode");
+                        } // Developer Validation
+                        else if (!Util.isInteger(gameDeveloper) || Integer.parseInt(gameDeveloper) <= 0) {
+                            responseObject.addProperty("message", "Please select a valid Developer");
                         } else {
-                            Requirement minRequirement = (Requirement) s.get(Requirement.class, Integer.parseInt(gameMin));
-                            if (minRequirement == null) {
-                                responseObject.addProperty("message", "Invalid Minimum Requirement");
-                            } // Recommended Requirement
-                            else if (!Util.isInteger(gameMax) || Integer.parseInt(gameMax) <= 0) {
-                                responseObject.addProperty("message", "Please select a valid Recommended Requirement");
+                            Developer developer = (Developer) s.get(Developer.class, Integer.parseInt(gameDeveloper));
+                            if (developer == null) {
+                                responseObject.addProperty("message", "Invalid Developer");
+                            } // Tag Empty Check Only
+                            else if (gameTag == null || gameTag.trim().isEmpty()) {
+                                responseObject.addProperty("message", "Game Tag Required");
+                            } // Minimum Requirement
+                            else if (!Util.isInteger(gameMin) || Integer.parseInt(gameMin) <= 0) {
+                                responseObject.addProperty("message", "Please select a valid Minimum Requirement");
                             } else {
-                                Requirement maxRequirement = (Requirement) s.get(Requirement.class, Integer.parseInt(gameMax));
-                                if (maxRequirement == null) {
-                                    responseObject.addProperty("message", "Invalid Recommended Requirement");
-                                } // Same ID check
-                                else if (Integer.parseInt(gameMin) == (Integer.parseInt(gameMax))) {
-                                    responseObject.addProperty("message", "Minimum & Recommended Requirements cannot be the same");
-                                } // Thumbnail Image Check
-                                else if (thumbnailImage == null || thumbnailImage.getSize() == 0) {
-                                    responseObject.addProperty("message", "Thumbnail Image is Required");
+                                Requirement minRequirement = (Requirement) s.get(Requirement.class, Integer.parseInt(gameMin));
+                                if (minRequirement == null) {
+                                    responseObject.addProperty("message", "Invalid Minimum Requirement");
+                                } // Recommended Requirement
+                                else if (!Util.isInteger(gameMax) || Integer.parseInt(gameMax) <= 0) {
+                                    responseObject.addProperty("message", "Please select a valid Recommended Requirement");
                                 } else {
-                                    String fileName = thumbnailImage.getSubmittedFileName();
-                                    if (fileName == null || !fileName.matches("(?i)^.*\\.(jpg|jpeg|png)$")) {
-                                        responseObject.addProperty("message", "Thumbnail Image must be a .jpg, .jpeg, or .png file");
+                                    Requirement maxRequirement = (Requirement) s.get(Requirement.class, Integer.parseInt(gameMax));
+                                    if (maxRequirement == null) {
+                                        responseObject.addProperty("message", "Invalid Recommended Requirement");
+                                    } // Same ID check
+                                    else if (Integer.parseInt(gameMin) == (Integer.parseInt(gameMax))) {
+                                        responseObject.addProperty("message", "Minimum & Recommended Requirements cannot be the same");
+                                    } // Thumbnail Image Check
+                                    else if (thumbnailImage == null || thumbnailImage.getSubmittedFileName() == null || thumbnailImage.getSubmittedFileName().isEmpty()) {
+                                        responseObject.addProperty("message", "Thumbnail Image is Required");
                                     } else {
+                                        String fileName = thumbnailImage.getSubmittedFileName();
+                                        if (fileName == null || !fileName.matches("(?i)^.*\\.(jpg|jpeg|png)$")) {
+                                            responseObject.addProperty("message", "Thumbnail Image must be a .jpg, .jpeg, or .png file");
+                                        } else {
 
-                                        Status status = (Status) s.load(Status.class, 1); //Active
+                                            Status status = (Status) s.load(Status.class, 1); //Active
 
-                                        Product p = new Product();
-                                        p.setCategory_id(category);
-                                        p.setMode_id(mode);
-                                        p.setDeveloper_id(developer);
-                                        p.setMin_requirement_id(minRequirement);
-                                        p.setRec_requirement_id(maxRequirement);
+                                            Product p = new Product();
+                                            p.setCategory_id(category);
+                                            p.setMode_id(mode);
+                                            p.setDeveloper_id(developer);
+                                            p.setMin_requirement_id(minRequirement);
+                                            p.setRec_requirement_id(maxRequirement);
 
-                                        p.setTitle(gameName);
-                                        p.setDescription(gameDescription);
-                                        p.setPrice(Double.parseDouble(gamePrice));
-                                        p.setGame_link(gameLink);
-                                        p.setGame_size(Double.parseDouble(gameSize));
-                                        p.setRelease_date(Date.valueOf(gameDate));
-                                        p.setTag(gameTag);
-                                        p.setOffer(0);
-                                        p.setStatus_id(status);
+                                            p.setTitle(gameName);
+                                            p.setDescription(gameDescription);
+                                            p.setPrice(Double.parseDouble(gamePrice));
+                                            p.setGame_link(gameLink);
+                                            p.setGame_size(Double.parseDouble(gameSize));
+                                            p.setRelease_date(Date.valueOf(gameDate));
+                                            p.setTag(gameTag);
+                                            p.setOffer(0);
+                                            p.setStatus_id(status);
 
-                                        p.setCreated_at(new java.util.Date());
+                                            p.setCreated_at(new java.util.Date());
 
-                                        int Productid = (int) s.save(p);
-                                        s.beginTransaction().commit();
-                                        s.close();
+                                            int Productid = (int) s.save(p);
+                                            s.beginTransaction().commit();
+                                            s.close();
 
-                                        String appPath = getServletContext().getRealPath("");
-                                        String newPath = appPath.replace("build\\web", "web\\assets\\Games");
-                                        File productFolder = new File(newPath, String.valueOf(Productid));
-                                        productFolder.mkdir();
+                                            String appPath = getServletContext().getRealPath("");
+                                            String newPath = appPath.replace("build\\web", "web\\assets\\Games");
+                                            File productFolder = new File(newPath, String.valueOf(Productid));
+                                            productFolder.mkdir();
 
-                                        File fileImage = new File(productFolder, "thumb-image.jpg");
-                                        Files.copy(thumbnailImage.getInputStream(), fileImage.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                                            File fileImage = new File(productFolder, "thumb-image.jpg");
+                                            Files.copy(thumbnailImage.getInputStream(), fileImage.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                                        responseObject.addProperty("status", true);
-                                        responseObject.addProperty("message", "Game Added Successfully");
+                                            responseObject.addProperty("status", true);
+                                            responseObject.addProperty("message", "Game Added Successfully");
 
+                                        }
                                     }
                                 }
                             }
