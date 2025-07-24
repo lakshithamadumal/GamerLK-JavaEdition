@@ -1,819 +1,912 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamerlk - Explore Top Game Titles</title>
-    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/loader.css" />
-    <link rel="stylesheet" href="../assets/scss/style.scss" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet" />
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap"
-      rel="stylesheet" />
-  </head>
-
-  <body onload="ViewAllProduct();">
-
-    <div class="content">
-      <div class="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div>
-    <div class="stars-dot"></div>
-
-    <div class="sidebar">
-      <div class="logo-section">
-        <span onclick="location.href='../index.html'" class="brand">GAMER<span class="sub-brand">L</span>K</span>
-      </div>
-      <nav>
-        <!-- Close button for mobile sidebar -->
-        <button class="close-sidebar" aria-label="Close sidebar">
-          <i class="fas fa-times"></i>
-        </button>
-        <ul class="nav-links">
-          <li onclick="location.href='../index.html'">
-            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
-          </li>
-          <li class="active"  onclick="location.href='game-store.html'">
-            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
-          </li>
-          <li onclick="location.href='shopping-cart.html'" class="CartTo">
-            <span class="nav-icon"><i
-                class="fas fa-shopping-cart"></i></span>Cart
-          </li>
-          <li onclick="location.href='wishlist.html'">
-            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
-          </li>
-          <li onclick="location.href='my-downloads.html'" class="DownloadTo">
-            <span class="nav-icon"><i
-                class="fas fa-download"></i></span>Library
-          </li>
-          <li onclick="location.href='community-board.html'"
-            class="CommunityTo">
-            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-bottom">
-        <ul>
-          <li onclick="location.href='account-settings.html'"
-            class="SettingsTo">
-            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
-          </li>
-          <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i
-                class="fas fa-question-circle"></i></span>Help
-          </li>
-          <li class="logout LogoutTo" onclick="LogOut();">
-            <span class="nav-icon"><i
-                class="fas fa-sign-out-alt"></i></span>Logout
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-      <header>
-        <input class="search-bar" type="text" placeholder="Search orders" />
-        <div class="header-icons">
-          <button class="icon-btn icon-bell">
-            <i class="fas fa-bell"></i>
-          </button>
-          <button class="icon-btn menu-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="profile ProfileTo"
-            onclick="location.href='user-profile.html'">
-            <img src="../../assets/avatar.png" alt="avatar" />
-            <span id="NavFullName"></span>
-          </div>
-
-          <div class="signup-row SignUpTo">
-            <button onclick="location.href='../../en/pages/login.html'"
-              class="signup-btn">CONNECT</button>
-          </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - Explore Top Game Titles</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link rel="stylesheet" href="../assets/css/pagination.css">
+        <link rel="stylesheet" href="../assets/scss/style.scss">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+        <!-- Alert -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    </head>
+    <style></style>
+    <body onload="LoadData();">
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
+            </div>
         </div>
-      </header>
-
-      <section class="special-offers">
-        <div class="game-header">
-          <h3>Special offers</h3>
-          <div class="view-all-container">
-            <a href="#" class="view-all-games" id="view-all-toggle">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="offers-list">
-          <div class="offer-card global-img">
-            <a href="../pages/SingleGameView-offer.html">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">50% OFF</div>
-          </div>
-          <div class="offer-card global-img">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">50% OFF</div>
-          </div>
-          <div class="offer-card global-img">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">50% OFF</div>
-          </div>
-          <div class="offer-card global-img">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">50% OFF</div>
-          </div>
-          <div class="offer-card global-img">
-            <a href="#">
-              <img
-                src="../../assets/Games/g5.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">50% OFF</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Advanced Search -->
-      <section class="advance-search">
-        <div class="container">
-          <div class="stars"></div>
-          <div class="advance-search-content">
-            <h2>Advanced Search</h2>
-            <p>
-              Discover exactly the PC games you're looking for with powerful
-              filters
-            </p>
-
-            <form class="advance-search-form">
-              <!-- Main Search Bar -->
-              <div class="search-bar-container">
-                <input
-                  class="search-bar-advance-search"
-                  type="text"
-                  placeholder="Search games..." />
-                <button type="submit" class="advance-search-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
+        <div class="stars-dot"></div>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
+                    <span class="sub-brand">L</span>K</span>
+            </div>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
                 </button>
-              </div>
-
-              <!-- Filter Row -->
-              <div class="filter-row">
-                <!-- Category Dropdown -->
-                <div class="filter-group">
-                  <label for="category">Category</label>
-                  <select id="category" class="filter-select">
-                    <option value>All Categories</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="rpg">RPG</option>
-                    <option value="strategy">Strategy</option>
-                    <option value="sports">Sports</option>
-                    <option value="indie">Indie</option>
-                  </select>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li class="active" onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'" class="CartTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'" class="DownloadTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li onclick="location.href='community-board.html'" class="CommunityTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'" class="SettingsTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout LogoutTo" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile ProfileTo" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                    <div class="signup-row SignUpTo">
+                        <button onclick="location.href='../../en/pages/login.html'" class="signup-btn">CONNECT</button>
+                    </div>
                 </div>
-
-                <!-- Developer Dropdown -->
-                <div class="filter-group">
-                  <label for="developer">Developer</label>
-                  <select id="developer" class="filter-select">
-                    <option value>All Developers</option>
-                    <option value="valve">Valve</option>
-                    <option value="ea">Electronic Arts</option>
-                    <option value="ubisoft">Ubisoft</option>
-                    <option value="cd-projekt">CD Projekt Red</option>
-                    <option value="blizzard">Blizzard</option>
-                  </select>
+            </header>
+            <section class="special-offers">
+                <div class="game-header">
+                    <h3>Special offers</h3>
+                    <div class="view-all-container">
+                        <a href="#" class="view-all-games" id="view-all-toggle">
+                            View all
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-
-                <!-- Sort Dropdown -->
-                <div class="filter-group">
-                  <label for="sort">Sort By</label>
-                  <select id="sort" class="filter-select">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                    <option value="popular">Most Popular</option>
-                    <option value="rating">Highest Rated</option>
-                  </select>
+                <div class="offers-list">
+                    <div class="offer-card global-img">
+                        <a href="../pages/SingleGameView-offer.html">
+                            <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">50% OFF</div>
+                    </div>
+                    <div class="offer-card global-img">
+                        <a href="#">
+                            <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">50% OFF</div>
+                    </div>
+                    <div class="offer-card global-img">
+                        <a href="#">
+                            <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">50% OFF</div>
+                    </div>
+                    <div class="offer-card global-img">
+                        <a href="#">
+                            <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">50% OFF</div>
+                    </div>
+                    <div class="offer-card global-img">
+                        <a href="#">
+                            <img src="../../assets/Games/g5.jpg" alt="game" class="popup-image">
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">50% OFF</div>
+                    </div>
                 </div>
-              </div>
-
-              <!-- Price Range Slider -->
-              <div class="price-range-group">
-                <label for="price-range">Price Range: Up to <span
-                    id="price-value">$100</span></label>
-                <div class="slider-container">
-                  <input
-                    type="range"
-                    id="price-range"
-                    min="0"
-                    max="100"
-                    value="100"
-                    class="price-slider" />
-                  <div class="slider-track"></div>
+            </section>
+            <!-- Advanced Search -->
+            <section class="advance-search">
+                <div class="container">
+                    <div class="stars"></div>
+                    <div class="advance-search-content">
+                        <h2>Advanced Search</h2>
+                        <p>
+                            Discover exactly the PC games you're looking for with powerful
+              filters
+                        </p>
+                        <form class="advance-search-form">
+                            <!-- Main Search Bar -->
+                            <div class="search-bar-container">
+                                <input class="search-bar-advance-search" type="text" placeholder="Search games...">
+                                <button type="button" class="advance-search-btn" onclick="searchProducts(0);">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line
+                                            x1="21"
+                                            y1="21"
+                                            x2="16.65"
+                                            y2="16.65"
+                                        ></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- Filter Row -->
+                            <div class="filter-row">
+                                <!-- Category Dropdown -->
+                                <div class="filter-group">
+                                    <label for="gameCategory">Category</label>
+                                    <select id="gameCategory" class="filter-select">
+                                        <option value="0">All Categories</option>
+                                    </select>
+                                </div>
+                                <!-- Developer Dropdown -->
+                                <div class="filter-group">
+                                    <label for="gameMod">Mode</label>
+                                    <select id="gameMod" class="filter-select">
+                                        <option value="0">All Mode</option>
+                                    </select>
+                                </div>
+                                <!-- Sort Dropdown -->
+                                <div class="filter-group">
+                                    <label for="gamesort">Sort By</label>
+                                    <select id="gamesort" class="filter-select">
+                                        <option>Sort by Latest</option>
+                                        <option>Sort by Oldest</option>
+                                        <option>Sort by Name</option>
+                                        <option>Sort by Price</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Price Range Slider -->
+                            <div class="price-range-group">
+                                <label for="price-range">
+                                    Price Range: Up to
+                                    <span id="price-value">$100</span>
+                                </label>
+                                <div class="slider-container">
+                                    <input
+                                        type="range"
+                                        id="price-range"
+                                        min="0"
+                                        max="100"
+                                        value="100"
+                                        class="price-slider"
+                                    >
+                                    <div class="slider-track"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
-            </form>
-          </div>
+            </section>
+            <!-- Advanced Result -->
+            <section class="game-se">
+                <div class="game-header">
+                    <h3>Advanced Result</h3>
+                    <div class="d-none">
+                        <a href="#" class="view-all-games" id="view-all-games-toggle1">
+                            View all
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-list game-list-s1">
+                    <div class="game-card game-card-s1 global-img-game">
+                        <a href="./pages/game-details.html">
+                            <img
+                                src="../../assets/card-image.png"
+                                id="ad-product-image"
+                                alt="game"
+                                class="popup-image"
+                            >
+                            <div class="hover-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </a>
+                        <div class="offer-label">
+                            2.9
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="game-info">
+                            <h2 class="game-title" id="ad-product-title">
+                                ~title~
+                            </h2>
+                            <div class="game-price-row">
+                                <span id="ad-product-price">~price~</span>
+                            </div>
+                            <div class="game-btn-row">
+                                <button class="cart-btn">Add to Cart</button>
+                                <span class="heart">
+                                    <i class="far fa-heart"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <button class="pagination-btn disabled">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+            <!-- Store Start -->
+            <div class="d-none">
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>Popular Games</h3>
+                        <div class="d-none">
+                            <a href="#" class="view-all-games" id="view-all-games-toggle">
+                                View all
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-list game-list-s">
+                        <div class="game-card game-card-s global-img-game">
+                            <a href="game-details.html?id=1">
+                                <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">
+                                    Grand Theft
+                                    <br>
+                                    Auto V
+                                </h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s">
+                            <a href="#">
+                                <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Red Dead Redemption 2</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s">
+                            <a href="#">
+                                <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Far Cry 6</h2>
+                                <br>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s">
+                            <a href="#">
+                                <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Kena: Bridge of Spirits</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>Action Games</h3>
+                        <div class="d-none">
+                            <a href="#" class="view-all-games" id="view-all-games-toggle1">
+                                View all
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-list game-list-s1">
+                        <div class="game-card game-card-s1 global-img-game">
+                            <a href="./pages/game-details.html">
+                                <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">
+                                    Grand Theft
+                                    <br>
+                                    Auto V
+                                </h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s1">
+                            <a href="#">
+                                <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Red Dead Redemption 2</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s1">
+                            <a href="#">
+                                <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Far Cry 6</h2>
+                                <br>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s1">
+                            <a href="#">
+                                <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Kena: Bridge of Spirits</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>Adventure Games</h3>
+                        <div class="d-none">
+                            <a href="#" class="view-all-games" id="view-all-games-toggle2">
+                                View all
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-list game-list-s2">
+                        <div class="game-card game-card-s2 global-img-game">
+                            <a href="./pages/game-details.html">
+                                <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">
+                                    Grand Theft
+                                    <br>
+                                    Auto V
+                                </h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s2">
+                            <a href="#">
+                                <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Red Dead Redemption 2</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s2">
+                            <a href="#">
+                                <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Far Cry 6</h2>
+                                <br>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s2">
+                            <a href="#">
+                                <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Kena: Bridge of Spirits</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>Survival Games</h3>
+                        <div class="d-none">
+                            <a href="#" class="view-all-games" id="view-all-games-toggle3">
+                                View all
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-list game-list-s3">
+                        <div class="game-card game-card-s3 global-img-game">
+                            <a href="./pages/game-details.html">
+                                <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">
+                                    Grand Theft
+                                    <br>
+                                    Auto V
+                                </h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s3">
+                            <a href="#">
+                                <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Red Dead Redemption 2</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s3">
+                            <a href="#">
+                                <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Far Cry 6</h2>
+                                <br>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card global-img-game game-card-s3">
+                            <a href="#">
+                                <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Kena: Bridge of Spirits</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>Strategy Games</h3>
+                        <div class="d-none">
+                            <a href="#" class="view-all-games" id="view-all-games-toggle4">
+                                View all
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-list game-list-s4">
+                        <div class="game-card game-card-s4 global-img-game">
+                            <a href="./pages/game-details.html">
+                                <img src="../../assets/Games/g1.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">
+                                    Grand Theft
+                                    <br>
+                                    Auto V
+                                </h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card game-card-s4 global-img-game">
+                            <a href="#">
+                                <img src="../../assets/Games/g2.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Red Dead Redemption 2</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card game-card-s4 global-img-game">
+                            <a href="#">
+                                <img src="../../assets/Games/g3.jpg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Far Cry 6</h2>
+                                <br>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-card game-card-s4 global-img-game">
+                            <a href="#">
+                                <img src="../../assets/Games/g4.jpeg" alt="game" class="popup-image">
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label">
+                                2.9
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title">Kena: Bridge of Spirits</h2>
+                                <div class="game-price-row">
+                                    <span>$16.99 USD</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn">Add to Cart</button>
+                                    <span class="heart">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Store end -->
+            <div></div>
+            <div id="footer"></div>
         </div>
-      </section>
-
-      <section class="game-se">
-        <div class="game-header">
-          <h3>Popular Games</h3>
-          <div class="d-none">
-            <a href="#" class="view-all-games" id="view-all-games-toggle">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="game-list game-list-s">
-          <div class="game-card game-card-s global-img-game">
-            <a href="game-details.html?id=1">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">
-                Grand Theft<br />
-                Auto V
-              </h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Red Dead Redemption 2</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Far Cry 6</h2>
-              <br />
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Kena: Bridge of Spirits</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="game-se">
-        <div class="game-header">
-          <h3>Action Games</h3>
-          <div class="d-none">
-            <a href="#" class="view-all-games" id="view-all-games-toggle1">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="game-list game-list-s1">
-          <div class="game-card game-card-s1 global-img-game">
-            <a href="./pages/game-details.html">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">
-                Grand Theft<br />
-                Auto V
-              </h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s1">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Red Dead Redemption 2</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s1">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Far Cry 6</h2>
-              <br />
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s1">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Kena: Bridge of Spirits</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="game-se">
-        <div class="game-header">
-          <h3>Adventure Games</h3>
-          <div class="d-none">
-            <a href="#" class="view-all-games" id="view-all-games-toggle2">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="game-list game-list-s2">
-          <div class="game-card game-card-s2 global-img-game">
-            <a href="./pages/game-details.html">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">
-                Grand Theft<br />
-                Auto V
-              </h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s2">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Red Dead Redemption 2</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s2">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Far Cry 6</h2>
-              <br />
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s2">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Kena: Bridge of Spirits</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="game-se">
-        <div class="game-header">
-          <h3>Survival Games</h3>
-          <div class="d-none">
-            <a href="#" class="view-all-games" id="view-all-games-toggle3">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="game-list game-list-s3">
-          <div class="game-card game-card-s3 global-img-game">
-            <a href="./pages/game-details.html">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">
-                Grand Theft<br />
-                Auto V
-              </h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s3">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Red Dead Redemption 2</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s3">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Far Cry 6</h2>
-              <br />
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card global-img-game game-card-s3">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Kena: Bridge of Spirits</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="game-se">
-        <div class="game-header">
-          <h3>Strategy Games</h3>
-          <div class="d-none">
-            <a href="#" class="view-all-games" id="view-all-games-toggle4">
-              View all <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="game-list game-list-s4">
-          <div class="game-card game-card-s4 global-img-game">
-            <a href="./pages/game-details.html">
-              <img
-                src="../../assets/Games/g1.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">
-                Grand Theft<br />
-                Auto V
-              </h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card game-card-s4 global-img-game">
-            <a href="#">
-              <img
-                src="../../assets/Games/g2.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Red Dead Redemption 2</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card game-card-s4 global-img-game">
-            <a href="#">
-              <img
-                src="../../assets/Games/g3.jpg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Far Cry 6</h2>
-              <br />
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="game-card game-card-s4 global-img-game">
-            <a href="#">
-              <img
-                src="../../assets/Games/g4.jpeg"
-                alt="game"
-                class="popup-image" />
-              <div class="hover-icon">
-                <i class="fas fa-gamepad"></i>
-              </div>
-            </a>
-            <div class="offer-label">2.9 <i class="fas fa-star"></i></div>
-            <div class="game-info">
-              <h2 class="game-title">Kena: Bridge of Spirits</h2>
-              <div class="game-price-row">
-                <span>$16.99 USD</span>
-              </div>
-              <div class="game-btn-row">
-                <button class="cart-btn">Add to Cart</button>
-                <span class="heart"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div id="newsletter"></div>
-
-      <div id="footer"></div>
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/includes.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="../assets/js/view-all-product.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
-    <script src="../assets/js/logout.js" defer></script>
-
-    <script>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/includes.js" defer></script>
+        <script src="../assets/js/star.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="../assets/js/advanced-search.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <!-- Alert -->
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <script>
       // Price Range Slider Functionality
       document.addEventListener("DOMContentLoaded", function () {
         const priceSlider = document.getElementById("price-range");
@@ -842,8 +935,8 @@
           });
         });
       });
-    </script>
-    <script>
+        </script>
+        <script>
       const starContainer = document.querySelector(".stars");
 
       for (let i = 0; i < 100; i++) {
@@ -859,7 +952,6 @@
         star.style.opacity = Math.random();
         starContainer.appendChild(star);
       }
-      
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
