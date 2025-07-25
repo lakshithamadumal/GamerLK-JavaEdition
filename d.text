@@ -41,29 +41,39 @@ public class SearchProducts extends HttpServlet {
         try {
             Criteria criteriaProduct = s.createCriteria(Product.class);
 
-            // Category filter
-            if (requestJsonObject.has("gameCategory")) {
-                int gameCategoryId = requestJsonObject.get("gameCategory").getAsInt();
+            int gameCategoryId = requestJsonObject.get("gameCategory").getAsInt();
+            System.out.println("================================================= " + gameCategoryId);
 
-                Criteria criteriaCategory = s.createCriteria(Category.class);
-                criteriaCategory.add(Restrictions.eq("id", gameCategoryId));
-                Category categoryList = (Category) criteriaCategory.uniqueResult();
+            Criteria criteriaCategory = s.createCriteria(Category.class);
+            criteriaCategory.add(Restrictions.eq("id", gameCategoryId));
+            Category categoryList = (Category) criteriaCategory.uniqueResult();
+            System.out.println("================================================ " + gson.toJson(categoryList));
 
-                criteriaProduct.add(Restrictions.eq("category_id", categoryList));
-            }
+            criteriaProduct.add(Restrictions.eq("category", categoryList));
 
-            // Mode filter
-            if (requestJsonObject.has("gameMod")) {
-
-                int gameModId = requestJsonObject.get("gameMod").getAsInt();
-
-                Criteria criteriaMode = s.createCriteria(Mode.class);
-                criteriaMode.add(Restrictions.eq("id", gameModId));
-                Mode modeList = (Mode) criteriaMode.uniqueResult();
-
-                criteriaProduct.add(Restrictions.eq("mode_id", modeList));
-            }
-
+//            // Category filter
+//            if (requestJsonObject.has("gameCategory")) {
+//                String categoryName = requestJsonObject.get("gameCategory").getAsString();
+//                Criteria criteriaCategory = s.createCriteria(Category.class);
+//                criteriaCategory.add(Restrictions.eq("name", categoryName));
+//                List<Category> categoryList = criteriaCategory.list();
+//
+//                if (!categoryList.isEmpty()) {
+//                    criteriaProduct.add(Restrictions.eq("category", categoryList.get(0)));
+//                }
+//            }
+//
+//            // Mode filter
+//            if (requestJsonObject.has("gameMod")) {
+//                String modeName = requestJsonObject.get("gameMod").getAsString();
+//                Criteria criteriaMode = s.createCriteria(Mode.class);
+//                criteriaMode.add(Restrictions.eq("name", modeName));
+//                List<Mode> modeList = criteriaMode.list();
+//
+//                if (!modeList.isEmpty()) {
+//                    criteriaProduct.add(Restrictions.eq("mode", modeList.get(0)));
+//                }
+//            }
             // Title filter
             if (requestJsonObject.has("gametext")) {
                 String Gametext = requestJsonObject.get("gametext").getAsString();
