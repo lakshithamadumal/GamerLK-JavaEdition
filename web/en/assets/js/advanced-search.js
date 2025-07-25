@@ -89,7 +89,6 @@ var currentPage = 0;
 
 
 function updateProductView(json) {
-
     let searchProductContainer = document.getElementById("searchProductContainer");
     searchProductContainer.innerHTML = "";
 
@@ -100,6 +99,11 @@ function updateProductView(json) {
         const advancedResultSection = document.querySelector('.advanceSearchResult:not(.d-none)');
         if (advancedResultSection) {
             advancedResultSection.classList.add('d-none');
+        }
+        // Show AllProductsContainer
+        const allProductsContainer = document.querySelector('.AllProductsContainer.d-none');
+        if (allProductsContainer) {
+            allProductsContainer.classList.remove('d-none');
         }
         return;
     }
@@ -126,6 +130,11 @@ function updateProductView(json) {
     const advancedResultSection = document.querySelector('.advanceSearchResult.d-none');
     if (advancedResultSection) {
         advancedResultSection.classList.remove('d-none');
+    }
+    // Hide AllProductsContainer
+    const allProductsContainer = document.querySelector('.AllProductsContainer:not(.d-none)');
+    if (allProductsContainer) {
+        allProductsContainer.classList.add('d-none');
     }
 
     // Pagination logic
@@ -188,6 +197,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const advanceResultSection = document.querySelector(".advanceSearchResult");
             if (advanceResultSection) {
                 advanceResultSection.classList.add("d-none");
+            }
+            // Show AllProductsContainer when closing advanced search
+            const allProductsContainer = document.querySelector('.AllProductsContainer.d-none');
+            if (allProductsContainer) {
+                allProductsContainer.classList.remove('d-none');
             }
         });
     }
