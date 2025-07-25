@@ -985,7 +985,6 @@ header {
   justify-content: center;
   aspect-ratio: 16/9;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  /* Smooth show/hide */
 }
 
 .category-card {
@@ -1001,7 +1000,6 @@ header {
   justify-content: center;
   aspect-ratio: 16/9;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  /* Smooth show/hide */
 }
 
 /* Hidden state for cards */
@@ -2301,7 +2299,7 @@ footer {
   }
 }
 
-/* Laptop (≤1522px, e.g., MacBook Air) - 3 cards per row */
+/* Laptop (≤1522px) - 3 cards per row */
 @media (max-width: 1522px) {
   .game-header .d-none {
     display: block;
@@ -3100,3 +3098,20 @@ footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* subtle dark glow */
   border-radius: 12px;
 }
+
+/* Advanced Search Result Close Button Styling */
+.close-advance-result {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+  box-shadow: 0 2px 8px rgba(223, 4, 10, 0.3);  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+

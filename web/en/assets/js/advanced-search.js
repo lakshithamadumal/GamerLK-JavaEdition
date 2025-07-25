@@ -91,8 +91,18 @@ var currentPage = 0;
 function updateProductView(json) {
 
     let searchProductContainer = document.getElementById("searchProductContainer");
-
     searchProductContainer.innerHTML = "";
+
+    // If no products found
+    if (!json.productList || json.productList.length === 0) {
+        notyf.error("No Games found!");
+        // Hide advanced result section
+        const advancedResultSection = document.querySelector('.advanceSearchResult:not(.d-none)');
+        if (advancedResultSection) {
+            advancedResultSection.classList.add('d-none');
+        }
+        return;
+    }
 
     json.productList.forEach(product => {
         let searchProduct_clone = searchProduct.cloneNode(true);
@@ -113,63 +123,72 @@ function updateProductView(json) {
     });
 
     // Show the advanced result section by removing d-none
-    const advancedResultSection = document.querySelector('.game-se.d-none');
+    const advancedResultSection = document.querySelector('.advanceSearchResult.d-none');
     if (advancedResultSection) {
         advancedResultSection.classList.remove('d-none');
     }
 
-    // //start pagination
-    // let st_pagination_container = document.getElementById("st-pagination-container");
-    // st_pagination_container.innerHTML = "";
+    // Pagination logic
+    let paginationContainer = document.getElementById("advanced-pagination-container");
+    paginationContainer.innerHTML = "";
 
-    // let product_count = json.allProductCount;
-    // const product_per_page = 6;
+    let product_count = json.allProductCount;
+    const product_per_page = 4;
+    let pages = Math.ceil(product_count / product_per_page);
 
-    // let pages = Math.ceil(product_count / product_per_page);
+    // Previous button
+    let prevBtn = document.createElement("button");
+    prevBtn.className = "pagination-btn";
+    prevBtn.innerHTML = `<i class="fas fa-chevron-left"></i>`;
+    if (currentPage === 0) {
+        prevBtn.classList.add("disabled");
+    } else {
+        prevBtn.onclick = function() {
+            currentPage--;
+            searchProducts(currentPage * product_per_page);
+        };
+    }
+    paginationContainer.appendChild(prevBtn);
 
-    // //add previous button
-    // if (currentPage != 0) {
-    //     let st_pagination_button_clone_prev = st_pagination_button.cloneNode(true);
-    //     st_pagination_button_clone_prev.innerHTML = "Prev";
+    // Page numbers
+    for (let i = 0; i < pages; i++) {
+        let pageSpan = document.createElement("span");
+        pageSpan.textContent = (i + 1);
+        if (i === currentPage) {
+            pageSpan.className = "active";
+        } else {
+            pageSpan.onclick = function() {
+                currentPage = i;
+                searchProducts(i * product_per_page);
+            };
+            pageSpan.style.cursor = "pointer";
+        }
+        paginationContainer.appendChild(pageSpan);
+    }
 
-    //     st_pagination_button_clone_prev.addEventListener("click", e => {
-    //         currentPage--;
-    //         searchProducts(currentPage * 6);
-    //     });
-
-    //     st_pagination_container.appendChild(st_pagination_button_clone_prev);
-    // }
-
-    // //add page buttons
-    // for (let i = 0; i < pages; i++) {
-    //     let st_pagination_button_clone = st_pagination_button.cloneNode(true);
-    //     st_pagination_button_clone.innerHTML = i + 1;
-
-    //     st_pagination_button_clone.addEventListener("click", e => {
-    //         currentPage = i;
-    //         searchProducts(i * 6);
-    //     });
-
-    //     if (i === currentPage) {
-    //         st_pagination_button_clone.className = "axil-btn btn-bg-secondary me-2";
-    //     } else {
-    //         st_pagination_button_clone.className = "axil-btn btn-bg-primary me-2";
-    //     }
-
-    //     st_pagination_container.appendChild(st_pagination_button_clone);
-    // }
-
-    // //add Next button
-    // if (currentPage != (pages - 1)) {
-    //     let st_pagination_button_clone_next = st_pagination_button.cloneNode(true);
-    //     st_pagination_button_clone_next.innerHTML = "Next";
-
-    //     st_pagination_button_clone_next.addEventListener("click", e => {
-    //         currentPage++;
-    //         searchProducts(currentPage * 6);
-    //     });
-
-    //     st_pagination_container.appendChild(st_pagination_button_clone_next);
-    // }
-
+    // Next button
+    let nextBtn = document.createElement("button");
+    nextBtn.className = "pagination-btn";
+    nextBtn.innerHTML = `<i class="fas fa-chevron-right"></i>`;
+    if (currentPage >= pages - 1) {
+        nextBtn.classList.add("disabled");
+    } else {
+        nextBtn.onclick = function() {
+            currentPage++;
+            searchProducts(currentPage * product_per_page);
+        };
+    }
+    paginationContainer.appendChild(nextBtn);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const closeBtn = document.querySelector(".close-advance-result");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+            const advanceResultSection = document.querySelector(".advanceSearchResult");
+            if (advanceResultSection) {
+                advanceResultSection.classList.add("d-none");
+            }
+        });
+    }
+});
