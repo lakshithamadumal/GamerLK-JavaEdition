@@ -2717,7 +2717,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 8px; /* Ensures spacing between icon and text */
-  min-width: 150px; /* Slightly wider to fit text comfortably */
+  min-width: 200px; /* Slightly wider to fit text comfortably */
 }
 
 .advance-search-btn:hover {
