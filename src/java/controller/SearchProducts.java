@@ -6,6 +6,7 @@ import hibernate.Category;
 import hibernate.HibernateUtil;
 import hibernate.Mode;
 import hibernate.Product;
+import hibernate.Status;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -94,6 +95,10 @@ public class SearchProducts extends HttpServlet {
                         break;
                 }
             }
+
+            // get filtered product list
+            Status status = (Status) s.get(Status.class, 1);
+            criteriaProduct.add(Restrictions.eq("status_id", status));
 
             // Get full count
             List<Product> allProducts = criteriaProduct.list();
