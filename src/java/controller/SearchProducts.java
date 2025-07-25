@@ -44,24 +44,23 @@ public class SearchProducts extends HttpServlet {
             // Category filter
             if (requestJsonObject.has("gameCategory")) {
                 int gameCategoryId = requestJsonObject.get("gameCategory").getAsInt();
-
-                Criteria criteriaCategory = s.createCriteria(Category.class);
-                criteriaCategory.add(Restrictions.eq("id", gameCategoryId));
-                Category categoryList = (Category) criteriaCategory.uniqueResult();
-
-                criteriaProduct.add(Restrictions.eq("category_id", categoryList));
+                if (gameCategoryId != 0) { // Only filter if not 'All'
+                    Criteria criteriaCategory = s.createCriteria(Category.class);
+                    criteriaCategory.add(Restrictions.eq("id", gameCategoryId));
+                    Category categoryList = (Category) criteriaCategory.uniqueResult();
+                    criteriaProduct.add(Restrictions.eq("category_id", categoryList));
+                }
             }
 
             // Mode filter
             if (requestJsonObject.has("gameMod")) {
-
                 int gameModId = requestJsonObject.get("gameMod").getAsInt();
-
-                Criteria criteriaMode = s.createCriteria(Mode.class);
-                criteriaMode.add(Restrictions.eq("id", gameModId));
-                Mode modeList = (Mode) criteriaMode.uniqueResult();
-
-                criteriaProduct.add(Restrictions.eq("mode_id", modeList));
+                if (gameModId != 0) { // Only filter if not 'All'
+                    Criteria criteriaMode = s.createCriteria(Mode.class);
+                    criteriaMode.add(Restrictions.eq("id", gameModId));
+                    Mode modeList = (Mode) criteriaMode.uniqueResult();
+                    criteriaProduct.add(Restrictions.eq("mode_id", modeList));
+                }
             }
 
             // Title filter

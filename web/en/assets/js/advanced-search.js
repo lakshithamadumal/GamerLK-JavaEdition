@@ -98,7 +98,7 @@ function updateProductView(json) {
         let searchProduct_clone = searchProduct.cloneNode(true);
 
         //update cards
-        searchProduct_clone.querySelector("#searchProduct-a1").href = "game-details.html?pid=" + product.id;
+        searchProduct_clone.querySelector("#searchProduct-a1").href = "game-details.html?id=" + product.id;
         searchProduct_clone.querySelector("#searchProduct-image").src = "../../assets/Games\\" + product.id + "\\thumb-image.jpg";
         searchProduct_clone.querySelector("#searchProduct-title").innerHTML = product.title;
         searchProduct_clone.querySelector("#searchProduct-price").innerHTML = "$" + new Intl.NumberFormat(
@@ -111,6 +111,12 @@ function updateProductView(json) {
         searchProductContainer.appendChild(searchProduct_clone);
 
     });
+
+    // Show the advanced result section by removing d-none
+    const advancedResultSection = document.querySelector('.game-se.d-none');
+    if (advancedResultSection) {
+        advancedResultSection.classList.remove('d-none');
+    }
 
     // //start pagination
     // let st_pagination_container = document.getElementById("st-pagination-container");
