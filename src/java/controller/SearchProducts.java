@@ -65,6 +65,12 @@ public class SearchProducts extends HttpServlet {
                 }
             }
 
+            // Title filter
+            if (requestJsonObject.has("gametext")) {
+                String Gametext = requestJsonObject.get("gametext").getAsString();
+                criteriaProduct.add(Restrictions.like("title", Gametext + "%")); // title starts with Gametext
+            }
+
             // Price filter
             if (requestJsonObject.has("pricevalue")) {
                 double pricevalue = requestJsonObject.get("pricevalue").getAsDouble();

@@ -42,13 +42,16 @@ async function searchProducts(firstResult) {
     const gameMod = document.getElementById("gameMod").value;
     const gamesort = document.getElementById("gamesort").value;
     const rawPrice = document.getElementById("price-value").innerText;
+    const gametext = document.getElementById("gametext").value.trim();
     const pricevalue = parseFloat(rawPrice.replace(/[^0-9.]/g, ''));
+
 
     const data = {
         firstResult: firstResult,
         gameCategory: gameCategory,
         gameMod: gameMod,
         gamesort: gamesort,
+        gametext: gametext,
         pricevalue: pricevalue
     };
 

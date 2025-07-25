@@ -2696,11 +2696,26 @@ footer {
 }
 
 /* Search Bar Container */
+/* Search Bar Container */
 .search-bar-container {
   display: flex;
   max-width: 600px;
   margin: 0 auto 25px;
-  justify-content: center;
+  gap: 10px;
+}
+
+.search-bar-advance-search {
+  flex: 1;
+  background: var(--text-main);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  padding: 15px 26px;
+  font-family: "Outfit", Arial, sans-serif;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 9px 0 #1111;
 }
 
 .advance-search-btn {
@@ -2710,24 +2725,17 @@ footer {
   border-radius: 14px;
   font-size: 1.075em;
   font-weight: 600;
-  padding: 15px 25px;
+  padding: 0 25px;
   transition: all 0.15s;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Ensures spacing between icon and text */
-  min-width: 200px; /* Slightly wider to fit text comfortably */
 }
 
 .advance-search-btn:hover {
   background: linear-gradient(95deg, #ffffff59 0%, #ffffff4a 98%);
   transform: translateY(-1px);
-}
-
-/* Optional: Adjust SVG icon size if needed */
-.advance-search-btn svg {
-  flex-shrink: 0; /* Prevents icon from shrinking */
 }
 /* Filter Row */
 .filter-row {
