@@ -93,37 +93,3 @@ async function loadSingleProductData() {
 function addToCart(productId) {
     console.log(productId);
 }
-
-
-
-
-
-
-
-
-
-
-
-// function addToCart() {
-//     const productId = new URLSearchParams(window.location.search).get('id');
-//     console.log(productId);
-
-//     fetch("../../AddToCart?productId=" + productId, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.status) {
-//             alert("Product added to cart successfully!");
-//         } else {
-//             alert("Failed to add product to cart.");
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//         alert("An error occurred while adding the product to the cart.");
-//     });
-// }
