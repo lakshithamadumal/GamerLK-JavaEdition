@@ -75,6 +75,12 @@ async function loadSingleProductData() {
                     { minimumFractionDigits: 2 }
                 ).format(item.price);
 
+                // Add to Cart button event for featured products
+                const featureCartBtn = productCloneHtml.querySelector("#add-to-cart-feature");
+                featureCartBtn.addEventListener("click", (e) => {
+                    addToCart(item.id);
+                    e.preventDefault();
+                });
 
                 FratureProductMain.appendChild(productCloneHtml);
 
@@ -90,14 +96,29 @@ async function loadSingleProductData() {
 }
 
 
+
 async function addToCart(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
     const response = await fetch("../../AddToCart?prId=" + productId);
     if (response.ok) {
         const json = await response.json();
         if (json.status) {
+            notyf.success(json.message);
+        } else if (json.message === "Already Added") {
+            notyf.success("Already Added");
         } else {
+            notyf.error(json.message);
+
         }
     } else {
+        notyf.error("Game Add to cart failed.");
 
     }
 

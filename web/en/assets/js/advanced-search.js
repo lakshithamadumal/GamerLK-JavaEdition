@@ -116,11 +116,19 @@ function updateProductView(json) {
         searchProduct_clone.querySelector("#searchProduct-image").src = "../../assets/Games\\" + product.id + "\\thumb-image.jpg";
         searchProduct_clone.querySelector("#searchProduct-title").innerHTML = product.title;
         searchProduct_clone.querySelector("#searchProduct-price").innerHTML = "$" + new Intl.NumberFormat(
-                "en-US",
-                {
-                    minimumFractionDigits: 2
-                }
+            "en-US",
+            {
+                minimumFractionDigits: 2
+            }
         ).format(product.price);
+
+
+        // Add to Cart button event for search products
+        const searchCartBtn = searchProduct_clone.querySelector("#add-to-cart-ad");
+        searchCartBtn.addEventListener("click", (e) => {
+            addToCart(product.id);
+            e.preventDefault();
+        });
 
         searchProductContainer.appendChild(searchProduct_clone);
 
@@ -152,7 +160,7 @@ function updateProductView(json) {
     if (currentPage === 0) {
         prevBtn.classList.add("disabled");
     } else {
-        prevBtn.onclick = function() {
+        prevBtn.onclick = function () {
             currentPage--;
             searchProducts(currentPage * product_per_page);
         };
@@ -166,7 +174,7 @@ function updateProductView(json) {
         if (i === currentPage) {
             pageSpan.className = "active";
         } else {
-            pageSpan.onclick = function() {
+            pageSpan.onclick = function () {
                 currentPage = i;
                 searchProducts(i * product_per_page);
             };
@@ -182,7 +190,7 @@ function updateProductView(json) {
     if (currentPage >= pages - 1) {
         nextBtn.classList.add("disabled");
     } else {
-        nextBtn.onclick = function() {
+        nextBtn.onclick = function () {
             currentPage++;
             searchProducts(currentPage * product_per_page);
         };
@@ -206,3 +214,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+
+
+
+
+
+
+
+async function addToCart(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../AddToCart?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            notyf.success(json.message);
+        } else if (json.message === "Already Added") {
+            notyf.success("Already Added");
+        } else {
+            notyf.error(json.message);
+
+        }
+    } else {
+        notyf.error("Game Add to cart failed.");
+
+    }
+
+}
