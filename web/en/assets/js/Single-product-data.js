@@ -90,6 +90,15 @@ async function loadSingleProductData() {
 }
 
 
-function addToCart(productId) {
-    console.log(productId);
+async function addToCart(productId) {
+    const response = await fetch("../../AddToCart?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+        } else {
+        }
+    } else {
+
+    }
+
 }

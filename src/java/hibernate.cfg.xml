@@ -16,5 +16,6 @@
         <mapping class="hibernate.Mode"/>
         <mapping class="hibernate.Requirement"/>
         <mapping class="hibernate.Product"/>
+        <mapping class="hibernate.Cart"/>
     </session-factory>
 </hibernate-configuration>
