@@ -130,6 +130,13 @@ function updateProductView(json) {
             e.preventDefault();
         });
 
+        // Add to Wishlist button event for ad products
+        const searchWishlistBtn = searchProduct_clone.querySelector("#add-to-wishlist-ad");
+        searchWishlistBtn.addEventListener("click", function () {
+            this.querySelector('i').classList.toggle('fas');
+            this.querySelector('i').classList.toggle('far');
+        });
+
         searchProductContainer.appendChild(searchProduct_clone);
 
     });

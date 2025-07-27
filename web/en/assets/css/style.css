@@ -751,13 +751,22 @@ header {
   margin-left: 5px;
 }
 
-.btn-row span.heart {
+.btn-row .heart-btn {
   margin-left: auto;
   display: flex;
   align-items: center;
   font-size: 1.9rem;
   color: var(--accent-red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
+
+.btn-row .heart-btn:focus {
+  outline: none;
+}
+
 
 .cart-btn {
   /* Initial Gradient Background */
@@ -1119,12 +1128,20 @@ header {
   letter-spacing: 0.011em;
 }
 
-.game-btn-row span.heart {
+.game-btn-row .heart-btn {
   margin-left: auto;
   display: flex;
   align-items: center;
   font-size: 1.9rem;
   color: var(--accent-red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.game-btn-row .heart-btn:focus {
+  outline: none;
 }
 
 .game-price-row span {

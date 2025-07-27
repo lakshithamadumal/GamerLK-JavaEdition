@@ -65,7 +65,6 @@ async function loadSingleProductData() {
 
             FratureProductMain.innerHTML = "";
             json.productList.forEach(item => {
-
                 let productCloneHtml = FratureProduct.cloneNode(true);
                 productCloneHtml.querySelector("#feature-product-a1").href = "game-details.html?id=" + item.id;
                 productCloneHtml.querySelector("#feature-product-image").src = "../../assets/Games\\" + item.id + "\\thumb-image.jpg";
@@ -80,6 +79,13 @@ async function loadSingleProductData() {
                 featureCartBtn.addEventListener("click", (e) => {
                     addToCart(item.id);
                     e.preventDefault();
+                });
+
+                // Add to Wishlist button event for featured products
+                const featureWishlistBtn = productCloneHtml.querySelector("#add-to-wishlist-feature");
+                featureWishlistBtn.addEventListener("click", function () {
+                    this.querySelector('i').classList.toggle('fas');
+                    this.querySelector('i').classList.toggle('far');
                 });
 
                 FratureProductMain.appendChild(productCloneHtml);
@@ -123,3 +129,10 @@ async function addToCart(productId) {
     }
 
 }
+
+
+
+document.getElementById('add-to-wishlist-main').addEventListener('click', function () {
+    this.querySelector('i').classList.toggle('fas');
+    this.querySelector('i').classList.toggle('far');
+});
