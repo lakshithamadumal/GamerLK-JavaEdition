@@ -142,18 +142,23 @@ async function addToCart(productId) {
     if (response.ok) {
         const json = await response.json();
         if (json.status) {
-            notyf.success(json.message);
-        } else if (json.message === "Already Added") {
-            notyf.success("Already Added");
+
+            if (json.message === "Game Added to cart") {
+                notyf.success("Game Added to cart");
+            } else if (json.message === "Already Added") {
+                notyf.success("Already Added");
+            } else if (json.message === "Login Required!") {
+                notyf.error("Login Required!");
+            } else {
+                notyf.error(json.message);
+            }
+
         } else {
-            notyf.error(json.message);
+            notyf.error("Game Add to cart failed.");
 
         }
-    } else {
-        notyf.error("Game Add to cart failed.");
 
     }
-
 }
 
 

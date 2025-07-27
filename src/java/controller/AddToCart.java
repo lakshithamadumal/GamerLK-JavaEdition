@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Util;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,40 +33,53 @@ public class AddToCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String prID = request.getParameter("prId");
-        System.out.println(prID);
 
         Gson gson = new Gson();
 
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", false);
 
-        //addToCartProcess
-        SessionFactory sf = hibernate.HibernateUtil.getSessionFactory();
-        Session session = sf.openSession();
-        Transaction tr = session.beginTransaction();
+        if (!Util.isInteger(prID)) {
+            responseObject.addProperty("message", "Invalid1 Game");
+        } else {
 
-        Product product = (Product) session.get(Product.class, Integer.valueOf(prID));
+            //addToCartProcess
+            SessionFactory sf = hibernate.HibernateUtil.getSessionFactory();
+            Session session = sf.openSession();
+            Transaction tr = session.beginTransaction();
 
-        User user = (User) request.getSession().getAttribute("user");
+            Product product = (Product) session.get(Product.class, Integer.valueOf(prID));
 
-        Criteria criteriaUser = session.createCriteria(Cart.class);
-        criteriaUser.add(Restrictions.eq("user_id", user));
-        criteriaUser.add(Restrictions.eq("product_id", product));
+            if (product == null) {
+                responseObject.addProperty("message", "Invalid1 Game");
+            } else {
+                User user = (User) request.getSession().getAttribute("user");
 
-        if (criteriaUser.list().isEmpty()) {//product not available 
+                if (user != null) {
 
-            Cart cart = new Cart();
-            cart.setUser_id(user);
-            cart.setProduct_id(product);
+                    Criteria criteriaUser = session.createCriteria(Cart.class);
+                    criteriaUser.add(Restrictions.eq("user_id", user));
+                    criteriaUser.add(Restrictions.eq("product_id", product));
 
-            session.save(cart);
-            tr.commit();
-            responseObject.addProperty("status", true);
-            responseObject.addProperty("message", "Game Added to cart");
+                    if (criteriaUser.list().isEmpty()) {//product not available 
 
-        } else { //product available 
-            responseObject.addProperty("message", "Already Added");
+                        Cart cart = new Cart();
+                        cart.setUser_id(user);
+                        cart.setProduct_id(product);
 
+                        session.save(cart);
+                        tr.commit();
+                        responseObject.addProperty("status", true);
+                        responseObject.addProperty("message", "Game Added to cart");
+
+                    } else { //product available 
+                        responseObject.addProperty("message", "Already Added");
+
+                    }
+                } else {
+                    responseObject.addProperty("message", "Login Required!");
+                }
+            }
         }
 
         responseObject.addProperty("status", true);
