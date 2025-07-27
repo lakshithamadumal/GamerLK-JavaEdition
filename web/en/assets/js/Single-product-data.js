@@ -60,6 +60,17 @@ async function loadSingleProductData() {
             );
             //add-to-cart-main
 
+
+            //add-to--wishlist-main
+            const addToWishlistButton = document.getElementById("add-to-wishlist-main");
+            addToWishlistButton.addEventListener(
+                "click", (e) => {
+                    addToWishlist(json.product.id);
+                    e.preventDefault();
+                }
+            );
+            //add-to--wishlist-main
+
             let FratureProductMain = document.getElementById("feature-product-main");
             let FratureProduct = document.getElementById("feature-product");
 
@@ -81,9 +92,16 @@ async function loadSingleProductData() {
                     e.preventDefault();
                 });
 
-                // Add to Wishlist button event for featured products
+                // Add to wishlist button event for featured products
                 const featureWishlistBtn = productCloneHtml.querySelector("#add-to-wishlist-feature");
-                featureWishlistBtn.addEventListener("click", function () {
+                featureWishlistBtn.addEventListener("click", (e) => {
+                    addToWishlist(item.id);
+                    e.preventDefault();
+                });
+
+                // Wishlist Design feature
+                const featureWishlistBtnDesign = productCloneHtml.querySelector("#add-to-wishlist-feature");
+                featureWishlistBtnDesign.addEventListener("click", function () {
                     this.querySelector('i').classList.toggle('fas');
                     this.querySelector('i').classList.toggle('far');
                 });
@@ -100,6 +118,14 @@ async function loadSingleProductData() {
     }
 
 }
+
+
+
+// wishlist design main
+document.getElementById('add-to-wishlist-main').addEventListener('click', function () {
+    this.querySelector('i').classList.toggle('fas');
+    this.querySelector('i').classList.toggle('far');
+});
 
 
 
@@ -131,8 +157,29 @@ async function addToCart(productId) {
 }
 
 
+async function addToWishlist(productId) {
 
-document.getElementById('add-to-wishlist-main').addEventListener('click', function () {
-    this.querySelector('i').classList.toggle('fas');
-    this.querySelector('i').classList.toggle('far');
-});
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../AddToWishlist?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            notyf.success(json.message);
+        } else if (json.message === "Already Added") {
+            notyf.success("Already Added");
+        } else {
+            notyf.error(json.message);
+
+        }
+    } else {
+        notyf.error("Game Add to wishlist failed.");
+
+    }
+
+}

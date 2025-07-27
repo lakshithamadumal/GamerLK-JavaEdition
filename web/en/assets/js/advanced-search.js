@@ -130,9 +130,16 @@ function updateProductView(json) {
             e.preventDefault();
         });
 
-        // Add to Wishlist button event for ad products
+        // Add to wishlist button event for search products
         const searchWishlistBtn = searchProduct_clone.querySelector("#add-to-wishlist-ad");
-        searchWishlistBtn.addEventListener("click", function () {
+        searchWishlistBtn.addEventListener("click", (e) => {
+            addToWishlist(product.id);
+            e.preventDefault();
+        });
+
+        // wishlist design ad
+        const searchWishlistBtnDesign = searchProduct_clone.querySelector("#add-to-wishlist-ad");
+        searchWishlistBtnDesign.addEventListener("click", function () {
             this.querySelector('i').classList.toggle('fas');
             this.querySelector('i').classList.toggle('far');
         });
@@ -252,6 +259,35 @@ async function addToCart(productId) {
         }
     } else {
         notyf.error("Game Add to cart failed.");
+
+    }
+
+}
+
+
+
+async function addToWishlist(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../AddToWishlist?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            notyf.success(json.message);
+        } else if (json.message === "Already Added") {
+            notyf.success("Already Added");
+        } else {
+            notyf.error(json.message);
+
+        }
+    } else {
+        notyf.error("Game Add to wishlist failed.");
 
     }
 
