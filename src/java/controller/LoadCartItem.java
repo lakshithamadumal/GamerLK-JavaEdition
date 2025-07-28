@@ -38,12 +38,16 @@ public class LoadCartItem extends HttpServlet {
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
             Criteria criteriaCart = s.createCriteria(Cart.class);
-            criteriaCart.add(Restrictions.eq("user", user));
+            criteriaCart.add(Restrictions.eq("user_id", user));
             List<Cart> cartList = criteriaCart.list();
 
-            responseObject.addProperty("status", true);
-            responseObject.addProperty("message", "Cart items successfully loaded");
-            responseObject.add("cartItems", gson.toJsonTree(cartList));
+            if (cartList.isEmpty()) {
+
+            } else {
+                responseObject.addProperty("status", true);
+                responseObject.addProperty("message", "Cart items successfully loaded");
+                responseObject.add("cartItems", gson.toJsonTree(cartList));
+            }
         } else { //sessionCart
         }
         response.setContentType("application/json");
