@@ -18,5 +18,6 @@
         <mapping class="hibernate.Product"/>
         <mapping class="hibernate.Cart"/>
         <mapping class="hibernate.Wishlist"/>
+        <mapping class="hibernate.Subscriber"/>
     </session-factory>
 </hibernate-configuration>
