@@ -42,7 +42,7 @@ public class LoadCartItem extends HttpServlet {
             List<Cart> cartList = criteriaCart.list();
 
             if (cartList.isEmpty()) {
-
+                responseObject.addProperty("message", "Your Cart is Empty");
             } else {
                 responseObject.addProperty("status", true);
                 responseObject.addProperty("message", "Cart items successfully loaded");

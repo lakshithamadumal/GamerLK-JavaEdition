@@ -43,7 +43,7 @@ public class LoadWishlistItem extends HttpServlet {
             List<Wishlist> wishlistList = criteriaWishlist.list();
 
             if (wishlistList.isEmpty()) {
-
+                responseObject.addProperty("message", "Your Wishlist is Empty");
             } else {
                 responseObject.addProperty("status", true);
                 responseObject.addProperty("message", "WishlistList items successfully loaded");
