@@ -88,16 +88,11 @@ public class AddToWishlist extends HttpServlet {
                     wishlist.setProduct_id(product);
                     sessionWishlist.add(wishlist);
                     responseObject.addProperty("status", true);
-                    responseObject.addProperty("message", "Game Saved to Session Wishlist");
+                    responseObject.addProperty("message", "Game Saved");
                 } else {
-                    responseObject.addProperty("message", "Game Already in Session Wishlist");
+                    responseObject.addProperty("message", "Game Already Saved");
                 }
 
-                // Print all session wishlist items for debugging
-                System.out.println("Session Wishlist Contents:===========================================");
-                for (Wishlist w : sessionWishlist) {
-                    System.out.println("Product ID: " + (w.getProduct_id() != null ? w.getProduct_id().getId() : "null"));
-                }
             }
         } catch (Exception e) {
             if (tr != null) {
