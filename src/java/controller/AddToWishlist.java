@@ -2,7 +2,6 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import hibernate.Cart;
 import hibernate.Product;
 import hibernate.User;
 import hibernate.Wishlist;
@@ -21,10 +20,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @author Laky
- */
 @WebServlet(name = "AddToWishlist", urlPatterns = {"/AddToWishlist"})
 public class AddToWishlist extends HttpServlet {
 
@@ -38,85 +33,79 @@ public class AddToWishlist extends HttpServlet {
         responseObject.addProperty("status", false);
 
         if (!Util.isInteger(prID)) {
-            responseObject.addProperty("message", "Invalid1 Game");
-        } else {
+            responseObject.addProperty("message", "Invalid Game");
+            sendResponse(response, gson, responseObject);
+            return;
+        }
 
-            //addToCartProcess
-            SessionFactory sf = hibernate.HibernateUtil.getSessionFactory();
-            Session session = sf.openSession();
-            Transaction tr = session.beginTransaction();
+        SessionFactory sf = hibernate.HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction tr = null;
 
+        try {
+            tr = session.beginTransaction();
             Product product = (Product) session.get(Product.class, Integer.valueOf(prID));
 
             if (product == null) {
-                responseObject.addProperty("message", "Invalid1 Game");
-            } else { //Game Avalible
-                User user = (User) request.getSession().getAttribute("user");
-                if (user != null) {  //User Have
-                    Criteria criteriaUser = session.createCriteria(Wishlist.class);
-                    criteriaUser.add(Restrictions.eq("user_id", user));
-                    criteriaUser.add(Restrictions.eq("product_id", product));
-
-                    if (criteriaUser.list().isEmpty()) {//product not available 
-
-                        Wishlist wishlist = new Wishlist();
-                        wishlist.setUser_id(user);
-                        wishlist.setProduct_id(product);
-
-                        session.save(wishlist);
-                        tr.commit();
-                        responseObject.addProperty("status", true);
-                        responseObject.addProperty("message", "Game Saved");
-
-                    } else { //product available 
-                        responseObject.addProperty("message", "Already Saaved");
-                    }
-                } else {//Haven't user
-                    //Not have user
-                    HttpSession ses = request.getSession();
-
-                    if (ses.getAttribute("sessionWishlist") == null) { // sessionwashlist not available in the session
-                        ArrayList<Wishlist> sessionWishlist = new ArrayList<>();
-                        Wishlist wishlist = new Wishlist();
-                        wishlist.setUser_id(null);
-                        wishlist.setProduct_id(product);
-                        sessionWishlist.add(wishlist);
-                        ses.setAttribute("sessionWishlist", sessionWishlist);
-                        responseObject.addProperty("status", true);
-                        responseObject.addProperty("message", "Game Saved");
-                    } else { // sessionCart available
-                        ArrayList<Wishlist> sessionList = (ArrayList<Wishlist>) ses.getAttribute("sessionWishlist");
-
-                        Wishlist foundedWishlist = null;
-
-                        for (Wishlist wishlist : sessionList) {
-                            if (wishlist.getProduct_id().getId() == product.getId()) { // Wishlist has product
-                                foundedWishlist = wishlist;
-                                break;
-                            }
-                        }
-
-                        if (foundedWishlist != null) {
-                            responseObject.addProperty("message", "Already Saaved");
-                        } else {
-                            foundedWishlist = new Wishlist();
-                            foundedWishlist.setUser_id(null);
-                            foundedWishlist.setProduct_id(product);
-                            sessionList.add(foundedWishlist);
-                        }
-                        responseObject.addProperty("status", true);
-                        responseObject.addProperty("message", "Game Saved");
-                    }
-                }
+                responseObject.addProperty("message", "Invalid Game");
+                sendResponse(response, gson, responseObject);
+                return;
             }
 
+            User user = (User) request.getSession().getAttribute("user");
+            if (user != null) { // User is logged in
+                Criteria criteriaUser = session.createCriteria(Wishlist.class);
+                criteriaUser.add(Restrictions.eq("user_id", user));
+                criteriaUser.add(Restrictions.eq("product_id", product));
+
+                if (criteriaUser.list().isEmpty()) {
+                    Wishlist wishlist = new Wishlist();
+                    wishlist.setUser_id(user);
+                    wishlist.setProduct_id(product);
+                    session.save(wishlist);
+                    tr.commit();
+                    responseObject.addProperty("status", true);
+                    responseObject.addProperty("message", "Game Saved to Wishlist");
+                } else {
+                    responseObject.addProperty("message", "Game Already in Wishlist");
+                }
+            } else { // No user logged in
+                HttpSession ses = request.getSession();
+                ArrayList<Wishlist> sessionWishlist = (ArrayList<Wishlist>) ses.getAttribute("sessionWishlist");
+
+                if (sessionWishlist == null) {
+                    sessionWishlist = new ArrayList<>();
+                    ses.setAttribute("sessionWishlist", sessionWishlist);
+                }
+
+                // Check for duplicates in session wishlist
+                boolean exists = sessionWishlist.stream()
+                        .anyMatch(w -> w.getProduct_id().getId() == product.getId());
+
+                if (!exists) {
+                    Wishlist wishlist = new Wishlist();
+                    wishlist.setUser_id(null);
+                    wishlist.setProduct_id(product);
+                    sessionWishlist.add(wishlist);
+                    responseObject.addProperty("status", true);
+                    responseObject.addProperty("message", "Game Saved to Session Wishlist");
+                } else {
+                    responseObject.addProperty("message", "Game Already in Session Wishlist");
+                }
+            }
+        } catch (Exception e) {
+            if (tr != null) tr.rollback();
+            responseObject.addProperty("message", "Error: " + e.getMessage());
+        } finally {
+            session.close();
         }
 
-        responseObject.addProperty("status", true);
-        //addTowishlistProcess
-        response.setContentType("application/json");
-        String toJson = gson.toJson(responseObject);
-        response.getWriter().write(toJson);
+        sendResponse(response, gson, responseObject);
     }
 
+    private void sendResponse(HttpServletResponse response, Gson gson, JsonObject responseObject)
+            throws IOException {
+        response.setContentType("application/json");
+        response.getWriter().write(gson.toJson(responseObject));
+    }
 }
