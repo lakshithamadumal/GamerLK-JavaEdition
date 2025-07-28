@@ -24,9 +24,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         cartProductContainer.innerHTML = "";
+        let subtotal = 0;
+        let productCount = json.cartItems.length;
+
         json.cartItems.forEach(cartlist => {
             let product = cartlist.product_id;
-
             let productCloneHtml = cartProduct.cloneNode(true);
             productCloneHtml.querySelector("#cartProduct-a1").href = "game-details.html?id=" + product.id;
             productCloneHtml.querySelector("#cartProduct-image").src = "../../assets/Games\\" + product.id + "\\thumb-image.jpg";
@@ -36,7 +38,45 @@ document.addEventListener("DOMContentLoaded", async function () {
                 { minimumFractionDigits: 2 }
             ).format(product.price);
 
+            subtotal += parseFloat(product.price);
             cartProductContainer.appendChild(productCloneHtml);
+        });
+
+        // Set product count
+        document.getElementById("Orderitems").textContent = productCount + " items";
+        // Set subtotal
+        document.getElementById("OrderSubtotal").textContent = "$" + subtotal.toFixed(2);
+
+        // Discount default 0
+        let discount = 0;
+        document.getElementById("OrderDiscount").textContent = "-$" + discount.toFixed(2);
+
+        // Tax 5% of subtotal
+        let tax = subtotal * 0.05;
+        document.getElementById("Ordertax").textContent = "$" + tax.toFixed(2);
+
+        // Total calculation
+        let total = subtotal - discount + tax;
+        document.getElementById("OrderTotal").textContent = "$" + total.toFixed(2);
+
+        // Coupon code logic
+        const couponInput = document.querySelector(".coupon-input input");
+        const applyBtn = document.querySelector(".apply-btn");
+        let couponApplied = false;
+
+        applyBtn.addEventListener("click", function () {
+            if (couponInput.value.trim().toUpperCase() === "GAMERLK" && !couponApplied) {
+                discount = 5;
+                couponApplied = true;
+                document.getElementById("OrderDiscount").textContent = "-$" + discount.toFixed(2);
+                total = subtotal - discount + tax;
+                document.getElementById("OrderTotal").textContent = "$" + total.toFixed(2);
+                notyf.success("Coupon applied!");
+            } else if (couponApplied) {
+                notyf.error("Coupon already applied.");
+            } else {
+                notyf.error("Invalid coupon code.");
+            }
         });
 
     } else {
