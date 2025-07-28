@@ -48,7 +48,6 @@ public class LoadCartItem extends HttpServlet {
                 responseObject.addProperty("message", "Cart items successfully loaded");
                 responseObject.add("cartItems", gson.toJsonTree(cartList));
             }
-        } else { //sessionCart
         }
         response.setContentType("application/json");
         String responseText = gson.toJson(responseObject);
