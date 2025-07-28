@@ -8,6 +8,7 @@ import hibernate.User;
 import hibernate.Wishlist;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,9 +48,24 @@ public class LoadWishlistItem extends HttpServlet {
             } else {
                 responseObject.addProperty("status", true);
                 responseObject.addProperty("message", "WishlistList items successfully loaded");
-                responseObject.add("cartItems", gson.toJsonTree(wishlistList));
+                responseObject.add("wishlistItems", gson.toJsonTree(wishlistList));
             }
-        } else { //sessionCart
+        } else { //sessionWishlist
+
+            ArrayList<Wishlist> sessionWishlists = (ArrayList<Wishlist>) request.getSession().getAttribute("sessionWishlist");
+            if (sessionWishlists != null) {
+                if (sessionWishlists.isEmpty()) {
+                    responseObject.addProperty("message", "Your wishlist is empty...");
+                } else {
+
+                    responseObject.addProperty("status", true);
+                    responseObject.addProperty("message", "Wishlist items successfully loaded");
+                    responseObject.add("wishlistItems", gson.toJsonTree(sessionWishlists));
+                }
+            } else {
+                responseObject.addProperty("message", "Your wishlist is empty...");
+            }
+
         }
         response.setContentType("application/json");
         String responseText = gson.toJson(responseObject);
