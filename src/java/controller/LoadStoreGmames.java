@@ -36,8 +36,10 @@ public class LoadStoreGmames extends HttpServlet {
         Session s = sf.openSession();
 
         try {
-            Criteria criteriaProduct = s.createCriteria(Product.class);
-            List<Category> productList = criteriaProduct.list();
+            Criteria criteriaProduct = s.createCriteria(Product.class, "product")
+                .createAlias("status_id", "status");
+            criteriaProduct.add(org.hibernate.criterion.Restrictions.eq("status.value", "Active"));
+            List<Product> productList = criteriaProduct.list();
 
             responseObject.add("productList", gson.toJsonTree(productList));
             responseObject.addProperty("status", true);
