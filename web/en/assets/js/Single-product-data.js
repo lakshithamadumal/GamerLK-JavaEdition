@@ -40,14 +40,14 @@ async function loadSingleProductData() {
             document.getElementById("minProcessor").innerHTML = json.product.min_requirement_id.processor;
             document.getElementById("minMemory").innerHTML = json.product.min_requirement_id.memory + " GB RAM";
             document.getElementById("minGraphics").innerHTML = json.product.min_requirement_id.graphics;
-            document.getElementById("minStorage").innerHTML = json.product.min_requirement_id.storage + " GB available space";
+            document.getElementById("minStorage").innerHTML = json.product.min_requirement_id.storage;
 
             //Minimum Requirements
             document.getElementById("recOs").innerHTML = json.product.rec_requirement_id.os + " (64-bit)";
             document.getElementById("recProcessor").innerHTML = json.product.rec_requirement_id.processor;
             document.getElementById("recMemory").innerHTML = json.product.rec_requirement_id.memory + " GB RAM";
             document.getElementById("recGraphics").innerHTML = json.product.rec_requirement_id.graphics;
-            document.getElementById("recStorage").innerHTML = json.product.rec_requirement_id.storage + " GB available space";
+            document.getElementById("recStorage").innerHTML = json.product.rec_requirement_id.storage;
 
 
             //add-to-cart-main
