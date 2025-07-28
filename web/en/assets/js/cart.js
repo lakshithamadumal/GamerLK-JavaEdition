@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         let cartProductContainer = document.getElementById("cartProductContainer");
         let cartProduct = document.getElementById("cartProduct");
 
+        // Check for empty cart message
+        if (json.message === "Your Cart is Empty") {
+            // Hide cart and checkout sections
+            document.querySelector(".cartSectionforUser").classList.add("d-none");
+            document.querySelector(".checkoutSectionforUser").classList.add("d-none");
+            // Show empty cart section
+            document.querySelector(".emptyCartSection").classList.remove("d-none");
+            return;
+        }
+
         cartProductContainer.innerHTML = "";
         json.cartItems.forEach(cartlist => {
             let product = cartlist.product_id;

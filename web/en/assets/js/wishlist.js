@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         let wishlistProductContainer = document.getElementById("wishlistProductContainer");
         let wishlistProduct = document.getElementById("wishlistProduct");
 
+        // Check for empty wishlist message
+        if (json.message === "Your Wishlist is Empty") {
+            document.querySelector(".wishlistSectionforUser").classList.add("d-none");
+            // Show empty wishlist section
+            document.querySelector(".emptyWishlistSection").classList.remove("d-none");
+            return;
+        }
+
+
         wishlistProductContainer.innerHTML = "";
         json.wishlistItems.forEach(wishlist => {
             let product = wishlist.product_id;

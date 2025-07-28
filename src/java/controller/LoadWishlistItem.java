@@ -55,7 +55,7 @@ public class LoadWishlistItem extends HttpServlet {
             ArrayList<Wishlist> sessionWishlists = (ArrayList<Wishlist>) request.getSession().getAttribute("sessionWishlist");
             if (sessionWishlists != null) {
                 if (sessionWishlists.isEmpty()) {
-                    responseObject.addProperty("message", "Your wishlist is empty...");
+                    responseObject.addProperty("message", "Your Wishlist is Empty");
                 } else {
 
                     responseObject.addProperty("status", true);
@@ -63,7 +63,7 @@ public class LoadWishlistItem extends HttpServlet {
                     responseObject.add("wishlistItems", gson.toJsonTree(sessionWishlists));
                 }
             } else {
-                responseObject.addProperty("message", "Your wishlist is empty...");
+                responseObject.addProperty("message", "Your Wishlist is Empty");
             }
 
         }
