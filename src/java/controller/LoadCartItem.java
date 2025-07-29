@@ -41,6 +41,9 @@ public class LoadCartItem extends HttpServlet {
             criteriaCart.add(Restrictions.eq("user_id", user));
             List<Cart> cartList = criteriaCart.list();
 
+            // Add user email to response
+            responseObject.addProperty("userEmail", user.getEmail());
+
             if (cartList.isEmpty()) {
                 responseObject.addProperty("message", "Your Cart is Empty");
             } else {

@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (response.ok) {
         const json = await response.json();
 
+        // Set user email
+        if (json.userEmail) {
+            document.getElementById("userEmail").textContent = json.userEmail;
+        }
+
         let cartProductContainer = document.getElementById("cartProductContainer");
         let cartProduct = document.getElementById("cartProduct");
 
@@ -52,32 +57,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("OrderDiscount").textContent = "-$" + discount.toFixed(2);
 
         // Tax 5% of subtotal
-        let tax = subtotal * 0.05;
+        let tax = subtotal * 0.0;
         document.getElementById("Ordertax").textContent = "$" + tax.toFixed(2);
 
         // Total calculation
         let total = subtotal - discount + tax;
         document.getElementById("OrderTotal").textContent = "$" + total.toFixed(2);
 
-        // Coupon code logic
-        const couponInput = document.querySelector(".coupon-input input");
-        const applyBtn = document.querySelector(".apply-btn");
-        let couponApplied = false;
-
-        applyBtn.addEventListener("click", function () {
-            if (couponInput.value.trim().toUpperCase() === "GAMERLK" && !couponApplied) {
-                discount = 5;
-                couponApplied = true;
-                document.getElementById("OrderDiscount").textContent = "-$" + discount.toFixed(2);
-                total = subtotal - discount + tax;
-                document.getElementById("OrderTotal").textContent = "$" + total.toFixed(2);
-                notyf.success("Coupon applied!");
-            } else if (couponApplied) {
-                notyf.error("Coupon already applied.");
-            } else {
-                notyf.error("Invalid coupon code.");
-            }
-        });
 
     } else {
         notyf.error({

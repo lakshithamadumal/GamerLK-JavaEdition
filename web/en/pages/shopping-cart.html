@@ -161,6 +161,7 @@
                         </h3>
                         <span class="item-count" id="Orderitems">~items~</span>
                     </div>
+                    <span id="userEmail">email</span>
                     <div class="checkout-details">
                         <div class="price-row">
                             <span>Subtotal</span>
@@ -171,15 +172,8 @@
                             <span id="OrderDiscount">~discount~</span>
                         </div>
                         <div class="price-row tax">
-                            <span>Tax (5%)</span>
+                            <span>Tax (0%)</span>
                             <span id="Ordertax">~tax~</span>
-                        </div>
-                        <div class="coupon-section">
-                            <div class="coupon-input">
-                                <i class="fas fa-tag"></i>
-                                <input type="text" placeholder="Enter promo code">
-                                <button class="apply-btn">Apply</button>
-                            </div>
                         </div>
                         <div class="total-row">
                             <span>Total</span>
@@ -192,35 +186,94 @@
                         <div class="payment-methods">
                             <div class="payment-icon">
                                 <!-- Visa SVG -->
-                                <svg width="40" height="30" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="32" rx="4" fill="#fff"/>
+                                <svg
+                                    width="40"
+                                    height="30"
+                                    viewBox="0 0 48 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="48"
+                                        height="32"
+                                        rx="4"
+                                        fill="#fff"
+                                    />
                                     <path d="M13.7 22.2L17.1 9.8H20.1L16.7 22.2H13.7ZM25.6 10.1C25.1 9.9 24.3 9.7 23.3 9.7C20.1 9.7 17.8 11.7 17.8 14.2C17.8 16 19.3 16.8 20.7 17.3C22.1 17.8 22.5 18.1 22.5 18.5C22.5 19.1 21.7 19.3 21.2 19.3C20.2 19.3 19.7 19.2 18.9 18.9L18.5 18.7L18.1 20.8C18.7 21 19.7 21.2 20.7 21.2C24 21.2 26.1 19.3 26.1 16.8C26.1 15.1 24.7 14.2 23.2 13.7C21.9 13.2 21.5 12.9 21.5 12.5C21.5 12.1 22 11.8 22.7 11.8C23.5 11.8 24.1 12 24.5 12.2L24.8 12.4L25.2 10.3L25.6 10.1ZM29.7 9.8H27.1L24.1 22.2H26.7L27.2 20.2H29.8L30.3 22.2H32.9L29.7 9.8ZM27.7 18.2L28.7 13.9L29.7 18.2H27.7ZM36.2 9.8H33.7L31.1 22.2H33.7L34.2 20.2H36.8L37.3 22.2H39.9L36.2 9.8ZM34.7 18.2L35.7 13.9L36.7 18.2H34.7Z" fill="#1A1F71"/>
                                 </svg>
                                 <span>Visa</span>
                             </div>
                             <div class="payment-icon">
                                 <!-- Mastercard SVG -->
-                                <svg width="40" height="30" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="32" rx="4" fill="#fff"/>
-                                    <circle cx="19" cy="16" r="8" fill="#EB001B"/>
-                                    <circle cx="29" cy="16" r="8" fill="#F79E1B"/>
+                                <svg
+                                    width="40"
+                                    height="30"
+                                    viewBox="0 0 48 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="48"
+                                        height="32"
+                                        rx="4"
+                                        fill="#fff"
+                                    />
+                                    <circle
+                                        cx="19"
+                                        cy="16"
+                                        r="8"
+                                        fill="#EB001B"
+                                    />
+                                    <circle
+                                        cx="29"
+                                        cy="16"
+                                        r="8"
+                                        fill="#F79E1B"
+                                    />
                                     <path d="M23.5 8A8 8 0 1 0 23.5 24A8 8 0 1 0 23.5 8Z" fill="#FF5F00"/>
                                 </svg>
                                 <span>Mastercard</span>
                             </div>
                             <div class="payment-icon">
                                 <!-- PayPal SVG -->
-                                <svg width="40" height="30" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="32" rx="4" fill="#fff"/>
+                                <svg
+                                    width="40"
+                                    height="30"
+                                    viewBox="0 0 48 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="48"
+                                        height="32"
+                                        rx="4"
+                                        fill="#fff"
+                                    />
                                     <path d="M18 24L20 8H29C31.2 8 32.7 9.5 32.3 11.7C32.1 12.8 31.2 13.7 30.1 14C31.5 14.3 32.3 15.5 32.1 16.8C31.8 18.7 29.9 20 27.3 20H22.2L21.2 24H18ZM22.7 18H27.1C28.3 18 29.2 17.3 29.4 16.2C29.6 15.1 28.7 14.4 27.5 14.4H23.1L22.7 18ZM23.5 12.4H28.2C29.1 12.4 29.8 11.8 30 11C30.2 10.2 29.6 9.6 28.7 9.6H24.1L23.5 12.4Z" fill="#253B80"/>
                                 </svg>
                                 <span>PayPal</span>
                             </div>
                             <div class="payment-icon">
                                 <!-- Crypto SVG (Bitcoin) -->
-                                <svg width="40" height="30" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="32" rx="4" fill="#fff"/>
-                                    <circle cx="24" cy="16" r="10" fill="#F7931A"/>
+                                <svg
+                                    width="40"
+                                    height="30"
+                                    viewBox="0 0 48 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="48"
+                                        height="32"
+                                        rx="4"
+                                        fill="#fff"
+                                    />
+                                    <circle
+                                        cx="24"
+                                        cy="16"
+                                        r="10"
+                                        fill="#F7931A"
+                                    />
                                     <path d="M24 10V22M28 12C28 10.9 27.1 10 26 10H22C20.9 10 20 10.9 20 12V20C20 21.1 20.9 22 22 22H26C27.1 22 28 21.1 28 20V12Z" stroke="#fff" stroke-width="2"/>
                                     <path d="M23 14H25M23 18H25" stroke="#fff" stroke-width="1.5"/>
                                 </svg>
@@ -261,6 +314,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../assets/js/logout.js" defer></script>
         <script src="../assets/js/cart.js" defer></script>
+        <script src="../assets/js/checkout.js" defer></script>
         <script src="../assets/js/suspended-user.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
