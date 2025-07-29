@@ -10,11 +10,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (response.ok) {
         const json = await response.json();
 
-        // Set user email
-        if (json.userEmail) {
-            document.getElementById("userEmail").textContent = json.userEmail;
-        }
-
         let cartProductContainer = document.getElementById("cartProductContainer");
         let cartProduct = document.getElementById("cartProduct");
 
