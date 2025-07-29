@@ -146,7 +146,7 @@ async function addToCart(productId) {
             if (json.message === "Game Added to cart") {
                 notyf.success("Game Added to cart");
             } else if (json.message === "Already Added") {
-                notyf.success("Already Added");
+                notyf.error("Game Already in Cart");
             } else if (json.message === "Login Required!") {
                 notyf.error("Login Required!");
             } else {
@@ -177,7 +177,7 @@ async function addToWishlist(productId) {
         if (json.status) {
             notyf.success(json.message);
         } else if (json.message === "Already Added") {
-            notyf.success("Already Added");
+            notyf.error("Already Added");
         } else {
             notyf.error(json.message);
 
