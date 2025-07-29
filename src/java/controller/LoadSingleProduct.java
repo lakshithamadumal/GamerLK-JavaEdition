@@ -46,6 +46,8 @@ public class LoadSingleProduct extends HttpServlet {
                     Criteria criteriaProduct = s.createCriteria(Product.class);
                     criteriaProduct.add(Restrictions.eq("category_id", product.getCategory_id()));
                     criteriaProduct.add(Restrictions.ne("id", product.getId()));
+                    criteriaProduct.createAlias("status_id", "status");
+                    criteriaProduct.add(Restrictions.eq("status.value", "Active"));
                     criteriaProduct.setMaxResults(4);
                     List<Product> ProductList = criteriaProduct.list();
 
