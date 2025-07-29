@@ -19,5 +19,6 @@
         <mapping class="hibernate.Cart"/>
         <mapping class="hibernate.Wishlist"/>
         <mapping class="hibernate.Subscriber"/>
+        <mapping class="hibernate.Inquiry"/>
     </session-factory>
 </hibernate-configuration>

@@ -168,10 +168,10 @@
             <div class="help-section">
                 <h3><i class="fas fa-headset"></i> Support Center</h3>
                 <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required />
-                    <input type="email" placeholder="Your Email" required />
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="submit-btn">Send
+                    <input type="text" placeholder="Your Name" required id="name"/>
+                    <input type="email" placeholder="Your Email" required id="email"/>
+                    <textarea placeholder="Your Message" required id="message"></textarea>
+                    <button type="button" class="submit-btn" onclick="SendMessage();">Send
                         Message</button>
                 </form>
                 <div class="contact-info">
@@ -220,6 +220,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
     <script src="../assets/js/logout.js" defer></script>
+    <script src="../assets/js/support-center.js" defer></script>
 
     <script>
         function toggleFAQ(item) {
