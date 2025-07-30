@@ -20,5 +20,7 @@
         <mapping class="hibernate.Wishlist"/>
         <mapping class="hibernate.Subscriber"/>
         <mapping class="hibernate.Inquiry"/>
+        <mapping class="hibernate.Orders"/>
+        <mapping class="hibernate.OrderItem"/>
     </session-factory>
 </hibernate-configuration>
