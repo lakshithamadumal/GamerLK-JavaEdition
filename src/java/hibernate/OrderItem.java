@@ -29,7 +29,7 @@ public class OrderItem implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "orders_id", nullable = false)
-    Product orders_id;
+    Orders orders_id;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -57,11 +57,11 @@ public class OrderItem implements Serializable {
         this.product_id = product_id;
     }
 
-    public Product getOrders_id() {
+    public Orders getOrders_id() {
         return orders_id;
     }
 
-    public void setOrders_id(Product orders_id) {
+    public void setOrders_id(Orders orders_id) {
         this.orders_id = orders_id;
     }
 
