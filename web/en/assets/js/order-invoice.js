@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Fetch invoice data from backend
     const response = await fetch("../../GetOrderInvoice?orderId=" + encodeURIComponent(orderId));
-    if (!response.ok) return;
+    if (!response.ok) {
+        // Unauthorized, forbidden, or not found: redirect to home
+        window.location.href = "../index.html";
+        return;
+    }
 
     const data = await response.json();
 

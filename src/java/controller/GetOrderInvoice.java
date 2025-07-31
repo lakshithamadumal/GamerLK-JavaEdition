@@ -28,9 +28,18 @@ public class GetOrderInvoice extends HttpServlet {
 
         String orderIdStr = request.getParameter("orderId");
         if (orderIdStr == null) {
+            response.setStatus(400);
             return;
         }
         int orderId = Integer.parseInt(orderIdStr);
+
+        // Get logged-in user from session
+        HttpSession httpSession = request.getSession(false);
+        if (httpSession == null || httpSession.getAttribute("user") == null) {
+            response.setStatus(401); // Unauthorized
+            return;
+        }
+        User sessionUser = (User) httpSession.getAttribute("user");
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
@@ -41,11 +50,18 @@ public class GetOrderInvoice extends HttpServlet {
             response.setStatus(404);
             return;
         }
-        User user = order.getUser_id();
+        User orderUser = order.getUser_id();
+
+        // Check if the logged-in user is the owner of the order
+        if (orderUser.getId() != sessionUser.getId()) {
+            s.close();
+            response.setStatus(403); // Forbidden
+            return;
+        }
 
         JsonObject json = new JsonObject();
-        json.addProperty("userName", user.getFirst_name() + " " + user.getLast_name());
-        json.addProperty("userEmail", user.getEmail());
+        json.addProperty("userName", orderUser.getFirst_name() + " " + orderUser.getLast_name());
+        json.addProperty("userEmail", orderUser.getEmail());
         json.addProperty("orderNumber", "GKLK-2025-" + String.format("%04d", orderId));
         json.addProperty("dueDate", new SimpleDateFormat("yyyy-MM-dd").format(order.getCreated_at()));
 
