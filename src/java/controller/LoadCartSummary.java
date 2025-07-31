@@ -45,29 +45,6 @@ public class LoadCartSummary extends HttpServlet {
 
         if (user != null) {
 
-//            Criteria criteriaCart = s.createCriteria(Cart.class);
-//            criteriaCart.add(Restrictions.eq("user_id", user));
-//            List<Cart> cartList = criteriaCart.list();
-//
-//            JsonArray cartItemsArray = new JsonArray();
-//            double totalPrice = 0.0;
-//
-//            for (Cart cart : cartList) {
-//                Product p = cart.getProduct_id();
-//
-//                JsonObject itemObj = new JsonObject();
-//                itemObj.addProperty("id", p.getId());
-//                itemObj.addProperty("name", p.getTitle());
-//                itemObj.addProperty("price", p.getPrice());
-//
-//                totalPrice += p.getPrice();
-//                cartItemsArray.add(itemObj);
-//            }
-//
-////            responseObject.addProperty("status", true);
-//            responseObject.add("cartItems", cartItemsArray);
-//            responseObject.addProperty("totalPrice", totalPrice);
-//            responseObject.addProperty("userEmail", user.getEmail()); // Optional
             processCheckout(s, tr, user, responseObject);
 
             s.close();
@@ -120,11 +97,6 @@ public class LoadCartSummary extends HttpServlet {
 
                 s.delete(cart);
 
-//                JsonObject items = new JsonObject();
-//                items.addProperty("id", product.getId());
-//                items.addProperty("name", product.getTitle());
-//                items.addProperty("price", product.getPrice());
-//                cartItemList.add(items);
             }
 
             tr.commit();
@@ -150,7 +122,7 @@ public class LoadCartSummary extends HttpServlet {
             payHereJson.addProperty("notify_url", "https://33c0de43a61f.ngrok-free.app/GhostGamezHouse/VerifyPayments");
 
             payHereJson.addProperty("order_id", orderID);
-            payHereJson.addProperty("items", "Gamerlk game Purchase");
+            payHereJson.addProperty("items", "Cart item Purchase");
 //            payHereJson.addProperty("items", items);
             payHereJson.addProperty("amount", formattedAmount);
             payHereJson.addProperty("currency", currency);

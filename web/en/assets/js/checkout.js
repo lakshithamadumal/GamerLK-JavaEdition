@@ -1,11 +1,17 @@
-var notyf = new Notyf({ position: { x: 'left', y: 'top' } });
+var notyf = new Notyf({ position: { x: 'center', y: 'top' } });
 
 
 // Payment completed. It can be a successful failure.
 payhere.onCompleted = function onCompleted(orderId) {
     console.log("Payment completed. OrderID:" + orderId);
-    notyf.success("Payment completed successfully!");
-    // Note: validate the payment and show success or failure page to the customer
+    notyf.success("Payment completed!");
+    // Remove '#' if present at the start
+    if (orderId.startsWith("#")) {
+        orderId = orderId.substring(1);
+    }
+    setTimeout(function() {
+        window.location.href = "../includes/order-invoice.html?orderId=" + orderId;
+    }, 1000); // 1.5 seconds for notification
 };
 
 // Payment window closed
@@ -34,24 +40,7 @@ async function Checkout() {
         const json = await response.json(); // <-- You need this line!
         if (json.status) {
 
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = "https://sandbox.payhere.lk/pay/checkout"; // ✅ Not checkoutJ
-
-            const payhereData = json.payhereJson;
-
-            for (const key in payhereData) {
-                if (payhereData.hasOwnProperty(key)) {
-                    const input = document.createElement("input");
-                    input.type = "hidden";
-                    input.name = key;
-                    input.value = payhereData[key];
-                    form.appendChild(input);
-                }
-            }
-
-            document.body.appendChild(form);
-            form.submit();
+            payhere.startPayment(json.payhereJson);
 
         } else {
             notyf.error(json.message || "Checkout failed...");

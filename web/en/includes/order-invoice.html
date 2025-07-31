@@ -1,39 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Gamerlk - Order Invoice</title>
-        <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap"
-            rel="stylesheet" />
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <link rel="stylesheet" href="../assets/css/invoice.css" />
-            <link rel="stylesheet" href="../assets/css/loader.css" />
-
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            rel="stylesheet" />
-
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/invoice.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     </head>
-
     <body>
-             
-    <div class="content">
-      <div class="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div> 
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
+            </div>
+        </div>
         <div class="stars-dot"></div>
         <div class="sidebar">
             <div class="logo-section">
-                <span onclick="location.href='../index.html'"
-                    class="brand">GAMER<span
-                        class="sub-brand">L</span>K</span>
-
+                <span onclick="location.href='../index.html'" class="brand">GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
             <nav>
                 <!-- Close button for mobile sidebar -->
@@ -42,52 +31,69 @@
                 </button>
                 <ul class="nav-links">
                     <li onclick="location.href='../index.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-home"></i></span>Home
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
                     </li>
                     <li onclick="location.href='../pages/game-store.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-store"></i></span>Store
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
                     </li>
                     <li onclick="location.href='../pages/shopping-cart.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-shopping-cart"></i></span>Cart
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
                     </li>
                     <li onclick="location.href='../pages/wishlist.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-heart"></i></span>Wishlist
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
                     </li>
                     <li onclick="location.href='../pages/my-downloads.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-download"></i></span>Library
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
                     </li>
                     <li onclick="location.href='../pages/community-board.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-users"></i></span>Community
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
                     </li>
                 </ul>
             </nav>
             <div class="sidebar-bottom">
                 <ul>
                     <li onclick="location.href='../pages/account-settings.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-cog"></i></span>Settings
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
                     </li>
                     <li onclick="location.href='../pages/support-center.html'">
-                        <span class="nav-icon"><i
-                                class="fas fa-question-circle"></i></span>Help
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
                     </li>
-                    <li class="logout"  onclick="LogOut();">
-                        <span class="nav-icon"><i
-                                class="fas fa-sign-out-alt"></i></span>Logout
+                    <li class="logout" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
                     </li>
                 </ul>
             </div>
         </div>
         <div class="main-content">
             <header>
-                <input class="search-bar" type="text"
-                    placeholder="Search orders" />
+                <input class="search-bar" type="text" placeholder="Search orders">
                 <div class="header-icons">
                     <button class="icon-btn icon-bell">
                         <i class="fas fa-bell"></i>
@@ -96,58 +102,50 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="profile" onclick="location.href='../pages/user-profile.html'">
-                        <img src="../../assets/avatar.png"
-                            alt="avatar" />
+                        <img src="../../assets/avatar.png" alt="avatar">
                         <span id="NavFullName"></span>
                     </div>
                 </div>
             </header>
-
             <section class="game-se">
                 <div class="invoice-container">
                     <header class="invoice-header">
-                        <span class="brand">GAMER<span
-                                class="sub-brand">L</span>K</span>
+                        <span class="brand">GAMER
+                            <span class="sub-brand">L</span>K</span>
                         <h1>INVOICE</h1>
                     </header>
-
                     <div class="invoice-meta">
                         <div class="invoice-meta-section">
                             <h3>BILL TO</h3>
                             <div class="meta-row">
                                 <span class="meta-label">Name:</span>
-                                <span class="meta-value">Lakshitha
-                                    Madumal</span>
+                                <span class="meta-value" id="bill-name"></span>
                             </div>
                             <div class="meta-row">
                                 <span class="meta-label">Email:</span>
-                                <span
-                                    class="meta-value">lakshitha@gamerlk.com</span>
+                                <span class="meta-value" id="bill-email"></span>
                             </div>
                             <div class="meta-row">
                                 <span class="meta-label">Payment Method:</span>
-                                <span class="meta-value">VISA •••• 4242</span>
+                                <span class="meta-value">VISA •••• ••••</span>
                             </div>
                         </div>
-
                         <div class="invoice-meta-section">
                             <h3>INVOICE DETAILS</h3>
                             <div class="meta-row">
                                 <span class="meta-label">Order #:</span>
-                                <span class="meta-value">GKLK-2025-0078</span>
+                                <span class="meta-value" id="invoice-order"></span>
                             </div>
                             <div class="meta-row">
                                 <span class="meta-label">Status:</span>
-                                <span class="meta-value"
-                                    style="color: #4CAF50;">Completed</span>
+                                <span class="meta-value" style="color: #4CAF50;">Completed</span>
                             </div>
                             <div class="meta-row">
                                 <span class="meta-label">Due Date:</span>
-                                <span class="meta-value">July 8, 2025</span>
+                                <span class="meta-value" id="invoice-date"></span>
                             </div>
                         </div>
                     </div>
-
                     <table class="invoice-table">
                         <thead>
                             <tr>
@@ -157,68 +155,36 @@
                                 <th class="text-right">TOTAL</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>Cyberpunk 2077: Phantom
-                                        Liberty</strong><br>
-                                    <small>Expansion Pack</small>
-                                </td>
-                                <td>$29.99</td>
-                                <td></td>
-                                <td class="text-right">$29.99</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Grand Theft Auto V</strong><br>
-                                    <small>Rockstar Games</small>
-                                </td>
-                                <td>$9.99</td>
-                                <td></td>
-                                <td class="text-right">$9.99</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Red Dead Redemption 2</strong><br>
-                                    <small>Rockstar Games</small>
-                                </td>
-                                <td>$4.99</td>
-                                <td></td>
-                                <td class="text-right">$9.98</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3"
-                                    class="text-right"><strong>Subtotal</strong></td>
-                                <td class="text-right">$49.96</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3"
-                                    class="text-right"><strong>Discount</strong></td>
-                                <td class="text-right">$9.96</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="text-right"><strong>Tax
-                                        (5%)</strong></td>
-                                <td class="text-right">$2.50</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="invoice-items">
+                            <!-- JS will fill here --></tbody>
                     </table>
-
                     <div class="total-section">
                         <div class="total-box">
                             <div class="total-row">
+                                <span class="total-label">Subtotal</span>
+                                <span id="subtotal"></span>
+                            </div>
+                            <div class="total-row">
+                                <span class="total-label">Discount</span>
+                                <span id="discount"></span>
+                            </div>
+                            <div class="total-row">
+                                <span class="total-label">Tax</span>
+                                <span id="tax"></span>
+                            </div>
+                            <div class="total-row">
                                 <span class="total-label">TOTAL DUE</span>
-                                <span class="total-amount">$52.46</span>
+                                <span class="total-amount" id="total-due"></span>
                             </div>
                         </div>
                     </div>
-
                     <div class="invoice-footer">
                         <div class="thank-you">
                             Thank you for your purchase! Your game is now available in your library.
                         </div>
                         <button class="print-button" onclick="window.print()">
-                            <i class="fas fa-print"></i> Print Invoice
+                            <i class="fas fa-print"></i>
+                            Print Invoice
                         </button>
                     </div>
                 </div>
@@ -231,8 +197,7 @@
         <script src="../assets/js/get-nav-name.js" defer></script>
         <script src="../assets/js/loader.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="../assets/js/logout.js" defer></script>
-
+        <script src="../assets/js/logout.js" defer></script>
+        <script src="../assets/js/order-invoice.js" defer></script>
     </body>
-
 </html>
