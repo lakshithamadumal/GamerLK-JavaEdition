@@ -1,215 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamerlk - Support & Help Center</title>
-    <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/loader.css" />
-    <link rel="stylesheet" href="../assets/css/help.css" />
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet" />
-</head>
-
-<body>
-    <div class="content">
-        <div class="loading">
-            <p>loading</p>
-            <span></span>
-        </div>
-    </div>
-    <div class="stars-dot"></div>
-    <div class="sidebar">
-        <div class="logo-section">
-            <span onclick="location.href='../index.html'" class="brand">GAMER<span class="sub-brand">L</span>K</span>
-        </div>
-<nav>
-        <!-- Close button for mobile sidebar -->
-        <button class="close-sidebar" aria-label="Close sidebar">
-          <i class="fas fa-times"></i>
-        </button>
-        <ul class="nav-links">
-          <li onclick="location.href='../index.html'">
-            <span class="nav-icon"><i class="fas fa-home"></i></span>Home
-          </li>
-          <li onclick="location.href='game-store.html'">
-            <span class="nav-icon"><i class="fas fa-store"></i></span>Store
-          </li>
-          <li onclick="location.href='shopping-cart.html'" class="CartTo">
-            <span class="nav-icon"><i
-                class="fas fa-shopping-cart"></i></span>Cart
-          </li>
-          <li onclick="location.href='wishlist.html'">
-            <span class="nav-icon"><i class="fas fa-heart"></i></span>Wishlist
-          </li>
-          <li onclick="location.href='my-downloads.html'" class="DownloadTo">
-            <span class="nav-icon"><i
-                class="fas fa-download"></i></span>Library
-          </li>
-          <li onclick="location.href='community-board.html'"
-            class="CommunityTo">
-            <span class="nav-icon"><i class="fas fa-users"></i></span>Community
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-bottom">
-        <ul>
-          <li onclick="location.href='account-settings.html'" class="SettingsTo">
-            <span class="nav-icon"><i class="fas fa-cog"></i></span>Settings
-          </li>
-          <li onclick="location.href='support-center.html'">
-            <span class="nav-icon"><i
-                class="fas fa-question-circle"></i></span>Help
-          </li>
-          <li class="logout LogoutTo"  onclick="LogOut();">
-            <span class="nav-icon"><i
-                class="fas fa-sign-out-alt"></i></span>Logout
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-        <header>
-            <input class="search-bar" type="text" placeholder="Search orders" />
-            <div class="header-icons">
-                <button class="icon-btn icon-bell">
-                    <i class="fas fa-bell"></i>
-                </button>
-                <button class="icon-btn menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-          <div class="profile ProfileTo" onclick="location.href='user-profile.html'">
-            <img src="../../assets/avatar.png" alt="avatar" />
-            <span id="NavFullName"></span>
-          </div>
-
-          <div class="signup-row SignUpTo">
-            <button onclick="location.href='../../en/pages/login.html'"
-              class="signup-btn">CONNECT</button>
-          </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - Support & Help Center</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link rel="stylesheet" href="../assets/css/help.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+        <!-- Alert -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    </head>
+    <body>
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
             </div>
-        </header>
-
-        <div class="help-container">
-            <div class="help-header">
-                <h1>Help Center</h1>
-                <p>
-                    Find answers to common questions or contact our support
+        </div>
+        <div class="stars-dot"></div>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
+                    <span class="sub-brand">L</span>K</span>
+            </div>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'" class="CartTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'" class="DownloadTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li onclick="location.href='community-board.html'" class="CommunityTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'" class="SettingsTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout LogoutTo" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile ProfileTo" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                    <div class="signup-row SignUpTo">
+                        <button onclick="location.href='../../en/pages/login.html'" class="signup-btn">CONNECT</button>
+                    </div>
+                </div>
+            </header>
+            <div class="help-container">
+                <div class="help-header">
+                    <h1>Help Center</h1>
+                    <p>
+                        Find answers to common questions or contact our support
                     team for
                     assistance with your gaming experience.
-                </p>
-            </div>
-
-            <!-- FAQs Section -->
-            <div class="help-section">
-                <h3><i class="fas fa-question-circle"></i> FAQs</h2>
-                <ul class="faq-list">
-                    <li class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            How to buy a game?
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            Browse our store, select your desired game,
+                    </p>
+                </div>
+                <!-- FAQs Section -->
+                <div class="help-section">
+                    <h3>
+                        <i class="fas fa-question-circle"></i>
+                        FAQs
+                    </h2>
+                    <ul class="faq-list">
+                        <li class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                How to buy a game?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Browse our store, select your desired game,
                             click "Buy Now",
                             complete the payment process, and the game will
                             be added to your
                             library.
-                        </div>
-                    </li>
-                    <li class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            How to download after purchase?
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            After purchase, go to your library, find the
+                            </div>
+                        </li>
+                        <li class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                How to download after purchase?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                After purchase, go to your library, find the
                             game, and click the
                             download button. The game will download to your
                             computer.
-                        </div>
-                    </li>
-                    <li class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            Payment method issues?
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            We accept all major credit cards and digital
+                            </div>
+                        </li>
+                        <li class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Payment method issues?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                We accept all major credit cards and digital
                             payment methods. If
                             you encounter issues, please try a different
                             payment method or
                             contact support.
-                        </div>
-                    </li>
-                    <li class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            Refund policy
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            All sales are final. Due to the nature of
+                            </div>
+                        </li>
+                        <li class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Refund policy
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                All sales are final. Due to the nature of
                             digital products, we
                             do not offer refunds after purchase. Please
                             check system
                             requirements before buying.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Support Center Section -->
+                <div class="help-section">
+                    <h3>
+                        <i class="fas fa-headset"></i>
+                        Support Center
+                    </h3>
+                    <form class="contact-form">
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            required
+                            id="name"
+                        >
+                        <input
+                            type="email"
+                            placeholder="Your Email"
+                            required
+                            id="email"
+                        >
+                        <textarea placeholder="Your Message" required id="message"></textarea>
+                        <button
+                            type="button"
+                            class="submit-btn"
+                            id="submitBtn"
+                            onclick="SendMessage();"
+                        >
+                            <span id="btnText">Send Message</span>
+                        </button>
+                    </form>
+                    <div class="contact-info">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@gamerlk.lk</span>
                         </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Support Center Section -->
-            <div class="help-section">
-                <h3><i class="fas fa-headset"></i> Support Center</h3>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required id="name"/>
-                    <input type="email" placeholder="Your Email" required id="email"/>
-                    <textarea placeholder="Your Message" required id="message"></textarea>
-                    <button type="button" class="submit-btn" onclick="SendMessage();">Send
-                        Message</button>
-                </form>
-                <div class="contact-info">
-                    <div class="contact-method">
-                        <i class="fas fa-envelope"></i>
-                        <span>support@gamerlk.lk</span>
-                    </div>
-                    <div class="contact-method">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>+94 76 123 4567</span>
+                        <div class="contact-method">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+94 76 123 4567</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Guides & Tutorials Section -->
-            <div class="help-section">
-                <h3><i class="fas fa-book-open"></i> Guides & Tutorials</h3>
-                <p>Follow these steps to purchase and play games:</p>
-                <ul class="guide-steps">
-                    <li>Check game requirements match your system
-                        specifications</li>
-                    <li>Purchase the game through our secure store</li>
-                    <li>The game will automatically appear in your
-                        library</li>
-                    <li>Download and install the game to your computer</li>
-                    <li>Launch and enjoy your gaming experience</li>
-                </ul>
-                <div class="notice">
-                    All sales are final - no refunds will be issued after
+                <!-- Guides & Tutorials Section -->
+                <div class="help-section">
+                    <h3>
+                        <i class="fas fa-book-open"></i>
+                        Guides & Tutorials
+                    </h3>
+                    <p>Follow these steps to purchase and play games:</p>
+                    <ul class="guide-steps">
+                        <li>
+                            Check game requirements match your system
+                        specifications
+                        </li>
+                        <li>Purchase the game through our secure store</li>
+                        <li>
+                            The game will automatically appear in your
+                        library
+                        </li>
+                        <li>Download and install the game to your computer</li>
+                        <li>Launch and enjoy your gaming experience</li>
+                    </ul>
+                    <div class="notice">
+                        All sales are final - no refunds will be issued after
                     purchase.
+                    </div>
                 </div>
             </div>
-
-
+            <div id="footer"></div>
         </div>
-              <div id="footer">
-      </div>
-    </div>
     </div>
     <!-- cursor-->
     <div class="cursor"></div>
@@ -221,13 +263,12 @@
     <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
     <script src="../assets/js/logout.js" defer></script>
     <script src="../assets/js/support-center.js" defer></script>
-
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
         function toggleFAQ(item) {
             item.classList.toggle("active");
         }
     </script>
-
 </body>
-
 </html>
