@@ -7,9 +7,12 @@ window.onload = async function () {
 
         document.getElementById("ProfileFullName").innerHTML = `${json.firstName} <span class="sub-brand">${json.lastName}</span>`;
         document.getElementById("ProfileEmail").innerHTML = `${json.email}`;
-
         document.getElementById("NavFullName").innerHTML = `${json.firstName} ${json.lastName}`;
 
+
+        document.getElementById("cartValue").innerText = json.cart != null ? json.cart : 0;
+        document.getElementById("watchlistValue").innerText = json.wishlist != null ? json.wishlist : 0;
+        document.getElementById("downloadValue").innerText = json.downloads != null ? json.downloads : 0;
 
         // Check status and toggle visibility
         const verifiedDiv = document.querySelector(".profile-verified");

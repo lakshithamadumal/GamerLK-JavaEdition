@@ -79,7 +79,7 @@ async function addToCart(productId) {
         }
     });
 
-    const response = await fetch("../../AddToCart?prId=" + productId);
+    const response = await fetch("../AddToCart?prId=" + productId);
     if (response.ok) {
         const json = await response.json();
         if (json.status) {
@@ -113,7 +113,7 @@ async function addToWishlist(productId) {
         }
     });
 
-    const response = await fetch("../../AddToWishlist?prId=" + productId);
+    const response = await fetch("../AddToWishlist?prId=" + productId);
     if (response.ok) {
         const json = await response.json();
         if (json.status) {
