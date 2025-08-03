@@ -22,7 +22,8 @@
         </div>
         <div class="sidebar">
             <div class="logo-section">
-                <span onclick="location.href='../index.html'" class="brand">GAMER<span class="sub-brand">L</span>K</span>
+                <span onclick="location.href='../index.html'" class="brand">GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
             <nav>
                 <!-- Close button for mobile sidebar -->
@@ -114,7 +115,7 @@
                     <div class="chat-title">
                         <div class="status-indicator">
                             <span class="status-dot"></span>
-                            <span>128 Gamers Online</span>
+                            <span>Online</span>
                         </div>
                     </div>
                     <div class="chat-actions">
@@ -198,171 +199,5 @@
         <script src="../assets/js/logout.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <!-- <script>
-      // Enhanced Community Chat Functionality with Working Messaging
-      document.addEventListener("DOMContentLoaded", function () {
-        const chatMessages = document.querySelector(".chat-messages");
-        const messageInput = document.querySelector(".message-input");
-        const sendBtn = document.querySelector(".send-btn");
-        const emptyState = document.querySelector(".empty-state");
-
-        // Sample data
-        const sampleUsers = [
-          {
-            name: "ProGamerX",
-            avatar: "../../assets/avatar.png?username=ProGamerX",
-          },
-          {
-            name: "GameQueen99",
-            avatar:
-              "https://avatar.iran.liara.run/public/girl?username=GameQueen99",
-          },
-          {
-            name: "NoobSlayer",
-            avatar: "../../assets/avatar.png?username=NoobSlayer",
-          },
-        ];
-
-        const sampleMessages = [
-          "Hey gamers! What's everyone playing today?",
-          "Just reached level 100! 🎉",
-          "Looking for teammates for ranked matches",
-          "This new update is amazing!",
-          "Any tips for beginners?",
-        ];
-
-        // Initialize chat
-        let messages = [];
-
-        // Function to render all messages
-        function renderMessages() {
-          chatMessages.innerHTML = "";
-
-          if (messages.length === 0) {
-            emptyState.style.display = "flex";
-            return;
-          }
-
-          emptyState.style.display = "none";
-
-          messages.forEach((msg) => {
-            const messageDiv = document.createElement("div");
-            messageDiv.className = `message ${
-              msg.isSent ? "sent" : "received"
-            }`;
-
-            messageDiv.innerHTML = `
-        <div class="message-avatar">
-          <img src="${msg.avatar}" alt="${msg.sender}">
-          ${!msg.isSent ? '<span class="online-badge"></span>' : ""}
-        </div>
-        <div class="message-content">
-          <div class="message-header">
-            ${!msg.isSent ? `<span class="username">${msg.sender}</span>` : ""}
-            <span class="timestamp">${msg.time}</span>
-          </div>
-          <div class="message-text">${msg.text}</div>
-          ${
-            msg.reactions
-              ? `
-          <div class="message-reactions">
-            ${msg.reactions
-              .map((r) => `<span class="reaction">${r.emoji} ${r.count}</span>`)
-              .join("")}
-          </div>`
-              : ""
-          }
-        </div>
-      `;
-
-            chatMessages.appendChild(messageDiv);
-          });
-
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Function to add new message
-        function addMessage(text, isSent = false, user = null) {
-          const now = new Date();
-          const timeString = now.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          });
-
-          const newMsg = {
-            text,
-            isSent,
-            time: timeString,
-            sender: isSent ? "You" : user ? user.name : "Unknown",
-            avatar: isSent
-              ? "../../assets/avatar.png"
-              : user
-              ? user.avatar
-              : "https://avatar.iran.liara.run/public/girl",
-            reactions:
-              !isSent && Math.random() > 0.7
-                ? [
-                    {
-                      emoji: ["👍", "❤️", "😂", "🎮", "🔥"][
-                        Math.floor(Math.random() * 5)
-                      ],
-                      count: Math.floor(Math.random() * 5) + 1,
-                    },
-                  ]
-                : null,
-          };
-
-          messages.push(newMsg);
-          renderMessages();
-
-          // If not sent by user, simulate reply after delay
-          if (isSent) {
-            setTimeout(() => {
-              const randomUser =
-                sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
-              const randomMessage =
-                sampleMessages[
-                  Math.floor(Math.random() * sampleMessages.length)
-                ];
-              addMessage(randomMessage, false, randomUser);
-            }, 1000 + Math.random() * 2000);
-          }
-        }
-
-        // Send message function
-        function sendMessage() {
-          const messageText = messageInput.value.trim();
-          if (messageText) {
-            addMessage(messageText, true);
-            messageInput.value = "";
-            messageInput.focus();
-          }
-        }
-
-        // Event listeners
-        sendBtn.addEventListener("click", sendMessage);
-
-        messageInput.addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            sendMessage();
-          }
-        });
-
-        // Initial welcome message
-        setTimeout(() => {
-          addMessage(
-            "Welcome to GamerLK Community! Start chatting with fellow gamers.",
-            false,
-            {
-              name: "System",
-              avatar: "../../assets/favicon.png",
-            }
-          );
-        }, 500);
-
-        // Initial render
-        renderMessages();
-      });
-        </script> -->
     </body>
 </html>
