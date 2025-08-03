@@ -63,7 +63,6 @@ public class GetUserDetails extends HttpServlet {
                     .add(Restrictions.eq("o.user_id", user))
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
-
             hibSession.close();
 
             responseObject.addProperty("cart", cartCount);
