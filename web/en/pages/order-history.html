@@ -79,6 +79,17 @@
         position: relative;
     }
 
+    .cover-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: brightness(0.7); /* optional dark effect */
+}
+
     .game-title {
         position: absolute;
         bottom: 20px;
@@ -199,7 +210,8 @@
         <div class="stars-dot"></div>
         <div class="sidebar">
             <div class="logo-section">
-                <span onclick="location.href='../index.html'" class="brand">GAMER
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
                     <span class="sub-brand">L</span>K</span>
             </div>
             <nav>
@@ -346,6 +358,7 @@
         <div class="modal-overlay" id="ratingModal">
             <div class="game-card">
                 <div class="game-cover">
+                    <img src="../../assets/card-image.png" alt="Game Cover" class="cover-img">
                     <div class="game-title">~title~</div>
                 </div>
                 <div class="rating-content">
@@ -374,6 +387,7 @@
         <script src="../assets/js/loader.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../assets/js/logout.js" defer></script>
+        <script src="../assets/js/order-history.js" defer></script>
         <script>
         function openRatingModal() {
             const modal = document.getElementById('ratingModal');
