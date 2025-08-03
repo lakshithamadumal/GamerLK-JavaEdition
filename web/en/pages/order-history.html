@@ -14,6 +14,8 @@
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <!-- Alert -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     </head>
     <style>
     .stat-card.games-owned {
@@ -387,6 +389,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../assets/js/logout.js" defer></script>
         <script src="../assets/js/order-history.js" defer></script>
+        <!-- Alert -->
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
         <script>
         function openRatingModal() {
             const modal = document.getElementById('ratingModal');
@@ -430,7 +434,7 @@
             star.addEventListener('click', () => {
                 selectedRating = parseInt(star.getAttribute('data-rating'));
                 updateStars();
-                updateFeedbackPreview();
+                //updateFeedbackPreview();
             });
             
             star.addEventListener('mouseover', () => {
@@ -447,7 +451,7 @@
         // Submit button handler
         submitBtn.addEventListener('click', () => {
             if (selectedRating > 0) {
-                showFinalFeedback();
+                //showFinalFeedback();
                 submitBtn.disabled = true;
             } else {
                 showTemporaryMessage('Please select a rating first!');

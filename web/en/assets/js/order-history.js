@@ -2,6 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
     const pageSize = 10;
 
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
     async function loadOrders(page = 1) {
         const tbody = document.querySelector(".purchase-table tbody");
         tbody.innerHTML = `<tr><td colspan="6">Loading...</td></tr>`;
@@ -33,8 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td data-label="Rate Now">
                         <button class="invoice-btn rate-btn" 
                             data-title="${item.gameTitle}" 
-                            data-img="${item.gameImg}">
-                            <i class="far fa-star"></i>
+                            data-img="${item.gameImg}"
+                            data-orderid="${item.orderId}"
+                            data-productid="${item.productId}"
+                            data-rating="${item.rating}">
+                            <i class="${item.rating > 0 ? 'fas' : 'far'} fa-star"></i>
                         </button>
                     </td>
                     <td data-label="Action">
@@ -50,7 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // Add event listeners for rate buttons
             document.querySelectorAll(".rate-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
-                    openRatingModal(this.dataset.img);
+                    window.openRatingModal(
+                        this.dataset.img,
+                        parseInt(this.dataset.orderid),
+                        parseInt(this.dataset.productid),
+                        parseInt(this.dataset.rating)
+                    );
                 });
             });
 
@@ -89,21 +104,95 @@ document.addEventListener("DOMContentLoaded", function () {
         pag.appendChild(nextBtn);
     }
 
+    let selectedRating = 0;
+    let hoveredRating = 0;
+    let currentOrderId = null;
+    let currentProductId = null;
+    let alreadyRated = false;
+
     // Modal logic
-    window.openRatingModal = function (img) {
+    window.openRatingModal = function (img, orderId, productId, rating) {
         const modal = document.getElementById('ratingModal');
         modal.classList.add('active');
         modal.querySelector('.cover-img').src = img;
-        // Reset rating UI as before...
-        selectedRating = 0;
+        currentOrderId = orderId;
+        currentProductId = productId;
+        selectedRating = rating;
         hoveredRating = 0;
+        alreadyRated = rating > 0;
+
         updateStars();
         updateFeedbackPreview();
-        submitBtn.disabled = false;
+
+        submitBtn.disabled = alreadyRated;
+        document.querySelectorAll('.star').forEach(star => {
+            star.style.pointerEvents = alreadyRated ? 'none' : 'auto';
+        });
+
         ratingFeedback.classList.remove('show');
         emojiFeedback.textContent = '';
         messageFeedback.textContent = '';
     };
 
     loadOrders(currentPage);
+
+    // --- Modal submit logic ---
+    const stars = document.querySelectorAll('.star');
+    const submitBtn = document.getElementById('submitBtn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    const emojiFeedback = document.getElementById('emojiFeedback');
+    const messageFeedback = document.getElementById('messageFeedback');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            if (alreadyRated) return;
+            selectedRating = parseInt(star.getAttribute('data-rating'));
+            updateStars();
+            //updateFeedbackPreview();
+        });
+        star.addEventListener('mouseover', () => {
+            if (alreadyRated) return;
+            hoveredRating = parseInt(star.getAttribute('data-rating'));
+            updateStars();
+        });
+        star.addEventListener('mouseout', () => {
+            if (alreadyRated) return;
+            hoveredRating = 0;
+            updateStars();
+        });
+    });
+
+    submitBtn.addEventListener('click', async () => {
+        if (alreadyRated) return;
+        if (selectedRating > 0 && currentOrderId && currentProductId) {
+            submitBtn.disabled = true;
+            // Save rating to server
+            const res = await fetch('../../SaveRating', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `orderId=${currentOrderId}&productId=${currentProductId}&rating=${selectedRating}`
+            });
+            const data = await res.json();
+            if (data.status) {
+                //showFinalFeedback();
+                setTimeout(() => {
+                    document.getElementById('ratingModal').classList.remove('active');
+                    // Update star icon in table
+                    document.querySelectorAll('.rate-btn').forEach(btn => {
+                        if (parseInt(btn.dataset.orderid) === currentOrderId && parseInt(btn.dataset.productid) === currentProductId) {
+                            btn.querySelector('i').className = 'fas fa-star';
+                            btn.dataset.rating = selectedRating;
+                        }
+                    });
+                    // Show notification
+                    notyf.success('Thank you for your rating!');
+                }, 500);
+            } else {
+                notyf.error(data.message || 'Error saving rating');
+                submitBtn.disabled = false;
+            }
+        } else {
+            showTemporaryMessage('Please select a rating first!');
+        }
+    });
 });
