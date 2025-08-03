@@ -39,6 +39,28 @@ document.addEventListener("DOMContentLoaded", async function () {
             ).format(product.price);
 
             subtotal += parseFloat(product.price);
+
+            // Add to Cart button event for products
+            const searchCartBtn = productCloneHtml.querySelector("#remove-to-cart-ad");
+            searchCartBtn.addEventListener("click", (e) => {
+                removeFromCart(product.id);
+                e.preventDefault();
+            });
+
+            // Add to wishlist button event for products
+            const searchWishlistBtn = productCloneHtml.querySelector("#add-to-wishlist-ad");
+            searchWishlistBtn.addEventListener("click", (e) => {
+                addToWishlist(product.id);
+                e.preventDefault();
+            });
+
+            // wishlist design ad
+            const searchWishlistBtnDesign = productCloneHtml.querySelector("#add-to-wishlist-ad");
+            searchWishlistBtnDesign.addEventListener("click", function () {
+                this.querySelector('i').classList.toggle('fas');
+                this.querySelector('i').classList.toggle('far');
+            });
+
             cartProductContainer.appendChild(productCloneHtml);
         });
 
@@ -68,3 +90,67 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 });
+
+
+
+async function addToWishlist(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../AddToWishlist?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+            notyf.success(json.message);
+        } else if (json.message === "Already Added") {
+            notyf.error("Already Added");
+        } else {
+            notyf.error(json.message);
+
+        }
+    } else {
+        notyf.error("Game Add to wishlist failed.");
+
+    }
+
+}
+
+async function removeFromCart(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../RemoveCart?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+
+            if (json.message === "Game Removed from cart") {
+                notyf.success("Game Removed from cart");
+                // Reload the cart items after successful removal
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+
+            } else if (json.message === "Already Removed from cart") {
+                notyf.error("Already Removed from cart");
+            } else {
+                notyf.error(json.message);
+            }
+
+        } else {
+            notyf.error("Game Add to cart failed.");
+
+        }
+
+    }
+}
