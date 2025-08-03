@@ -24,8 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <div class="message-content">
                     <div class="message-header">
-                        ${!isSent ? `<span class="username">${msg.user_id ? msg.user_id.username : "Unknown"}</span>` : ""}
-                        <span class="timestamp">${new Date(msg.sent_at).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}</span>
+                        ${!isSent ? `<span class="username">${msg.user_id
+                        ? (msg.user_id.username
+                            ? msg.user_id.username
+                            : (msg.user_id.first_name + " " + msg.user_id.last_name))
+                        : "Unknown"
+                    }</span>` : ""}
+                        <span class="timestamp">${new Date(msg.sent_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
                     </div>
                     <div class="message-text">${msg.message}</div>
                 </div>
@@ -63,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const res = await fetch("../../CommunityChat", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({message: messageText})
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: messageText })
             });
             const json = await res.json();
             if (json.status) {
