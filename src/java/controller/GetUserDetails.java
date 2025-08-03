@@ -47,13 +47,19 @@ public class GetUserDetails extends HttpServlet {
 
             // Cart count
             Long cartCount = (Long) hibSession.createCriteria(Cart.class)
+                    .createAlias("product_id", "product")
+                    .createAlias("product.status_id", "status")
                     .add(Restrictions.eq("user_id", user))
+                    .add(Restrictions.eq("status.value", "Active"))
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
 
             // Wishlist count
             Long wishlistCount = (Long) hibSession.createCriteria(Wishlist.class)
+                    .createAlias("product_id", "product")
+                    .createAlias("product.status_id", "status")
                     .add(Restrictions.eq("user_id", user))
+                    .add(Restrictions.eq("status.value", "Active"))
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
 
