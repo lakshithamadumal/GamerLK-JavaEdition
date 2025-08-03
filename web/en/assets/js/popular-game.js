@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             let productCloneHtml = storeGames.cloneNode(true);
 
             // Set data
-            productCloneHtml.querySelector("a").href = "game-details.html?id=" + gamelist.id;
+            productCloneHtml.querySelector("a").href = "pages\\game-details.html?id=" + gamelist.id;
             productCloneHtml.querySelector("img").src = "../assets/Games\\" + gamelist.id + "\\thumb-image.jpg";
             productCloneHtml.querySelector(".game-title").innerHTML = gamelist.title;
             productCloneHtml.querySelector(".game-price-row span").innerHTML = "$" + new Intl.NumberFormat(

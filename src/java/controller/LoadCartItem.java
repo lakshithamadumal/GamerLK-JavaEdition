@@ -37,8 +37,11 @@ public class LoadCartItem extends HttpServlet {
         if (user != null) { //DB Cart
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
-            Criteria criteriaCart = s.createCriteria(Cart.class);
-            criteriaCart.add(Restrictions.eq("user_id", user));
+            Criteria criteriaCart = s.createCriteria(Cart.class)
+                .createAlias("product_id", "product")
+                .createAlias("product.status_id", "status")
+                .add(Restrictions.eq("user_id", user))
+                .add(Restrictions.eq("status.value", "Active"));
             List<Cart> cartList = criteriaCart.list();
 
             if (cartList.isEmpty()) {

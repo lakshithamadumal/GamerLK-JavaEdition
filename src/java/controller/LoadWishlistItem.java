@@ -39,8 +39,11 @@ public class LoadWishlistItem extends HttpServlet {
         if (user != null) { //DB wishlist
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
-            Criteria criteriaWishlist = s.createCriteria(Wishlist.class);
-            criteriaWishlist.add(Restrictions.eq("user_id", user));
+            Criteria criteriaWishlist = s.createCriteria(Wishlist.class)
+                .createAlias("product_id", "product")
+                .createAlias("product.status_id", "status")
+                .add(Restrictions.eq("user_id", user))
+                .add(Restrictions.eq("status.value", "Active"));
             List<Wishlist> wishlistList = criteriaWishlist.list();
 
             if (wishlistList.isEmpty()) {
