@@ -11,7 +11,7 @@ payhere.onCompleted = function onCompleted(orderId) {
     }
     setTimeout(function() {
         window.location.href = "../includes/order-invoice.html?orderId=" + orderId;
-    }, 1000); // 1.5 seconds for notification
+    }, 1000);
 };
 
 // Payment window closed
