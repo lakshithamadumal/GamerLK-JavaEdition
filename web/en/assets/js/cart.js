@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             subtotal += parseFloat(product.price);
 
-            // Add to Cart button event for products
+            // remove to Cart button event for products
             const searchCartBtn = productCloneHtml.querySelector("#remove-to-cart-ad");
             searchCartBtn.addEventListener("click", (e) => {
                 removeFromCart(product.id);
@@ -148,7 +148,7 @@ async function removeFromCart(productId) {
             }
 
         } else {
-            notyf.error("Game Add to cart failed.");
+            notyf.error("Game Remove to cart failed.");
 
         }
 

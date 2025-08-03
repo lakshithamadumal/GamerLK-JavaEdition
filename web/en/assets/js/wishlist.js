@@ -41,6 +41,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 e.preventDefault();
             });
 
+
+            // remove to wishlist button event for products
+            const searchWishlistBtn = productCloneHtml.querySelector("#remove-to-wishlist-ad");
+            searchWishlistBtn.addEventListener("click", (e) => {
+                removeFromWishlist(product.id);
+                e.preventDefault();
+            });
+
             wishlistProductContainer.appendChild(productCloneHtml);
         });
 
@@ -80,6 +88,42 @@ async function addToCart(productId) {
 
         } else {
             notyf.error("Game Add to cart failed.");
+
+        }
+
+    }
+}
+
+
+async function removeFromWishlist(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../RemoveWishlist?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+
+            if (json.message === "Game Removed from Wishlist") {
+                notyf.success("Game Removed from Wishlist");
+                // Reload the Wishlist items after successful removal
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+
+            } else if (json.message === "Already Removed from Wishlist") {
+                notyf.error("Already Removed from Wishlist");
+            } else {
+                notyf.error(json.message);
+            }
+
+        } else {
+            notyf.error("Game Remove from Wishlist failed.");
 
         }
 
