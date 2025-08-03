@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </td>
                     <td data-label="Price">$${item.price.toFixed(2)}</td>
-                    <td data-label="Purchase Date">${item.purchaseDate.split('T')[0]}</td>
+                    <td data-label="Purchase Date">
+                    ${new Date(item.purchaseDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </td>
                     <td data-label="Rate Now">
                         <button class="invoice-btn rate-btn" 
                             data-title="${item.gameTitle}" 
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Add event listeners for rate buttons
             document.querySelectorAll(".rate-btn").forEach(btn => {
                 btn.addEventListener("click", function () {
-                    openRatingModal(this.dataset.title, this.dataset.img);
+                    openRatingModal(this.dataset.img);
                 });
             });
 
@@ -88,10 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Modal logic
-    window.openRatingModal = function (title, img) {
+    window.openRatingModal = function (img) {
         const modal = document.getElementById('ratingModal');
         modal.classList.add('active');
-        modal.querySelector('.game-title').textContent = title;
         modal.querySelector('.cover-img').src = img;
         // Reset rating UI as before...
         selectedRating = 0;
