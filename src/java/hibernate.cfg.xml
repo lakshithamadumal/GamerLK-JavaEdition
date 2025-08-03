@@ -22,5 +22,6 @@
         <mapping class="hibernate.Inquiry"/>
         <mapping class="hibernate.Orders"/>
         <mapping class="hibernate.OrderItem"/>
+        <mapping class="hibernate.Community"/>
     </session-factory>
 </hibernate-configuration>
