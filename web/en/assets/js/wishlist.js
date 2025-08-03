@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 { minimumFractionDigits: 2 }
             ).format(product.price);
 
+            // Add to Cart button event for products
+            const searchCartBtn = productCloneHtml.querySelector("#add-to-cart-ad");
+            searchCartBtn.addEventListener("click", (e) => {
+                addToCart(product.id);
+                e.preventDefault();
+            });
+
             wishlistProductContainer.appendChild(productCloneHtml);
         });
 
@@ -45,3 +52,36 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 });
+
+
+async function addToCart(productId) {
+
+    const notyf = new Notyf({
+        position: {
+            x: 'center',
+            y: 'top'
+        }
+    });
+
+    const response = await fetch("../../AddToCart?prId=" + productId);
+    if (response.ok) {
+        const json = await response.json();
+        if (json.status) {
+
+            if (json.message === "Game Added to cart") {
+                notyf.success("Game Added to cart");
+            } else if (json.message === "Already Added") {
+                notyf.error("Game Already in Cart");
+            } else if (json.message === "Login Required!") {
+                notyf.error("Login Required!");
+            } else {
+                notyf.error(json.message);
+            }
+
+        } else {
+            notyf.error("Game Add to cart failed.");
+
+        }
+
+    }
+}
