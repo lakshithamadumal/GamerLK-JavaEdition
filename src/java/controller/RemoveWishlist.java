@@ -9,6 +9,7 @@ import hibernate.User;
 import hibernate.Wishlist;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +64,16 @@ public class RemoveWishlist extends HttpServlet {
                         responseObject.addProperty("message", "Already Removed from Wishlist");
                     }
                 } else {
-                    responseObject.addProperty("message", "Login Required!");
+                    // Remove from sessionWishlist if exists
+                    ArrayList<Wishlist> sessionWishlist = (ArrayList<Wishlist>) request.getSession().getAttribute("sessionWishlist");
+                    if (sessionWishlist != null) {
+                        sessionWishlist.removeIf(w -> w.getProduct_id() != null && w.getProduct_id().getId() == product.getId());
+                        request.getSession().setAttribute("sessionWishlist", sessionWishlist);
+                        responseObject.addProperty("status", true);
+                        responseObject.addProperty("message", "Game Removed from Wishlist");
+                    } else {
+                        responseObject.addProperty("message", "Already Removed from Wishlist");
+                    }
                 }
             }
             session.close();
