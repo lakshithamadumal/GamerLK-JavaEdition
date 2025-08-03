@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (alreadyRated) return;
             selectedRating = parseInt(star.getAttribute('data-rating'));
             updateStars();
-            //updateFeedbackPreview();
+            // updateFeedbackPreview();
         });
         star.addEventListener('mouseover', () => {
             if (alreadyRated) return;
@@ -164,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     submitBtn.addEventListener('click', async () => {
         if (alreadyRated) return;
+        
         if (selectedRating > 0 && currentOrderId && currentProductId) {
             submitBtn.disabled = true;
             // Save rating to server
@@ -174,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             const data = await res.json();
             if (data.status) {
-                //showFinalFeedback();
+                // showFinalFeedback();
                 setTimeout(() => {
                     document.getElementById('ratingModal').classList.remove('active');
                     // Update star icon in table
@@ -192,7 +193,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 submitBtn.disabled = false;
             }
         } else {
-            showTemporaryMessage('Please select a rating first!');
+            notyf.error('Please select a rating first!');
         }
     });
+
+    function updateStars() {
+        document.querySelectorAll('.star').forEach(star => {
+            const starValue = parseInt(star.getAttribute('data-rating'));
+            if (hoveredRating > 0) {
+                star.classList.toggle('active', starValue <= hoveredRating);
+                star.classList.toggle('hovered', starValue <= hoveredRating);
+            } else {
+                star.classList.toggle('active', starValue <= selectedRating);
+                star.classList.remove('hovered');
+            }
+        });
+    }
 });
