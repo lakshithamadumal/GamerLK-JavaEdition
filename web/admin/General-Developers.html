@@ -357,26 +357,6 @@
                                                         id="add-Developer-name"
                                                         required>
                                                 </div>
-                                                <!-- Thumbnail chooser -->
-                                                <div class="col-12">
-                                                    <label for="add-thumbnail"
-                                                        class="form-label">
-                                                        Thumbnail
-                                                        Image
-                                                    </label>
-                                                    <input type="file"
-                                                        class="form-control"
-                                                        name="add-thumbnail"
-                                                        id="add-thumbnail"
-                                                        accept="image/*"
-                                                        required>
-                                                </div>
-                                                <!-- Preview (Optional) -->
-                                                <div class="col-12">
-                                                    <img id="thumbnail-preview"
-                                                        src="#" alt="Preview"
-                                                        style="display: none; max-width: 200px; border-radius: 8px;">
-                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -408,98 +388,6 @@
                             </div>
                         </div>
 
-                        <!-- Update Developer Model -->
-                        <div class="modal fade" id="updateDeveloperModal"
-                            tabindex="-1"
-                            aria-labelledby="updateDeveloperModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"
-                                            id="updateDeveloperModalLabel">
-                                            Update Developer
-                                        </h5>
-                                        <button type="button" class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="validation-errors-tours"
-                                            class="alert alert-danger d-none"
-                                            role="alert">
-                                        </div>
-                                        <div id="success-message-tours"
-                                            class="alert alert-success d-none"
-                                            role="alert">
-                                        </div>
-                                        <form id="updateToursTypeForm">
-                                            <div class="row g-3">
-                                                <div class="col-12">
-                                                    <label
-                                                        for="update-Developer-name"
-                                                        class="form-label">
-                                                        Developer
-                                                        Name
-                                                    </label>
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        name="update-Developer-name"
-                                                        id="update-Developer-name"
-                                                        required>
-                                                </div>
-                                                <!-- Thumbnail chooser -->
-                                                <div class="col-12">
-                                                    <label
-                                                        for="update-thumbnail"
-                                                        class="form-label">
-                                                        Thumbnail
-                                                        Image
-                                                    </label>
-                                                    <input type="file"
-                                                        class="form-control"
-                                                        name="update-thumbnail"
-                                                        id="update-thumbnail"
-                                                        accept="image/*"
-                                                        required>
-                                                </div>
-                                                <!-- Preview (Optional) -->
-                                                <div class="col-12">
-                                                    <img
-                                                        id="thumbnail-preview-update"
-                                                        src="#" alt="Preview"
-                                                        style="display: none; max-width: 200px; border-radius: 8px;">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div id="loading-spinner-tours"
-                                        class="d-none">
-                                        <div
-                                            class="d-flex justify-content-center">
-                                            <div
-                                                class="spinner-border text-primary"
-                                                role="status">
-                                                <span
-                                                    class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button"
-                                            class="btn btn-light"
-                                            data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button type="button"
-                                            class="btn btn-primary"
-                                            form="updateToursTypeForm">
-                                            Update Developer
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Developer Datatable -->
                         <div class="row">
@@ -521,7 +409,6 @@
                                                 <tr>
                                                     <th>Developer ID</th>
                                                     <th>Name</th>
-                                                    <th>Image</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -530,20 +417,6 @@
                                                     <td class="text-reset">~id~</td>
                                                     <td>~name~</td>
                                                     <td>
-                                                        <img
-                                                            src="../assets/card-image.png"
-                                                            class="developer-thumbnail"
-                                                            alt="Developer-Card">
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-warning Developer-edit-btn"
-                                                            data-bs-toggle="tooltip"
-                                                            data-bs-placement="top"
-                                                            data-bs-title="Update Developer">
-                                                            <i
-                                                                class="fas fa-edit"></i>
-                                                        </a>
                                                         <button
                                                             class="btn btn-sm btn-danger Developer-delete-btn"
                                                             data-bs-toggle="tooltip"
