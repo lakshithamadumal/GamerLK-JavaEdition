@@ -16,7 +16,8 @@ window.onload = async function () {
                     <td><img src="../assets/Games/${product.id}/thumb-image.jpg" class="avatar-lg" alt="game-card"></td>
                     <td>${product.title}</td>
                     <td>${product.price}$</td>
-                    <td>${product.downloads || 0}</td>
+                    <td class="downloads-cell" data-id="${product.id}"><span class="spinner-border spinner-border-sm"></span></td>
+                    <td class="rating-cell" data-id="${product.id}"><span class="spinner-border spinner-border-sm"></span></td>
                     <td>${product.category_id ? product.category_id.name : '-'}</td>
                     <td>${product.developer_id ? product.developer_id.name : '-'}</td>
                     <td>
@@ -40,6 +41,22 @@ window.onload = async function () {
                     </td>
                 `;
                 tbody.appendChild(tr);
+
+                // Fetch downloads count
+                fetch(`../ProductOrderCount?id=${product.id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const cell = tr.querySelector('.downloads-cell');
+                        cell.innerText = data.status ? data.count : '0';
+                    });
+
+                // Fetch rating
+                fetch(`../ProductRating?id=${product.id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const cell = tr.querySelector('.rating-cell');
+                        cell.innerText = data.status ? `${data.rating}` : '0.0';
+                    });
             });
 
             // Info button event
@@ -69,3 +86,81 @@ window.onload = async function () {
         document.getElementById("message").innerHTML = "Unable to get game data! Please try again later.";
     }
 }
+
+
+//Change Status button confirmation using SweetAlert2
+document.addEventListener("click", function (e) {
+    // Change Status
+    if (e.target.closest(".game-view-btn")) {
+        e.preventDefault();
+        const button = e.target.closest(".game-view-btn");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to change the status this game?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, change it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("../AdminChangeGameStatus", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: "id=" + encodeURIComponent(button.closest("tr").querySelector(".text-reset").innerText.replace("#", ""))
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status) {
+                            Swal.fire({
+                                title: "Changed!",
+                                text: "Game Status Changed Successfully",
+                                icon: "success",
+                                timer: 1000,
+                                showConfirmButton: false
+                            }).then(() => location.reload());
+                        } else {
+                            Swal.fire("Error", data.message || "Failed to change status", "error");
+                        }
+                    });
+            }
+        });
+    }
+
+    // Delete Game
+    if (e.target.closest(".game-delete-btn")) {
+        e.preventDefault();
+        const button = e.target.closest(".game-delete-btn");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to delete this game?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("../AdminDeleteGame", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: "id=" + encodeURIComponent(button.closest("tr").querySelector(".text-reset").innerText.replace("#", ""))
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Game Deleted Successfully",
+                                icon: "success",
+                                timer: 1000,
+                                showConfirmButton: false
+                            }).then(() => location.reload());
+                        } else {
+                            Swal.fire("Error", data.message || "Failed to delete game", "error");
+                        }
+                    });
+            }
+        });
+    }
+});

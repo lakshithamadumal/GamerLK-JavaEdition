@@ -71,41 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//Change Status button confirmation using SweetAlert2
-//Delete button confirmation using SweetAlert2
-document.addEventListener("DOMContentLoaded", function () {
-    const editButtons = document.querySelectorAll(".game-view-btn");
 
-    editButtons.forEach(button => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault(); // Stop default modal trigger
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Do you want to change the status this game?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, change it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Now delete the category manually
-
-                    //Then Success
-                    Swal.fire({
-                        title: "Changed!",
-                        text: "Game Status Change Successfully",
-                        icon: "success",
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-
-                }
-            });
-        });
-    });
-});
 
 //Update the game modal trigger to use SweetAlert2 for confirmation
 document.addEventListener("DOMContentLoaded", function () {
@@ -143,40 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//game delete button confirmation using SweetAlert2
-document.addEventListener("DOMContentLoaded", function () {
-    const editButtons = document.querySelectorAll(".game-delete-btn");
-
-    editButtons.forEach(button => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault(); // Stop default modal trigger
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Do you want to delete this game?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Now delete the category manually
-
-                    //Then Success
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Game Deleted Successfully",
-                        icon: "success",
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-
-                }
-            });
-        });
-    });
-});
 
 
 //Update the Developer modal trigger to use SweetAlert2 for confirmation
