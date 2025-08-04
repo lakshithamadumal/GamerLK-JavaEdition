@@ -21,7 +21,9 @@
         <div class="stars-dot"></div>
         <div class="sidebar">
             <div class="logo-section">
-                <span onclick="location.href='../index.html'" class="brand">GAMER<span class="sub-brand">L</span>K</span>
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
             <nav>
                 <!-- Close button for mobile sidebar -->
@@ -109,7 +111,8 @@
             <section class="game-se">
                 <div class="invoice-container">
                     <header class="invoice-header">
-                        <span class="brand">GAMER
+                        <span class="brand">
+                            GAMER
                             <span class="sub-brand">L</span>K</span>
                         <h1>INVOICE</h1>
                     </header>
@@ -181,9 +184,9 @@
                         <div class="thank-you">
                             Thank you for your purchase! Your game is now available in your library.
                         </div>
-                        <button class="print-button" onclick="window.print()">
-                            <i class="fas fa-print"></i>
-                            Print Invoice
+                        <button class="print-button" onclick="downloadInvoicePDF()">
+                            <i class="fas fa-file-invoice"></i>
+                            Save Invoice
                         </button>
                     </div>
                 </div>
@@ -198,5 +201,28 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../assets/js/logout.js" defer></script>
         <script src="../assets/js/order-invoice.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script>
+function downloadInvoicePDF() {
+    const invoice = document.querySelector('.invoice-container');
+    const footer = invoice.querySelector('.invoice-footer');
+    // Footer එක hide කරන්න
+    footer.style.display = 'none';
+
+    html2canvas(invoice, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new window.jspdf.jsPDF('p', 'pt', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const imgWidth = pageWidth - 40; // 20pt margin each side
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let y = 20;
+        pdf.addImage(imgData, 'PNG', 20, y, imgWidth, imgHeight);
+        pdf.save('invoice.pdf');
+        // Footer එක නැවත show කරන්න
+        footer.style.display = '';
+    });
+}
+        </script>
     </body>
 </html>
