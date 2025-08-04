@@ -250,6 +250,16 @@
                                         <form id="addToursTypeForm">
                                             <div class="row g-3">
                                                 <div class="col-md-6">
+                                                    <label for="add-name" class="form-label">Name</label>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="add-name"
+                                                        name="add-name"
+                                                        required
+                                                    >
+                                                </div>
+                                                <div class="col-md-6">
                                                     <label for="add-os-name" class="form-label">OS</label>
                                                     <input
                                                         type="text"
@@ -295,7 +305,7 @@
                                                         required
                                                     >
                                                 </div>
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <label for="add-processor-name" class="form-label">Processor
                                                     </label
                           >
@@ -328,105 +338,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Update Category Model -->
-                        <div
-                            class="modal fade"
-                            id="updateRequirementModal"
-                            tabindex="-1"
-                            aria-labelledby="updateRequirementModalLabel"
-                            aria-hidden="true"
-                        >
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="updateRequirementModalLabel">
-                                            Update Requirement
-                                        </h5>
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div id="validation-errors-update" class="alert alert-danger d-none" role="alert"></div>
-                                        <div id="success-message-update" class="alert alert-success d-none" role="alert"></div>
-                                        <form id="updateRequirementForm">
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label for="update-os-name" class="form-label">OS</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-os-name"
-                                                        name="os"
-                                                        required
-                                                    >
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="update-memory-name" class="form-label">Memory</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-memory-name"
-                                                        name="memory"
-                                                        required
-                                                    >
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="update-storage-name" class="form-label">Storage</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-storage-name"
-                                                        name="storage"
-                                                        required
-                                                    >
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="update-graphics-name" class="form-label">Graphics</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-graphics-name"
-                                                        name="graphics"
-                                                        required
-                                                    >
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label for="update-processor-name" class="form-label">Processor</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-processor-name"
-                                                        name="processor"
-                                                        required
-                                                    >
-                                                </div>
-                                                <!-- Hidden ID for tracking which requirement to update -->
-                                                <input type="hidden" id="update-requirement-id" name="id">
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div id="loading-spinner-update" class="d-none">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" form="updateRequirementForm">
-                                            Update Requirement
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <!-- Requirement Datatable -->
                         <div class="row">
                             <div class="col-12">
@@ -461,16 +373,6 @@
                                                     <td>~graphics~</td>
                                                     <td>~storage~</td>
                                                     <td>
-                                                        <!-- Edit Button -->
-                                                        <a
-                                                            href="#"
-                                                            class="btn btn-sm btn-warning requirement-edit-btn"
-                                                            data-bs-toggle="tooltip"
-                                                            data-bs-placement="top"
-                                                            data-bs-title="Update Requirement"
-                                                        >
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
                                                         <!-- Delete Button -->
                                                         <button
                                                             class="btn btn-sm btn-danger requirement-delete-btn"
