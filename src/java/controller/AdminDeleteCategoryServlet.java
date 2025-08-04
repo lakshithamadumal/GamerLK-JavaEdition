@@ -45,8 +45,24 @@ public class AdminDeleteCategoryServlet extends HttpServlet {
                 if (tx != null) {
                     tx.rollback();
                 }
-                obj.addProperty("status", false);
-                obj.addProperty("message", "Error deleting category");
+                // Check for foreign key constraint violation (deep cause)
+                Throwable cause = e;
+                boolean isConstraint = false;
+                while (cause != null) {
+                    String msg = cause.getMessage();
+                    if (msg != null && (msg.toLowerCase().contains("constraint") || msg.toLowerCase().contains("foreign key"))) {
+                        isConstraint = true;
+                        break;
+                    }
+                    cause = cause.getCause();
+                }
+                if (isConstraint) {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Cannot delete: This category is used in another record");
+                } else {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Error deleting category");
+                }
             } finally {
                 s.close();
             }

@@ -42,8 +42,24 @@ public class AdminDeleteModeServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 if (tx != null) tx.rollback();
-                obj.addProperty("status", false);
-                obj.addProperty("message", "Error deleting mode");
+                // Check for foreign key constraint violation (deep cause)
+                Throwable cause = e;
+                boolean isConstraint = false;
+                while (cause != null) {
+                    String msg = cause.getMessage();
+                    if (msg != null && (msg.toLowerCase().contains("constraint") || msg.toLowerCase().contains("foreign key"))) {
+                        isConstraint = true;
+                        break;
+                    }
+                    cause = cause.getCause();
+                }
+                if (isConstraint) {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Cannot delete: This mode is used in another record");
+                } else {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Error deleting mode");
+                }
             } finally {
                 s.close();
             }

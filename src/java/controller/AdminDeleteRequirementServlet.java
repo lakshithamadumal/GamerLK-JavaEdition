@@ -42,8 +42,24 @@ public class AdminDeleteRequirementServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 if (tx != null) tx.rollback();
-                obj.addProperty("status", false);
-                obj.addProperty("message", "Error deleting requirement");
+                // Check for foreign key constraint violation (deep cause)
+                Throwable cause = e;
+                boolean isConstraint = false;
+                while (cause != null) {
+                    String msg = cause.getMessage();
+                    if (msg != null && (msg.toLowerCase().contains("constraint") || msg.toLowerCase().contains("foreign key"))) {
+                        isConstraint = true;
+                        break;
+                    }
+                    cause = cause.getCause();
+                }
+                if (isConstraint) {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Cannot delete: This requirement is used in another record");
+                } else {
+                    obj.addProperty("status", false);
+                    obj.addProperty("message", "Error deleting requirement");
+                }
             } finally {
                 s.close();
             }
