@@ -127,6 +127,7 @@ async function loadSingleProductData() {
 
             // Load and show real rating
             loadProductRating(json.product.id);
+            loadProductOrderCount(json.product.id);
 
         } else {
             window.location = "../index.html";
@@ -223,5 +224,22 @@ async function loadProductRating(productId) {
         }
     } catch (e) {
         ratingBtn.innerHTML = `0 <i class="fas fa-star"></i>`;
+    }
+}
+
+async function loadProductOrderCount(productId) {
+    const downloadBtn = document.getElementById("product-download");
+    try {
+        const res = await fetch("../../ProductOrderCount?id=" + productId);
+        if (res.ok) {
+            const json = await res.json();
+            if (json.status) {
+                downloadBtn.innerHTML = `${json.count} Downloads`;
+            } else {
+                downloadBtn.innerHTML = `0 Downloads`;
+            }
+        }
+    } catch (e) {
+        downloadBtn.innerHTML = `0 Downloads`;
     }
 }
