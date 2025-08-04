@@ -21,13 +21,6 @@ window.onload = async function () {
                             Send
                         </a>
                     </td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-danger remove-Subscriber-btn"
-                            data-bs-toggle="tooltip" data-bs-placement="top"
-                            data-bs-title="Remove Subscriber">
-                            <i class="fas fa-ban"></i>
-                        </a>
-                    </td>
                 `;
                 tbody.appendChild(tr);
             });
