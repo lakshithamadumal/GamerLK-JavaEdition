@@ -62,9 +62,28 @@ public class AdminLoadAllCustomerData extends HttpServlet {
                 int cartCount = cartCriteria.list().size();
                 userObj.addProperty("cartCount", cartCount);
 
-                // Dummy values for downloads and spend (replace with actual if available)
-                userObj.addProperty("downloads", 0);
-                userObj.addProperty("spend", 0);
+                // Downloads & Spend calculation
+                Criteria ordersCriteria = s.createCriteria(hibernate.Orders.class);
+                ordersCriteria.add(Restrictions.eq("user_id", user));
+                List<hibernate.Orders> ordersList = ordersCriteria.list();
+
+                int downloads = 0;
+                double spend = 0.0;
+
+                for (hibernate.Orders order : ordersList) {
+                    Criteria orderItemCriteria = s.createCriteria(hibernate.OrderItem.class);
+                    orderItemCriteria.add(Restrictions.eq("orders_id", order));
+                    List<hibernate.OrderItem> orderItems = orderItemCriteria.list();
+                    downloads += orderItems.size();
+                    for (hibernate.OrderItem item : orderItems) {
+                        hibernate.Product product = item.getProduct_id();
+                        if (product != null) {
+                            spend += product.getPrice();
+                        }
+                    }
+                }
+                userObj.addProperty("downloads", downloads);
+                userObj.addProperty("spend", spend);
 
                 userArray.add(userObj);
             }
