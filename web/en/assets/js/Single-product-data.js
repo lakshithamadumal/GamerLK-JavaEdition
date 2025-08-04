@@ -106,9 +106,27 @@ async function loadSingleProductData() {
                     this.querySelector('i').classList.toggle('far');
                 });
 
+                // Load and show real rating for featured product
+                const featureRatingDiv = productCloneHtml.querySelector("#product-rating");
+                fetch("../../ProductRating?id=" + item.id)
+                    .then(res => res.json())
+                    .then(json => {
+                        if (json.status) {
+                            featureRatingDiv.innerHTML = `${json.rating} <i class="fas fa-star"></i>`;
+                        } else {
+                            featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
+                        }
+                    })
+                    .catch(() => {
+                        featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
+                    });
+
                 FratureProductMain.appendChild(productCloneHtml);
 
             });
+
+            // Load and show real rating
+            loadProductRating(json.product.id);
 
         } else {
             window.location = "../index.html";
@@ -187,4 +205,23 @@ async function addToWishlist(productId) {
 
     }
 
+}
+
+async function loadProductRating(productId) {
+    const ratingBtn = document.getElementById("product-rating");
+    try {
+        const res = await fetch("../../ProductRating?id=" + productId);
+        if (res.ok) {
+            const json = await res.json();
+            if (json.status) {
+
+                // Show rating with 1 decimal, and count if you want
+                ratingBtn.innerHTML = `${json.rating} <i class="fas fa-star">`;
+            } else {
+                ratingBtn.innerHTML = `0 <i class="fas fa-star"></i>`;
+            }
+        }
+    } catch (e) {
+        ratingBtn.innerHTML = `0 <i class="fas fa-star"></i>`;
+    }
 }

@@ -27,7 +27,8 @@
         <div class="stars-dot"></div>
         <div class="sidebar">
             <div class="logo-section">
-                <span onclick="location.href='../index.html'" class="brand">GAMER<span class="sub-brand">L</span>K</span>
+                <span onclick="location.href='../index.html'" class="brand">GAMER
+                    <span class="sub-brand">L</span>K</span>
             </div>
             <nav>
                 <!-- Close button for mobile sidebar -->
@@ -268,99 +269,104 @@
                 <div class="game-header">
                     <h3>Advanced Search Result</h3>
                     <button class="close-advance-result">
-                         <i class="fas fa-times"></i>
-                     </button>
-            </div>
-            <div class="game-list game-list-s1" id="searchProductContainer">
-                <div class="game-card game-card-s1 global-img-game" id="searchProduct">
-                    <a href="" id="searchProduct-a1">
-                        <img
-                            src="../../assets/card-image.png"
-                            id="searchProduct-image"
-                            alt="game"
-                            class="popup-image"
-                        >
-                        <div class="hover-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                    </a>
-                    <div class="offer-label">
-                        2.9
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="game-info">
-                        <h2 class="game-title" id="searchProduct-title">
-                            ~title~
-                        </h2>
-                        <div class="game-price-row">
-                            <span id="searchProduct-price">~price~</span>
-                        </div>
-                        <div class="game-btn-row">
-                            <button class="cart-btn" id="add-to-cart-ad">Add to Cart</button>
-                                <button class="heart-btn" id="add-to-wishlist-ad" aria-label="Add to Wishlist">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                        </div>
-                    </div>
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="pagination" id="advanced-pagination-container"></div>
-        </section>
-        <!-- Store Start -->
-        <div class="AllProductsContainer">
-            <section class="game-se">
-                <div class="game-header">
-                    <h3>All Games</h3>
-                </div>
-                <div class="game-list" id="game-list-container">
-                    <div class="game-card global-img-game" id="game-card">
-                        <a href="" id="game-a1">
-                            <img src="../../assets/card-image.png" alt="game" class="popup-image" id="game-image">
+                <div class="game-list game-list-s1" id="searchProductContainer">
+                    <div class="game-card game-card-s1 global-img-game" id="searchProduct">
+                        <a href="" id="searchProduct-a1">
+                            <img
+                                src="../../assets/card-image.png"
+                                id="searchProduct-image"
+                                alt="game"
+                                class="popup-image"
+                            >
                             <div class="hover-icon">
                                 <i class="fas fa-gamepad"></i>
                             </div>
                         </a>
-                        <div class="offer-label">
-                            2.9
-                            <i class="fas fa-star"></i>
-                        </div>
+                            <div class="offer-label" id="product-rating">
+                                ~rate~
+                                <i class="fas fa-star"></i>
+                            </div>
                         <div class="game-info">
-                            <h2 class="game-title" id="game-title">
+                            <h2 class="game-title" id="searchProduct-title">
                                 ~title~
                             </h2>
                             <div class="game-price-row">
-                                <span id="game-price">~price~</span>
+                                <span id="searchProduct-price">~price~</span>
                             </div>
                             <div class="game-btn-row">
-                            <button class="cart-btn" id="add-to-cart-ad">Add to Cart</button>
+                                <button class="cart-btn" id="add-to-cart-ad">Add to Cart</button>
                                 <button class="heart-btn" id="add-to-wishlist-ad" aria-label="Add to Wishlist">
                                     <i class="far fa-heart"></i>
                                 </button>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="pagination" id="advanced-pagination-container"></div>
             </section>
+            <!-- Store Start -->
+            <div class="AllProductsContainer">
+                <section class="game-se">
+                    <div class="game-header">
+                        <h3>All Games</h3>
+                    </div>
+                    <div class="game-list" id="game-list-container">
+                        <div class="game-card global-img-game" id="game-card">
+                            <a href="" id="game-a1">
+                                <img
+                                    src="../../assets/card-image.png"
+                                    alt="game"
+                                    class="popup-image"
+                                    id="game-image"
+                                >
+                                <div class="hover-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                            </a>
+                            <div class="offer-label" id="product-rating">
+                                ~rate~
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="game-info">
+                                <h2 class="game-title" id="game-title">
+                                    ~title~
+                                </h2>
+                                <div class="game-price-row">
+                                    <span id="game-price">~price~</span>
+                                </div>
+                                <div class="game-btn-row">
+                                    <button class="cart-btn" id="add-to-cart-ad">Add to Cart</button>
+                                    <button class="heart-btn" id="add-to-wishlist-ad" aria-label="Add to Wishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Store end -->
+            <div></div>
+            <div id="footer"></div>
         </div>
-        <!-- Store end -->
-        <div></div>
-        <div id="footer"></div>
-    </div>
-    <!-- cursor-->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/script.js" defer></script>
-    <script src="../assets/js/includes.js" defer></script>
-    <script src="../assets/js/star.js" defer></script>
-    <script src="../assets/js/loader.js" defer></script>
-    <script src="../assets/js/advanced-search.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
-    <script src="../assets/js/logout.js" defer></script>
-    <script src="../assets/js/loadStoreGames.js" defer></script>
-    <!-- Alert -->
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    <script>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/includes.js" defer></script>
+        <script src="../assets/js/star.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="../assets/js/advanced-search.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <script src="../assets/js/loadStoreGames.js" defer></script>
+        <!-- Alert -->
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <script>
       // Price Range Slider Functionality
       document.addEventListener("DOMContentLoaded", function () {
         const priceSlider = document.getElementById("price-range");
@@ -389,8 +395,8 @@
           });
         });
       });
-    </script>
-    <script>
+        </script>
+        <script>
       const starContainer = document.querySelector(".stars");
 
       for (let i = 0; i < 100; i++) {
@@ -406,6 +412,6 @@
         star.style.opacity = Math.random();
         starContainer.appendChild(star);
       }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
