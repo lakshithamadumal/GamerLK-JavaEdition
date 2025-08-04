@@ -273,55 +273,6 @@
                         </div>
                     </div>
 
-                    <!-- Update Mode Model -->
-                    <div class="modal fade" id="updateModeModal" tabindex="-1"
-                        aria-labelledby="updateModeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="updateModeModalLabel">
-                                        Update Game Mode
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div id="validation-errors-tours" class="alert alert-danger d-none" role="alert">
-                                    </div>
-                                    <div id="success-message-tours" class="alert alert-success d-none" role="alert">
-                                    </div>
-                                    <form id="updateToursTypeForm">
-                                        <div class="row g-3">
-                                            <div class="col-12">
-                                                <label for="update-Mode-name" class="form-label">
-                                                    Mode
-                                                    Name
-                                                </label>
-                                                <input type="text" class="form-control" name="Mode-name"
-                                                    id="update-Mode-name" required>
-                                            </div>
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                                <div id="loading-spinner-tours" class="d-none">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                        Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary" form="updateToursTypeForm">
-                                        Update Game Mode
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Mode Datatable -->
                     <div class="row">
@@ -349,12 +300,6 @@
                                                 <td class="text-reset">~id~</td>
                                                 <td>~title~</td>
                                                 <td>
-                                                    <!-- Edit Button -->
-                                                    <a href="#" class="btn btn-sm btn-warning mode-edit-btn" 
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Update Game Mode">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
                                                     <!-- Delete Button -->
                                                     <button class="btn btn-sm btn-danger mode-delete-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
