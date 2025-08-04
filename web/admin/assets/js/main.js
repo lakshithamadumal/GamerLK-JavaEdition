@@ -73,40 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-//Update the game modal trigger to use SweetAlert2 for confirmation
-document.addEventListener("DOMContentLoaded", function () {
-    const editButtons = document.querySelectorAll(".game-edit-btn");
-
-    editButtons.forEach(button => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault(); // Stop default modal trigger
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Do you want to update this game?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, update it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Now open the modal manually
-                    window.location.href = "General-Add-Game.html";
-
-                    //Then Success
-                    Swal.fire({
-                        title: "Updated!",
-                        text: "Game Updated Successfully",
-                        icon: "success",
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-                }
-            });
-        });
-    });
-});
 
 
 
