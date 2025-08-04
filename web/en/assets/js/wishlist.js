@@ -49,6 +49,21 @@ document.addEventListener("DOMContentLoaded", async function () {
                 e.preventDefault();
             });
 
+                            // Load and show real rating for  product
+                const featureRatingDiv = productCloneHtml.querySelector("#product-rating");
+                fetch("../../ProductRating?id=" + product.id)
+                    .then(res => res.json())
+                    .then(json => {
+                        if (json.status) {
+                            featureRatingDiv.innerHTML = `${json.rating} <i class="fas fa-star"></i>`;
+                        } else {
+                            featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
+                        }
+                    })
+                    .catch(() => {
+                        featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
+                    });
+
             wishlistProductContainer.appendChild(productCloneHtml);
         });
 
