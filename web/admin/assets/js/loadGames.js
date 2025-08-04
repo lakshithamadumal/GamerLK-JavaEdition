@@ -120,7 +120,11 @@ document.addEventListener("click", function (e) {
                                 showConfirmButton: false
                             }).then(() => location.reload());
                         } else {
-                            Swal.fire("Error", data.message || "Failed to change status", "error");
+                            Swal.fire("Error", data.message || "Failed to change status", "error").then(() => {
+                                if (data.message === "Admin not found") {
+                                    window.location.href = "auth-signin.html";
+                                }
+                            });
                         }
                     });
             }
@@ -157,7 +161,11 @@ document.addEventListener("click", function (e) {
                                 showConfirmButton: false
                             }).then(() => location.reload());
                         } else {
-                            Swal.fire("Error", data.message || "Failed to delete game", "error");
+                            Swal.fire("Error", data.message || "Failed to delete game", "error").then(() => {
+                                if (data.message === "Admin not found") {
+                                    window.location.href = "auth-signin.html";
+                                }
+                            });
                         }
                     });
             }

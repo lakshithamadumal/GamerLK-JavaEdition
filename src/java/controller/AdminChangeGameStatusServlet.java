@@ -12,6 +12,7 @@ import org.hibernate.*;
 
 @WebServlet(name = "AdminChangeGameStatusServlet", urlPatterns = {"/AdminChangeGameStatus"})
 public class AdminChangeGameStatusServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -19,7 +20,11 @@ public class AdminChangeGameStatusServlet extends HttpServlet {
         String productId = request.getParameter("id");
         JsonObject obj = new JsonObject();
 
-        if (productId != null && productId.matches("\\d+")) {
+        // Admin session check
+        if (request.getSession().getAttribute("admin") == null) {
+            obj.addProperty("status", false);
+            obj.addProperty("message", "Admin not found");
+        } else if (productId != null && productId.matches("\\d+")) {
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session s = sf.openSession();
             Transaction tx = null;
@@ -46,7 +51,9 @@ public class AdminChangeGameStatusServlet extends HttpServlet {
                     obj.addProperty("message", "Product not found");
                 }
             } catch (Exception e) {
-                if (tx != null) tx.rollback();
+                if (tx != null) {
+                    tx.rollback();
+                }
                 obj.addProperty("status", false);
                 obj.addProperty("message", "Error updating status");
             } finally {

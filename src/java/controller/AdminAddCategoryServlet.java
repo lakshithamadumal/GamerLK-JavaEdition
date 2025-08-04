@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import org.hibernate.*;
-import org.hibernate.criterion.Criteria;
+import org.hibernate.Criteria;
 
 @WebServlet(name = "AdminAddCategoryServlet", urlPatterns = {"/AdminAddCategory"})
 public class AdminAddCategoryServlet extends HttpServlet {
