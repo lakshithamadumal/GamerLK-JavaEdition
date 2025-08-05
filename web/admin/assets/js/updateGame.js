@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!productId) return;
 
     // Load game details
-    const res = await fetch(`../LoadSingleProduct?id=${productId}`);
+    const res = await fetch(`../LoadUpdateProduct?id=${productId}`);
     if (res.ok) {
         const data = await res.json();
         if (data.status) {
@@ -195,24 +195,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 });
-
-// document.getElementById("addGameForm").addEventListener("submit", async function (e) {
-//     e.preventDefault();
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const productId = urlParams.get("id");
-//     const formData = new FormData(this);
-//     formData.append("id", productId);
-
-//     const res = await fetch("../UpdateProduct", {
-//         method: "POST",
-//         body: formData
-//     });
-//     const data = await res.json();
-//     if (data.status) {
-//         Swal.fire("Success", data.message, "success").then(() => {
-//             window.location.href = "General-Games.html";
-//         });
-//     } else {
-//         Swal.fire("Error", data.message, "error");
-//     }
-// });
