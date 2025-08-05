@@ -1,516 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
-        <meta charset="utf-8" />
+        <meta charset="utf-8">
         <title>Dashboard | Gamerlk - Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Laky" />
-        <meta http-equiv="X-UA -Compatible" content="IE=edge" />
-
+        <meta name="author" content="Laky">
+        <meta http-equiv="X-UA -Compatible" content="IE=edge">
         <!-- App favicon -->
         <link rel="shortcut icon" href="../assets/favicon.png">
-
         <!-- App css -->
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css"
-            id="app-style" />
-
+        <link
+            href="assets/css/app.min.css"
+            rel="stylesheet"
+            type="text/css"
+            id="app-style"
+        >
         <link rel="stylesheet" href="assets/loader/loader.css">
-
         <!-- Icons -->
-        <link href="assets/css/icons.min.css" rel="stylesheet"
-            type="text/css" />
-
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
     </head>
-
     <!-- body start -->
-
     <body data-menu-color="light" data-sidebar="default">
-
         <!-- Loader -->
         <div class="loader">
             <div class="animation"></div>
         </div>
         <!-- end of Loader -->
-
         <!-- Begin page -->
         <div id="app-layout">
-
             <!-- Topbar Start -->
             <div class="topbar-custom">
                 <div class="container-xxl">
                     <div class="d-flex justify-content-between">
-                        <ul
-                            class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
+                        <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
                             <li>
-                                <button
-                                    class="button-toggle-menu nav-link ps-0">
-                                    <i data-feather="menu"
-                                        class="noti-icon"></i>
+                                <button class="button-toggle-menu nav-link ps-0">
+                                    <i data-feather="menu" class="noti-icon"></i>
                                 </button>
                             </li>
                             <li class="d-none d-lg-block">
                                 <div class="position-relative topbar-search">
-                                    <input type="text"
-                                        class="form-control bg-light bg-opacity-75 border-light ps-4"
-                                        placeholder="Search...">
-                                    <i
-                                        class="mdi mdi-magnify fs-16 position-absolute text-muted top-50 translate-middle-y ms-2"></i>
+                                    <input type="text" class="form-control bg-light bg-opacity-75 border-light ps-4" placeholder="Search...">
+                                    <i class="mdi mdi-magnify fs-16 position-absolute text-muted top-50 translate-middle-y ms-2"></i>
                                 </div>
                             </li>
                         </ul>
-
-                        <ul
-                            class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
-
+                        <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
                             <li class="d-none d-sm-flex">
-                                <button type="button" class="btn nav-link"
-                                    data-toggle="fullscreen">
-                                    <i data-feather="maximize"
-                                        class="align-middle fullscreen noti-icon"></i>
+                                <button type="button" class="btn nav-link" data-toggle="fullscreen">
+                                    <i data-feather="maximize" class="align-middle fullscreen noti-icon"></i>
                                 </button>
                             </li>
-
-                            <li
-                                class="dropdown notification-list topbar-dropdown">
+                            <li class="dropdown notification-list topbar-dropdown">
                                 <a
                                     class="nav-link dropdown-toggle nav-user me-0"
-                                    data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-haspopup="false"
-                                    aria-expanded="false">
-                                    <img
-                                        src="../assets/avatar.png"
-                                        alt="user-image"
-                                        class="rounded-circle">
+                                    data-bs-toggle="dropdown"
+                                    href="#"
+                                    role="button"
+                                    aria-haspopup="false"
+                                    aria-expanded="false"
+                                >
+                                    <img src="../assets/avatar.png" alt="user-image" class="rounded-circle">
                                     <span class="pro-user-name ms-1">
-                                        Lakshitha <i
-                                            class="mdi mdi-chevron-down"></i>
+                                        Lakshitha
+                                        <i class="mdi mdi-chevron-down"></i>
                                     </span>
                                 </a>
-                                <div
-                                    class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                                     <!-- item-->
                                     <div class="dropdown-header noti-title">
-                                        <h6 class="text-overflow m-0">Welcome
-                                            !</h6>
+                                        <h6 class="text-overflow m-0">
+                                            Welcome
+                                            !
+                                        </h6>
                                     </div>
-
                                     <!-- item-->
-                                    
-
                                     <div class="dropdown-divider"></div>
-
                                     <!-- item-->
-                                    <a href="#" onclick="LogOut();"
-                                        class="dropdown-item notify-item">
-                                        <i
-                                            class="mdi mdi-location-exit fs-16 align-middle"></i>
+                                    <a href="#" onclick="LogOut();" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-location-exit fs-16 align-middle"></i>
                                         <span>Logout</span>
                                     </a>
-
                                 </div>
                             </li>
-
                         </ul>
                     </div>
-
                 </div>
-
             </div>
             <!-- end Topbar -->
-
             <!-- Left Sidebar Start -->
             <div class="app-sidebar-menu">
                 <div class="h-100" data-simplebar>
-
                     <!--- Sidemenu -->
                     <div id="sidebar-menu">
-
                         <div class="logo-box">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="../assets/logo-sm.png" alt
-                                        height="22">
+                                    <img src="../assets/logo-sm.png" alt height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="../assets/logo-dark.png" alt
-                                        height="24">
+                                    <img src="../assets/logo-dark.png" alt height="24">
                                 </span>
                             </a>
                         </div>
-
                         <ul id="side-menu">
-
                             <li class="menu-title">Menu</li>
-
                             <li>
                                 <a href="index.html">
                                     <i data-feather="home"></i>
-                                    <span> Dashboard </span>
+                                    <span> Dashboard</span>
                                 </a>
                             </li>
-
                             <li class="menu-title mt-2">General</li>
-
                             <li>
                                 <a href="General-Games.html" class="tp-link">
                                     <i data-feather="monitor"></i>
-                                    <span> Games </span>
+                                    <span> Games</span>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="General-Category.html" class="tp-link">
                                     <i data-feather="layers"></i>
-                                    <span> Category </span>
+                                    <span> Category</span>
                                 </a>
                             </li>
-                            
                             <li>
-                                <a href="General-Game-Mode.html"
-                                    class="tp-link">
+                                <a href="General-Game-Mode.html" class="tp-link">
                                     <i data-feather="cpu"></i>
-                                    <span> Game Mode </span>
+                                    <span> Game Mode</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="General-Requirement.html"
-                                    class="tp-link">
+                                <a href="General-Requirement.html" class="tp-link">
                                     <i data-feather="file-text"></i>
-                                    <span> Requirement </span>
+                                    <span> Requirement</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="General-Developers.html"
-                                    class="tp-link">
+                                <a href="General-Developers.html" class="tp-link">
                                     <i data-feather="code"></i>
-                                    <span> Developers </span>
+                                    <span> Developers</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="General-Offers.html" class="tp-link">
                                     <i data-feather="percent"></i>
-                                    <span> Offers </span>
+                                    <span> Offers</span>
                                 </a>
                             </li>
-
                             <li class="menu-title mt-2">Infomation</li>
                             <li>
-                                <a href="Infomation-Customer.html"
-                                    class="tp-link">
+                                <a href="Infomation-Customer.html" class="tp-link">
                                     <i data-feather="users"></i>
-                                    <span> Customer </span>
+                                    <span> Customer</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="Infomation-Sales.html" class="tp-link">
                                     <i data-feather="trending-up"></i>
-                                    <span> Sales </span>
+                                    <span> Sales</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="Infomation-Subscribers.html"
-                                    class="tp-link">
+                                <a href="Infomation-Subscribers.html" class="tp-link">
                                     <i data-feather="user-plus"></i>
-                                    <span> Subscribers </span>
+                                    <span> Subscribers</span>
                                 </a>
                             </li>
-
                             <li class="menu-title mt-2">Support</li>
-
                             <li>
                                 <a href="Support-Inquiry.html" class="tp-link">
                                     <i data-feather="help-circle"></i>
-                                    <span> Inquiry </span>
+                                    <span> Inquiry</span>
                                 </a>
                             </li>
-                            
                             <li>
-                                <a href="Support-Community.html"
-                                    class="tp-link">
+                                <a href="Support-Community.html" class="tp-link">
                                     <i data-feather="users"></i>
-                                    <span> Community </span>
+                                    <span> Community</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="Support-Send-Email.html"
-                                    class="tp-link">
+                                <a href="Support-Send-Email.html" class="tp-link">
                                     <i data-feather="mail"></i>
-                                    <span> Send Email </span>
+                                    <span> Send Email</span>
                                 </a>
                             </li>
-                            
-
                         </ul>
-
                     </div>
                     <!-- End Sidebar -->
-
                     <div class="clearfix"></div>
-
                 </div>
             </div>
             <!-- Left Sidebar End -->
-
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
-
             <div class="content-page">
                 <div class="content">
-
                     <!-- Start Content-->
                     <div class="container-xxl">
-
-                        <div
-                            class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+                        <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                             <div class="flex-grow-1">
                                 <h4 class="fs-18 fw-semibold m-0">Dashboard</h4>
                             </div>
                         </div>
-
                         <!-- start row -->
                         <div class="row">
                             <div class="col-md-12 col-xl-12">
                                 <div class="row g-3">
-
                                     <div class="col-md-6 col-xl-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div
-                                                    class="d-flex align-items-center">
-                                                    <div
-                                                        class="fs-14 mb-1">Today
-                                                        Earning</div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="fs-14 mb-1">
+                                                        Today
+                                                        Earning
+                                                    </div>
                                                 </div>
-
-                                                <div
-                                                    class="d-flex align-items-baseline mb-2">
-                                                    <div
-                                                        class="fs-22 mb-0 me-2 fw-semibold text-black">$91.6</div>
+                                                <div class="d-flex align-items-baseline mb-2">
+                                                    <div class="fs-22 mb-0 me-2 fw-semibold text-black">$0</div>
                                                 </div>
-                                                <div id="website-visitors"
-                                                    class="apex-charts"></div>
+                                                <div id="website-visitors" class="apex-charts"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-xl-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div
-                                                    class="d-flex align-items-center">
-                                                    <div
-                                                        class="fs-14 mb-1">Total
-                                                        Earning</div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="fs-14 mb-1">
+                                                        Total
+                                                        Earning
+                                                    </div>
                                                 </div>
-
-                                                <div
-                                                    class="d-flex align-items-baseline mb-2">
-                                                    <div
-                                                        class="fs-22 mb-0 me-2 fw-semibold text-black">$15.8k</div>
+                                                <div class="d-flex align-items-baseline mb-2">
+                                                    <div class="fs-22 mb-0 me-2 fw-semibold text-black">$0</div>
                                                 </div>
-                                                <div id="conversion-visitors"
-                                                    class="apex-charts"></div>
+                                                <div id="conversion-visitors" class="apex-charts"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-xl-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div
-                                                    class="d-flex align-items-center">
-                                                    <div
-                                                        class="fs-14 mb-1">Selling
-                                                        Games</div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="fs-14 mb-1">
+                                                        Selling
+                                                        Games
+                                                    </div>
                                                 </div>
-
-                                                <div
-                                                    class="d-flex align-items-baseline mb-2">
-                                                    <div
-                                                        class="fs-22 mb-0 me-2 fw-semibold text-black">90
-                                                        Sec</div>
+                                                <div class="d-flex align-items-baseline mb-2">
+                                                    <div class="fs-22 mb-0 me-2 fw-semibold text-black">
+                                                        0
+                                                    </div>
                                                 </div>
-                                                <div id="session-visitors"
-                                                    class="apex-charts"></div>
+                                                <div id="session-visitors" class="apex-charts"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-xl-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div
-                                                    class="d-flex align-items-center">
-                                                    <div
-                                                        class="fs-14 mb-1">Total
-                                                        Customer</div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="fs-14 mb-1">
+                                                        Total
+                                                        Customer
+                                                    </div>
                                                 </div>
-
-                                                <div
-                                                    class="d-flex align-items-baseline mb-2">
-                                                    <div
-                                                        class="fs-22 mb-0 me-2 fw-semibold text-black">2,986</div>
+                                                <div class="d-flex align-items-baseline mb-2">
+                                                    <div class="fs-22 mb-0 me-2 fw-semibold text-black">0</div>
                                                 </div>
-                                                <div id="active-users"
-                                                    class="apex-charts"></div>
+                                                <div id="active-users" class="apex-charts"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- end sales -->
-                        </div> <!-- end row -->
-
+                            </div>
+                            <!-- end sales -->
+                        </div>
+                        <!-- end row -->
                         <!-- Start Monthly Sales -->
                         <div class="row">
                             <div class="col-md-6 col-xl-8">
                                 <div class="card">
-
                                     <div class="card-header">
                                         <div class="d-flex align-items-center">
-                                            <div
-                                                class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                                <i data-feather="bar-chart"
-                                                    class="widgets-icons"></i>
+                                            <div class="border border-dark rounded-2 me-2 widget-icons-sections">
+                                                <i data-feather="bar-chart" class="widgets-icons"></i>
                                             </div>
-                                            <h5 class="card-title mb-0">Monthly
-                                                Sales</h5>
+                                            <h5 class="card-title mb-0">
+                                                Monthly
+                                                Sales
+                                            </h5>
                                         </div>
                                     </div>
-
                                     <div class="card-body">
-                                        <div id="monthly-sales"
-                                            class="apex-charts"></div>
+                                        <div id="monthly-sales" class="apex-charts"></div>
                                     </div>
-
                                 </div>
                             </div>
-
                             <div class="col-md-6 col-xl-4">
                                 <div class="card">
-
                                     <div class="card-header">
                                         <div class="d-flex align-items-center">
-                                            <div
-                                                class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                                <i data-feather="cpu"
-                                                    class="widgets-icons"></i>
+                                            <div class="border border-dark rounded-2 me-2 widget-icons-sections">
+                                                <i data-feather="cpu" class="widgets-icons"></i>
                                             </div>
-                                            <h5 class="card-title mb-0">Top
-                                                Selling Games</h5>
+                                            <h5 class="card-title mb-0">
+                                                Top
+                                                Selling Games
+                                            </h5>
                                         </div>
                                     </div>
-
                                     <!-- start card body -->
                                     <div class="card-body">
                                         <ul class="list-group custom-group">
-                                            <li
-                                                class="list-group-item align-items-center d-flex justify-content-between">
+                                            <li class="list-group-item align-items-center d-flex justify-content-between">
                                                 <div class="product-list">
-                                                    <img
-                                                        class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3"
-                                                        src="../assets/Games/g1.jpg"
-                                                        alt="product-image">
-
-                                                    <div
-                                                        class="product-body align-self-center">
-                                                        <h6
-                                                            class="m-0 fw-semibold">GTA
-                                                            V</h6>
-                                                        <p
-                                                            class="mb-0 mt-1 text-muted">Rockstar</p>
+                                                    <img class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3" src="../assets/card-image.png" alt="product-image">
+                                                    <div class="product-body align-self-center">
+                                                        <h6 class="m-0 fw-semibold">~title~</h6>
+                                                        <p class="mb-0 mt-1 text-muted">Rockstar</p>
                                                     </div>
                                                 </div>
-
                                                 <div class="product-price">
-                                                    <h6
-                                                        class="m-0 fw-semibold">$990</h6>
-                                                    <p
-                                                        class="mb-0 mt-1 text-muted">10
-                                                        Sold</p>
+                                                    <h6 class="m-0 fw-semibold">~total price~</h6>
+                                                    <p class="mb-0 mt-1 text-muted">
+                                                        0
+                                                        Sold
+                                                    </p>
                                                 </div>
                                             </li>
-                                            <li
-                                                class="list-group-item align-items-center d-flex justify-content-between">
-                                                <div class="product-list">
-                                                    <img
-                                                        class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3"
-                                                        src="../assets/Games/g1.jpg"
-                                                        alt="product-image">
-
-                                                    <div
-                                                        class="product-body align-self-center">
-                                                        <h6
-                                                            class="m-0 fw-semibold">GTA
-                                                            V</h6>
-                                                        <p
-                                                            class="mb-0 mt-1 text-muted">Rockstar</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-price">
-                                                    <h6
-                                                        class="m-0 fw-semibold">$990</h6>
-                                                    <p
-                                                        class="mb-0 mt-1 text-muted">10
-                                                        Sold</p>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="list-group-item align-items-center d-flex justify-content-between">
-                                                <div class="product-list">
-                                                    <img
-                                                        class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3"
-                                                        src="../assets/Games/g1.jpg"
-                                                        alt="product-image">
-
-                                                    <div
-                                                        class="product-body align-self-center">
-                                                        <h6
-                                                            class="m-0 fw-semibold">GTA
-                                                            V</h6>
-                                                        <p
-                                                            class="mb-0 mt-1 text-muted">Rockstar</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-price">
-                                                    <h6
-                                                        class="m-0 fw-semibold">$990</h6>
-                                                    <p
-                                                        class="mb-0 mt-1 text-muted">10
-                                                        Sold</p>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="list-group-item align-items-center d-flex justify-content-between">
-                                                <div class="product-list">
-                                                    <img
-                                                        class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3"
-                                                        src="../assets/Games/g1.jpg"
-                                                        alt="product-image">
-
-                                                    <div
-                                                        class="product-body align-self-center">
-                                                        <h6
-                                                            class="m-0 fw-semibold">GTA
-                                                            V</h6>
-                                                        <p
-                                                            class="mb-0 mt-1 text-muted">Rockstar</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-price">
-                                                    <h6
-                                                        class="m-0 fw-semibold">$990</h6>
-                                                    <p
-                                                        class="mb-0 mt-1 text-muted">10
-                                                        Sold</p>
-                                                </div>
-                                            </li>
-
                                         </ul>
                                     </div>
                                     <!-- end card body -->
@@ -518,169 +339,176 @@
                             </div>
                         </div>
                         <!-- End Monthly Sales -->
-
                         <div class="row">
                             <div class="col-md-6 col-xl-8">
                                 <div class="card overflow-hidden">
                                     <div class="card-header">
                                         <div class="d-flex align-items-center">
-                                            <div
-                                                class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                                <i data-feather="crosshair"
-                                                    class="widgets-icons"></i>
+                                            <div class="border border-dark rounded-2 me-2 widget-icons-sections">
+                                                <i data-feather="crosshair" class="widgets-icons"></i>
                                             </div>
-                                            <h5 class="card-title mb-0">Recent
-                                                Order</h5>
+                                            <h5 class="card-title mb-0">
+                                                Recent
+                                                Order
+                                            </h5>
                                         </div>
                                     </div>
-
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
-                                            <table
-                                                class="table table-traffic mb-0">
-
+                                            <table class="table table-traffic mb-0">
                                                 <thead>
                                                     <tr>
                                                         <th>Order ID</th>
                                                         <th>Customer</th>
                                                         <th>Price</th>
                                                         <th>Created</th>
-                                                        <th
-                                                            colspan="2">Status</th>
+                                                        <th colspan="2">Status</th>
                                                     </tr>
                                                 </thead>
-
                                                 <tr>
                                                     <td>
+                                                        <a href="javascript:void(0);" class="text-reset">~order id~</a>
+                                                    </td>
+                                                    <td class="d-flex align-items-center">
+                                                        <p class="mb-0 fw-medium">~name~</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">~price~</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">~date~</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="badge bg-success mb-0">Completed</p>
+                                                    </td>
+                                                    <td>
                                                         <a
-                                                            href="javascript:void(0);"
-                                                            class="text-reset">#001</a>
-                                                    </td>
-                                                    <td
-                                                        class="d-flex align-items-center">
-                                                        <img
-                                                            src="../assets/Customers/u1.png"
-                                                            class="avatar avatar-sm rounded-2 me-3" />
-                                                        <p
-                                                            class="mb-0 fw-medium">Lakshitha
-                                                            Madumal</p>
-                                                    </td>
-                                                    <td>
-                                                        <p
-                                                            class="mb-0">$480.00</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0">May 09,
-                                                            2025</p>
-                                                    </td>
-                                                    <td>
-                                                        <p
-                                                            class="badge bg-success mb-0">Completed</p>
-                                                    </td>
-                                                    <td>
-                                                        <a href="order-invoice.html"><i
-                                                                data-bs-toggle="tooltip"
-                                                                data-bs-placement="top"
-                                                                data-bs-title="Print Invoice"
-                                                                class="mdi mdi-printer text-muted fs-18 rounded-2 border p-1"></i></a>
+                                                            href="#"
+                                                            class="btn btn-sm btn-info order-view-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#info-modal"
+                                                        >
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6 col-xl-4">
                                 <div class="card">
-
                                     <div class="card-header">
                                         <div class="d-flex align-items-center">
-                                            <div
-                                                class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                                <i data-feather="cpu"
-                                                    class="widgets-icons"></i>
+                                            <div class="border border-dark rounded-2 me-2 widget-icons-sections">
+                                                <i data-feather="cpu" class="widgets-icons"></i>
                                             </div>
-                                            <h5 class="card-title mb-0">Top
-                                                Customer</h5>
+                                            <h5 class="card-title mb-0">
+                                                Top
+                                                Customer
+                                            </h5>
                                         </div>
                                     </div>
-
                                     <!-- start card body -->
                                     <div class="card-body">
                                         <ul class="list-group custom-group">
-                                            <li
-                                                class="list-group-item align-items-center d-flex justify-content-between">
+                                            <li class="list-group-item align-items-center d-flex justify-content-between">
                                                 <div class="product-list">
-                                                    <img
-                                                        class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3"
-                                                        src="../assets/Customers/u1.png"
-                                                        alt="product-image">
-
-                                                    <div
-                                                        class="product-body align-self-center">
-                                                        <h6
-                                                            class="m-0 fw-semibold">Lakshitha
-                                                            Madumal</h6>
-                                                        <p
-                                                            class="mb-0 mt-1 text-muted">2024-11-01</p>
+                                                    <img class="avatar-md p-1 rounded-circle bg-primary-subtle img-fluid me-3" src="../assets/avatar.png" alt="product-image">
+                                                    <div class="product-body align-self-center">
+                                                        <h6 class="m-0 fw-semibold">~name~</h6>
+                                                        <p class="mb-0 mt-1 text-muted">~register date~</p>
                                                     </div>
                                                 </div>
-
                                                 <div class="product-price">
-                                                    <h6
-                                                        class="m-0 fw-semibold">$990</h6>
-                                                    <p
-                                                        class="mb-0 mt-1 text-muted">10
-                                                        Owned</p>
+                                                    <h6 class="m-0 fw-semibold">~total price~</h6>
+                                                    <p class="mb-0 mt-1 text-muted">
+                                                        0
+                                                        Owned
+                                                    </p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                     <!-- end card body -->
+                                    <div
+                                        class="modal fade"
+                                        id="info-modal"
+                                        tabindex="-1"
+                                        aria-labelledby="standard-modalLabel"
+                                        aria-hidden="true"
+                                    >
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="standard-modalLabel">
+                                                        Order Information
+                                                    </h5>
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"
+                                                    ></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Game List Section -->
+                                                    <div class="mb-4">
+                                                        <div class="row g-3">
+                                                            <!-- Game Card  -->
+                                                            <div class="col-12">
+                                                                <div class="border rounded-3 px-3 py-3 d-flex justify-content-between align-items-center">
+                                                                    <div>
+                                                                        <h5 class="mb-1 text-dark">~game name~</h5>
+                                                                    </div>
+                                                                    <div class="text-end">
+                                                                        <h5 class="mb-1 text-success">~price~</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                    </div> <!-- container-fluid -->
-                </div> <!-- content -->
-
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- content -->
             </div>
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
-
         </div>
         <!-- END wrapper -->
-
         <!-- Vendor -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script
-            src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
-        <script
-            src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
         <script src="assets/libs/feather-icons/feather.min.js"></script>
-
         <!-- Apexcharts JS -->
         <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
         <!-- for basic area chart -->
-        <script
-            src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-
+        <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
         <!-- Widgets Init Js -->
         <script src="assets/js/pages/analytics-dashboard.init.js"></script>
-
         <!-- App js-->
         <script src="assets/js/main.js"></script>
         <script src="assets/js/app.js"></script>
         <script src="assets/js/logout.js"></script>
         <script src="assets/loader/loader.js"></script>
-
     </body>
-
 </html>
