@@ -13,6 +13,70 @@ window.onload = async function () {
         // Total Customer
         document.querySelectorAll(".fs-22.mb-0.me-2.fw-semibold.text-black")[3].innerText = json.totalCustomer;
 
+        // --- Chart 1: Today Earning (Area Sparkline) ---
+        if (window.todayEarningChart) window.todayEarningChart.destroy();
+        window.todayEarningChart = new ApexCharts(document.querySelector("#todayEarning"), {
+            chart: { type: "area", height: 45, sparkline: { enabled: true }, animations: { enabled: false } },
+            series: [{ name: "Today", data: [json.todayEarning] }],
+            colors: ["#537AEF"],
+            fill: { opacity: 0.16, type: "solid" },
+            stroke: { width: 2, curve: "smooth" },
+            tooltip: { theme: "light" },
+            xaxis: { labels: { show: false }, tooltip: { enabled: false }, axisBorder: { show: false } },
+            yaxis: { labels: { show: false } },
+            dataLabels: { enabled: false },
+            grid: { strokeDashArray: 4 }
+        });
+        window.todayEarningChart.render();
+
+        // --- Chart 2: Total Earning (Area Sparkline) ---
+        if (window.totalEarningChart) window.totalEarningChart.destroy();
+        window.totalEarningChart = new ApexCharts(document.querySelector("#totalEarning"), {
+            chart: { type: "area", height: 45, sparkline: { enabled: true }, animations: { enabled: false } },
+            series: [{ name: "Total", data: [json.totalEarning] }],
+            colors: ["#ec8290"],
+            fill: { opacity: 0.16, type: "solid" },
+            stroke: { width: 2, curve: "smooth" },
+            tooltip: { theme: "light" },
+            xaxis: { labels: { show: false }, tooltip: { enabled: false }, axisBorder: { show: false } },
+            yaxis: { labels: { show: false } },
+            dataLabels: { enabled: false },
+            grid: { strokeDashArray: 4 }
+        });
+        window.totalEarningChart.render();
+
+        // --- Chart 3: Selling Games (Area Sparkline) ---
+        if (window.sellingGamesChart) window.sellingGamesChart.destroy();
+        window.sellingGamesChart = new ApexCharts(document.querySelector("#sellingGames"), {
+            chart: { type: "area", height: 45, sparkline: { enabled: true }, animations: { enabled: false } },
+            series: [{ name: "Games", data: [json.sellingGames] }],
+            colors: ["#537AEF"],
+            fill: { opacity: 0.16, type: "solid" },
+            stroke: { width: 2, curve: "smooth" },
+            tooltip: { theme: "light" },
+            xaxis: { labels: { show: false }, tooltip: { enabled: false }, axisBorder: { show: false } },
+            yaxis: { labels: { show: false } },
+            dataLabels: { enabled: false },
+            grid: { strokeDashArray: 4 }
+        });
+        window.sellingGamesChart.render();
+
+        // --- Chart 4: Total Customer (Bar Sparkline) ---
+        if (window.totalCustomerChart) window.totalCustomerChart.destroy();
+        window.totalCustomerChart = new ApexCharts(document.querySelector("#totalCustomer"), {
+            chart: { type: "bar", height: 45, sparkline: { enabled: true }, animations: { enabled: false } },
+            series: [{ name: "Customers", data: [json.totalCustomer] }],
+            colors: ["#537AEF"],
+            plotOptions: { bar: { columnWidth: "35%", borderRadius: 3 } },
+            dataLabels: { enabled: false },
+            fill: { opacity: 1 },
+            grid: { strokeDashArray: 4 },
+            xaxis: { labels: { show: false } },
+            yaxis: { labels: { show: false } },
+            tooltip: { theme: "light" }
+        });
+        window.totalCustomerChart.render();
+
         // Monthly Sales Chart
         const months = json.monthlySales.map(m => m.month);
         const sales = json.monthlySales.map(m => m.count);
