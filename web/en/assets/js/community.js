@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const emptyState = document.querySelector(".empty-state");
 
     let lastMessageCount = 0;
+    const adminEmail = "Gamerlk@admin";
 
     function renderMessages(messages) {
         chatMessages.innerHTML = "";
@@ -14,23 +15,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         emptyState.style.display = "none";
         messages.forEach(msg => {
+            // Admin check
+            const isAdmin = msg.user_id && msg.user_id.email === adminEmail;
             const isSent = msg.user_id && msg.user_id.id === window.currentUserId;
+            const name = isAdmin
+                ? "Admin"
+                : (msg.user_id
+                    ? (msg.user_id.username
+                        ? msg.user_id.username
+                        : (msg.user_id.first_name + " " + msg.user_id.last_name))
+                    : "Unknown");
+            const time = new Date(msg.sent_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            let tick = isAdmin
+                ? `<span style="color:#2196f3;font-size:14px;margin-left:4px;" title="Verified"><i class="mdi mdi-check-decagram"></i></span>`
+                : "";
+            let avatar = isAdmin
+                ? `<img src="../../assets/logo.png" alt="admin">`
+                : `<img src="../../assets/avatar.png" alt="user">`;
+
             const messageDiv = document.createElement("div");
             messageDiv.className = "message " + (isSent ? "sent" : "received");
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <img src="../../assets/avatar.png" alt="${msg.user_id ? msg.user_id.username : "User"}">
-                    ${!isSent ? '<span class="online-badge"></span>' : ""}
+                    ${avatar}
+                    ${!isSent && !isAdmin ? '<span class="online-badge"></span>' : ""}
                 </div>
                 <div class="message-content">
                     <div class="message-header">
-                        ${!isSent ? `<span class="username">${msg.user_id
-                        ? (msg.user_id.username
-                            ? msg.user_id.username
-                            : (msg.user_id.first_name + " " + msg.user_id.last_name))
-                        : "Unknown"
-                    }</span>` : ""}
-                        <span class="timestamp">${new Date(msg.sent_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                        ${!isSent ? `<span class="username">${name}${tick}</span>` : ""}
+                        <span class="timestamp">${time}</span>
                     </div>
                     <div class="message-text">${msg.message}</div>
                 </div>

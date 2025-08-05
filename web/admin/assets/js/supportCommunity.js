@@ -2,29 +2,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const chatBox = document.querySelector(".chat-conversation ul");
     const input = document.querySelector(".chat-input");
     const sendBtn = document.querySelector(".btn-primary.btn-sm.ms-1");
-    let adminEmail = null;
+    const adminEmail = "Gamerlk@admin";
 
-    // Get admin email from session (via endpoint or set manually)
-    fetch("../GetCurrentAdmin")
-        .then(r => r.json())
-        .then(j => { adminEmail = j.email; });
-
-    // Render messages
     function renderMessages(messages) {
         chatBox.innerHTML = "";
         messages.forEach(msg => {
-            const isAdmin = msg.user_id == null; // admin messages have no user_id
-            const name = isAdmin ? (adminEmail || "Admin") : (
-                msg.user_id.username
-                    ? msg.user_id.username
-                    : (msg.user_id.first_name + " " + msg.user_id.last_name)
-            );
+            // Admin message check (User table user with Gamerlk@admin)
+            const isAdmin = msg.user_id && msg.user_id.email === adminEmail;
+            const name = isAdmin
+                ? "Admin"
+                : (msg.user_id
+                    ? (msg.user_id.username
+                        ? msg.user_id.username
+                        : (msg.user_id.first_name + " " + msg.user_id.last_name))
+                    : "Unknown");
             const time = new Date(msg.sent_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
             let tick = isAdmin
                 ? `<span style="color:#2196f3;font-size:14px;margin-left:4px;" title="Verified"><i class="mdi mdi-check-decagram"></i></span>`
                 : "";
             let avatar = isAdmin
-                ? `<img src="../assets/avatar.png" alt="admin" class="rounded-circle" width="40">`
+                ? `<img src="../assets/logo.png" alt="admin" class="rounded-circle" width="40">`
                 : `<img src="../assets/avatar.png" alt="user" class="rounded-circle" width="40">`;
 
             chatBox.innerHTML += isAdmin
@@ -81,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!text) return;
         sendBtn.disabled = true;
         try {
-            const res = await fetch("../AdminCommunityChat", {
+            const res = await fetch("../CommunityChat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: text })

@@ -56,6 +56,20 @@ public class CommunityChat extends HttpServlet {
        HttpSession httpSession = request.getSession(false);
        User user = (httpSession != null) ? (User) httpSession.getAttribute("user") : null;
 
+       // --- Admin session support: if admin logged, use Gamerlk@admin user ---
+       if (user == null && httpSession != null && httpSession.getAttribute("admin") != null) {
+           hibernate.Admin admin = (hibernate.Admin) httpSession.getAttribute("admin");
+           // Find User entity with Gamerlk@admin email
+           Session session = sessionFactory.openSession();
+           try {
+               org.hibernate.Criteria userCriteria = session.createCriteria(hibernate.User.class)
+                   .add(org.hibernate.criterion.Restrictions.eq("email", "Gamerlk@admin"));
+               user = (User) userCriteria.uniqueResult();
+           } finally {
+               session.close();
+           }
+       }
+
        response.setContentType("application/json");
        PrintWriter out = response.getWriter();
 
