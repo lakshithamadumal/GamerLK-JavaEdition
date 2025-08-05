@@ -14,13 +14,12 @@ window.onload = async function () {
                     <td>
                         <p class="badge ${subscriber.hasAccount === 'Yes' ? 'bg-success' : 'bg-danger'} mb-0">${subscriber.hasAccount}</p>
                     </td>
-                    <td>
-                        <a href="mailto:${subscriber.email}"
-                            class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Send Email to Subscriber">
-                            Send
-                        </a>
-                    </td>
+<td>
+    <button class="btn btn-sm btn-primary" onclick="navigator.clipboard.writeText('${subscriber.email}')"
+        data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Email">
+        Copy
+    </button>
+</td>
                 `;
                 tbody.appendChild(tr);
             });
