@@ -211,7 +211,7 @@
                         <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                             <div class="flex-grow-1">
                                 <h4 class="fs-18 fw-semibold m-0">
-                                    Send
+                                    Send All
                                     Email
                                 </h4>
                             </div>
@@ -221,7 +221,7 @@
                                         <a href="javascript: void(0);">Support</a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        Send
+                                        Send All
                                         Email
                                     </li>
                                 </ol>
@@ -262,6 +262,68 @@
                                                 <button type="button" class="btn btn-primary" onclick="SendEmail()" id="sendBtn">
                                                     <i class="fas fa-paper-plane me-1"></i>
                                                     <span id="btnText">Send Email</span>
+                                                    
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-xxl">
+                        <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+                            <div class="flex-grow-1">
+                                <h4 class="fs-18 fw-semibold m-0">
+                                    Send
+                                    Email
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- Send Email -->
+                        <!-- Send Email -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="sendEmailForm">
+                                            <div class="mb-3">
+                                                <label for="Singleemail" class="form-label">Email Address</label>
+                                                <input
+                                                    type="email"
+                                                    class="form-control"
+                                                    id="Singleemail"
+                                                    placeholder="Enter email Address"
+                                                    required
+                                                >
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="SingleemailSubject" class="form-label">Subject</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="SingleemailSubject"
+                                                    placeholder="Enter email subject"
+                                                    required
+                                                >
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="SingleemailBody" class="form-label">
+                                                    Email
+                                                    Body
+                                                </label>
+                                                <textarea
+                                                    class="form-control"
+                                                    id="SingleemailBody"
+                                                    rows="15"
+                                                    placeholder="Type your message here..."
+                                                    required
+                                                ></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-primary" onclick="SendSingleEmail()" id="SingleSendBtn">
+                                                    <i class="fas fa-paper-plane me-1"></i>
+                                                    <span id="SingleBtnText">Send Email</span>
                                                     
                                                 </button>
                                             </div>

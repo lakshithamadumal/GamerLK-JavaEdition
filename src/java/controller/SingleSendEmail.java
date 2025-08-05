@@ -5,21 +5,29 @@ import com.google.gson.JsonObject;
 import hibernate.HibernateUtil;
 import hibernate.Subscriber;
 import hibernate.User;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Mail;
 import model.Util;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.IOException;
-import java.util.*;
-import model.Mail;
-
-@WebServlet(name = "SendEmail", urlPatterns = {"/SendEmail"})
-public class SendEmail extends HttpServlet {
+/**
+ *
+ * @author Laky
+ */
+@WebServlet(name = "SingleSendEmail", urlPatterns = {"/SingleSendEmail"})
+public class SingleSendEmail extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,11 +35,24 @@ public class SendEmail extends HttpServlet {
         Gson gson = new Gson();
         JsonObject sendEmail = gson.fromJson(request.getReader(), JsonObject.class);
 
-        String emailSubject = sendEmail.get("emailSubject").getAsString();
-        String emailBodyContent = sendEmail.get("emailBody").getAsString();
+        String email = sendEmail.get("Singleemail").getAsString();
+        String emailSubject = sendEmail.get("SingleemailSubject").getAsString();
+        String emailBodyContent = sendEmail.get("SingleemailBody").getAsString();
 
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", Boolean.FALSE);
+
+        if (email.isEmpty()) {
+            responseObject.addProperty("message", "Email cannot be empty.");
+            response.getWriter().print(responseObject.toString());
+            return;
+        }
+
+        if (!Util.isEmailValid(email)) {
+            responseObject.addProperty("message", "Invalid Email Address");
+            response.getWriter().print(responseObject.toString());
+            return;
+        }
 
         if (emailSubject.isEmpty()) {
             responseObject.addProperty("message", "Subject cannot be empty.");
@@ -47,29 +68,12 @@ public class SendEmail extends HttpServlet {
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
-        Set<String> emailSet = new HashSet<>();
 
-        try {
-            Criteria userCriteria = s.createCriteria(User.class)
-                    .setProjection(Projections.property("email"));
-            List<String> userEmails = userCriteria.list();
-            emailSet.addAll(userEmails);
-
-            Criteria subCriteria = s.createCriteria(Subscriber.class)
-                    .setProjection(Projections.property("email"));
-            List<String> subEmails = subCriteria.list();
-            emailSet.addAll(subEmails);
-        } catch (Exception e) {
-            responseObject.addProperty("message", "Error while fetching emails: " + e.getMessage());
-            response.getWriter().print(responseObject.toString());
-            return;
-        }
-
-        // 🧵 Send emails in background
-        new Thread(() -> {
-            for (String email : emailSet) {
-
-                String styledEmail = ""
+        //Send Email
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String emailBody = ""
                         + "<div style='max-width: 500px; margin: 20px auto; background: white; border-radius: 12px; "
                         + "overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); font-family: Outfit, sans-serif;'>"
                         + "<div style='background: linear-gradient(135deg, #df040a, #ff6b27); padding: 30px; text-align: center;'>"
@@ -93,7 +97,7 @@ public class SendEmail extends HttpServlet {
                         + "</div>"
                         + "</div>";
 
-                Mail.sendMail(email, emailSubject, styledEmail);
+                Mail.sendMail(email, emailSubject, emailBody);
             }
         }).start();
 
