@@ -62,6 +62,73 @@ function loadMaxSelect(selectId, list, property, skipId) {
 
 
 
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+    // Get product id from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    if (!productId) return;
+
+    // Load game details
+    const res = await fetch(`../LoadUpdateProduct?id=${productId}`);
+    if (res.ok) {
+        const data = await res.json();
+        if (data.status) {
+            const game = data.product;
+            document.getElementById("gameName").value = game.title;
+            document.getElementById("gameDescription").value = game.description;
+            document.getElementById("gamePrice").value = game.price;
+            document.getElementById("gameLink").value = game.game_link;
+            document.getElementById("gameSize").value = game.game_size;
+
+            if (game.release_date) {
+                // Convert "May 19, 2015 12:00:00 AM" to "2015-05-19"
+                const dateObj = new Date(game.release_date);
+                if (!isNaN(dateObj)) {
+                    const yyyy = dateObj.getFullYear();
+                    const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const dd = String(dateObj.getDate()).padStart(2, '0');
+                    document.getElementById("gameDate").value = `${yyyy}-${mm}-${dd}`;
+                } else {
+                    document.getElementById("gameDate").value = "";
+                }
+            } else {
+                document.getElementById("gameDate").value = "";
+            }
+
+            document.getElementById("gameTag").value = game.tag;
+
+
+            // Dropdowns: Category, Mode, Developer, Min/Rec Requirement
+            // Load all options first (if not loaded), then set selected
+            const catSel = document.getElementById("gameCategory");
+            if (catSel && game.category_id) catSel.value = game.category_id.id;
+
+            const modeSel = document.getElementById("gameMod");
+            if (modeSel && game.mode_id) modeSel.value = game.mode_id.id;
+
+            const devSel = document.getElementById("gameDeveloper");
+            if (devSel && game.developer_id) devSel.value = game.developer_id.id;
+
+            const minSel = document.getElementById("gameMin");
+            if (minSel && game.min_requirement_id) minSel.value = game.min_requirement_id.id;
+
+            const maxSel = document.getElementById("gameMax");
+            if (maxSel && game.rec_requirement_id) maxSel.value = game.rec_requirement_id.id;
+
+            // Thumbnail preview
+            const thumb = document.getElementById("thumbnail-image-preview");
+            if (thumb) {
+                thumb.src = `../assets/Games/${game.id}/thumb-image.jpg`;
+                thumb.style.display = "block";
+            }
+        }
+    }
+});
+
+
+
 async function updateGame() {
 
     const gameName = document.getElementById("gameName").value;
@@ -79,7 +146,12 @@ async function updateGame() {
     const thumbnailImage = document.getElementById("thumbnailImage").files[0];
 
 
+    // Get product id from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+
     const form = new FormData();
+    form.append("id", productId); // <-- product id append කරන්න
     form.append("gameName", gameName);
     form.append("gameDescription", gameDescription);
     form.append("gamePrice", gamePrice);
@@ -109,7 +181,7 @@ async function updateGame() {
                 timer: 2000,
                 showConfirmButton: false
             }).then(() => {
-                location.reload();
+                window.location.href = "General-Games.html";
             });
         } else {
             // Check for "Admin Not found" message
@@ -147,51 +219,3 @@ async function updateGame() {
     }
 
 }
-
-document.addEventListener("DOMContentLoaded", async function () {
-    // Get product id from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("id");
-    if (!productId) return;
-
-    // Load game details
-    const res = await fetch(`../LoadUpdateProduct?id=${productId}`);
-    if (res.ok) {
-        const data = await res.json();
-        if (data.status) {
-            const game = data.product;
-            document.getElementById("gameName").value = game.title;
-            document.getElementById("gameDescription").value = game.description;
-            document.getElementById("gamePrice").value = game.price;
-            document.getElementById("gameLink").value = game.game_link;
-            document.getElementById("gameSize").value = game.game_size;
-            document.getElementById("gameDate").value = game.release_date ? game.release_date.split("T")[0] : "";
-            document.getElementById("gameTag").value = game.tag;
-
-            // Dropdowns: Category, Mode, Developer, Min/Rec Requirement
-            // Load all options first (if not loaded), then set selected
-            // Example for category:
-            const catSel = document.getElementById("gameCategory");
-            if (catSel && game.category_id) catSel.value = game.category_id.id;
-
-            const modeSel = document.getElementById("gameMod");
-            if (modeSel && game.mode_id) modeSel.value = game.mode_id.id;
-
-            const devSel = document.getElementById("gameDeveloper");
-            if (devSel && game.developer_id) devSel.value = game.developer_id.id;
-
-            const minSel = document.getElementById("gameMin");
-            if (minSel && game.min_requirement_id) minSel.value = game.min_requirement_id.id;
-
-            const maxSel = document.getElementById("gameMax");
-            if (maxSel && game.rec_requirement_id) maxSel.value = game.rec_requirement_id.id;
-
-            // Thumbnail preview (optional)
-            const thumb = document.getElementById("thumbnail-image-preview");
-            if (thumb) {
-                thumb.src = `../assets/Games/${game.id}/thumb-image.jpg`;
-                thumb.style.display = "block";
-            }
-        }
-    }
-});
