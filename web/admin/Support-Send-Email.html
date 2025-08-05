@@ -234,30 +234,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <form id="sendEmailForm">
-                                            <div class="mb-3">
-                                                <label for="emailAddress" class="form-label">Email Address</label>
-                                                <div class="form-check">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="checkbox"
-                                                        name="emailOption"
-                                                        id="checkEmails"
-                                                        value="all"
-                                                        
-                                                    >
-                                                    <label class="form-check-label" for="checkEmails">
-                                                        All Users and Subscribers Emails
-                                                    </label>
-                                                </div>
-                                                <!-- Email input -->
-                                                <input
-                                                    type="email"
-                                                    class="form-control mt-2"
-                                                    id="emailAddress"
-                                                    placeholder="Enter email address"
-                                                    required
-                                                >
-                                            </div>
+                                            
                                             <div class="mb-3">
                                                 <label for="emailSubject" class="form-label">Subject</label>
                                                 <input
@@ -276,15 +253,16 @@
                                                 <textarea
                                                     class="form-control"
                                                     id="emailBody"
-                                                    rows="10"
+                                                    rows="15"
                                                     placeholder="Type your message here..."
                                                     required
                                                 ></textarea>
                                             </div>
                                             <div class="text-end">
-                                                <button type="submit" class="btn btn-primary" onclick="SendEmail()">
+                                                <button type="button" class="btn btn-primary" onclick="SendEmail()" id="sendBtn">
                                                     <i class="fas fa-paper-plane me-1"></i>
-                                                    Send Email
+                                                    <span id="btnText">Send Email</span>
+                                                    
                                                 </button>
                                             </div>
                                         </form>
