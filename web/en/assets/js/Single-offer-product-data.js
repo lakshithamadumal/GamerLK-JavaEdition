@@ -88,7 +88,11 @@ async function loadSingleOfferProductData() {
       // Load and show real rating
       loadProductRating(json.product.id);
       loadProductOrderCount(json.product.id);
-      offerCheckout(json.product.id);
+
+      // Buy Now button click event එකෙන් විතරක් offerCheckout call කරන්න
+      document.querySelector(".cart-btn").onclick = function() {
+          offerCheckout(json.product.id);
+      };
     } else {
       window.location = "../index.html";
     }
@@ -131,13 +135,10 @@ async function loadProductOrderCount(productId) {
   }
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Payment function
-
-
 var notyf = new Notyf({ position: { x: 'center', y: 'top' } });
-
 
 // Payment completed. It can be a successful failure.
 payhere.onCompleted = function onCompleted(orderId) {
