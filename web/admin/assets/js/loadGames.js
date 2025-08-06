@@ -21,10 +21,17 @@ window.onload = async function () {
                     <td>${product.category_id ? product.category_id.name : '-'}</td>
                     <td>${product.developer_id ? product.developer_id.name : '-'}</td>
                     <td>
-                        <span class="badge ${product.status_id && product.status_id.value === 'Active' ? 'bg-success' : 'bg-danger'}">
+                        <span class="badge 
+                            ${product.status_id && product.status_id.value === 'Active'
+                                            ? 'bg-success'
+                                            : product.status_id && product.status_id.value === 'Offer'
+                                                ? 'bg-primary'
+                                                : 'bg-danger'
+                                        }">
                             ${product.status_id ? product.status_id.value : '-'}
                         </span>
                     </td>
+
                     <td>
                         <a href="#" class="btn btn-sm btn-success link-btn game-info-btn" data-id="${product.id}">
                             <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Game information"></i>
