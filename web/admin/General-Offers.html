@@ -267,19 +267,7 @@
                                                         name="offer-game"
                                                         required
                                                     >
-                                                        <option value>
-                                                            -- Choose
-                                                            a Game --
-                                                        </option>
-                                                        <option value="game1">
-                                                            Game
-                                                            1
-                                                        </option>
-                                                        <option value="game2">
-                                                            Game
-                                                            2
-                                                        </option>
-                                                        <!-- Add your dynamic games here -->
+                                                        <option value="0" selected disabled>-- Choose a Game --</option>
                                                     </select>
                                                 </div>
                                                 <!-- Recently Price -->
@@ -291,7 +279,7 @@
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        id="recent-price"
+                                                        id="recent-price-label"
                                                         name="recent-price"
                                                         disabled
                                                     >
@@ -305,7 +293,7 @@
                                                             class="form-control"
                                                             id="discount-percentage"
                                                             name="discount-percentage"
-                                                            required
+                                                            required  min="0"
                                                         >
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -324,115 +312,8 @@
                                     <!-- Modal Footer -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" form="addOfferForm">
+                                        <button type="button" class="btn btn-primary" form="addOfferForm" onclick="createOffer();">
                                             Create
-                                            Offer
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Update Offer Modal -->
-                        <div
-                            class="modal fade"
-                            id="updateOfferModal"
-                            tabindex="-1"
-                            aria-labelledby="updateOfferModalLabel"
-                            aria-hidden="true"
-                        >
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="updateOfferModalLabel">
-                                            Update Offer
-                                        </h5>
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                        <div id="validation-errors-update-offer" class="alert alert-danger d-none" role="alert"></div>
-                                        <div id="success-message-update-offer" class="alert alert-success d-none" role="alert"></div>
-                                        <form id="updateOfferForm">
-                                            <!-- Hidden input for offer ID -->
-                                            <input type="hidden" id="update-offer-id" name="update-offer-id">
-                                            <div class="row g-3">
-                                                <!-- Game Selector -->
-                                                <div class="col-12">
-                                                    <label for="update-offer-game" class="form-label">
-                                                        Select
-                                                        Game
-                                                    </label>
-                                                    <select
-                                                        class="form-select"
-                                                        id="update-offer-game"
-                                                        name="update-offer-game"
-                                                        required
-                                                    >
-                                                        <option value>
-                                                            -- Choose
-                                                            a Game --
-                                                        </option>
-                                                        <option value="game1">
-                                                            Game
-                                                            1
-                                                        </option>
-                                                        <option value="game2">
-                                                            Game
-                                                            2
-                                                        </option>
-                                                        <!-- Add your dynamic games here -->
-                                                    </select>
-                                                </div>
-                                                <!-- Recently Price -->
-                                                <div class="col-md-6">
-                                                    <label for="update-recent-price" class="form-label">
-                                                        Recently
-                                                        Price
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="update-recent-price"
-                                                        name="update-recent-price"
-                                                        disabled
-                                                    >
-                                                </div>
-                                                <!-- New Price -->
-                                                <div class="col-md-6">
-                                                    <label for="update-discount-percentage" class="form-label">Discount Percentage</label>
-                                                    <div class="input-group">
-                                                        <input
-                                                            type="number"
-                                                            class="form-control"
-                                                            id="update-discount-percentage"
-                                                            name="update-discount-percentage"
-                                                            required
-                                                        >
-                                                        <span class="input-group-text">%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- Loading Spinner -->
-                                    <div id="loading-spinner-update-offer" class="d-none">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modal Footer -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" form="updateOfferForm">
-                                            Update
                                             Offer
                                         </button>
                                     </div>
@@ -537,6 +418,7 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/app.js"></script>
         <script src="assets/js/loadOffer.js"></script>
+        <script src="assets/js/loadGamesToOffer.js"></script>
         <script src="assets/loader/loader.js"></script>
     </body>
 </html>
