@@ -6,7 +6,6 @@ async function loadSingleOfferProductData() {
   if (response.ok) {
     const json = await response.json();
     if (json.status) {
-
       document.getElementById("thumb-image").src =
         "../../assets/Games\\" + json.product.id + "\\thumb-image.jpg";
 
@@ -32,7 +31,26 @@ async function loadSingleOfferProductData() {
           minimumFractionDigits: 2,
         }
       );
-      document.getElementById("product-price").innerHTML = formattedPrice + ` USD`;
+
+      // Offer price calculation
+      const offerPercent = Number(json.product.offer) || 0;
+      const offerPrice =
+        Number(json.product.price) -
+        (Number(json.product.price) * offerPercent) / 100;
+
+      // Format offer price
+      const formattedOfferPrice = offerPrice.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+      });
+
+      document.getElementById("product-price").innerHTML =
+        formattedPrice + ` USD`;
+      document.getElementById("offer-percentage").innerHTML =
+        json.product.offer + `% OFF`;
+      document.getElementById("offer-price").innerHTML =
+        formattedOfferPrice + ` USD`;
 
       document.getElementById("product-category").innerHTML =
         json.product.category_id.name;
@@ -67,24 +85,6 @@ async function loadSingleOfferProductData() {
       document.getElementById("recStorage").innerHTML =
         json.product.rec_requirement_id.storage;
 
-      // Load and show real rating for featured product
-      const featureRatingDiv =
-        productCloneHtml.querySelector("#product-rating");
-      fetch("../../ProductRating?id=" + item.id)
-        .then((res) => res.json())
-        .then((json) => {
-          if (json.status) {
-            featureRatingDiv.innerHTML = `${json.rating} <i class="fas fa-star"></i>`;
-          } else {
-            featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
-          }
-        })
-        .catch(() => {
-          featureRatingDiv.innerHTML = `0 <i class="fas fa-star"></i>`;
-        });
-
-      FratureProductMain.appendChild(productCloneHtml);
-
       // Load and show real rating
       loadProductRating(json.product.id);
       loadProductOrderCount(json.product.id);
@@ -103,8 +103,7 @@ async function loadProductRating(productId) {
     if (res.ok) {
       const json = await res.json();
       if (json.status) {
-        // Show rating with 1 decimal, and count if you want
-        ratingBtn.innerHTML = `${json.rating} <i class="fas fa-star">`;
+        ratingBtn.innerHTML = `${json.rating} <i class="fas fa-star"></i>`;
       } else {
         ratingBtn.innerHTML = `0 <i class="fas fa-star"></i>`;
       }
