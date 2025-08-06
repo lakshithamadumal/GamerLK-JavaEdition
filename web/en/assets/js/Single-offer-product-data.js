@@ -148,8 +148,14 @@ payhere.onCompleted = function onCompleted(orderId) {
     if (orderId.startsWith("#")) {
         orderId = orderId.substring(1);
     }
+    // Remove leading zeros
+    let numericId = orderId.replace(/^0+/, "");
+    // Pad with zeros to make 4 digits
+    let paddedId = numericId.padStart(4, "0");
+    console.log("Order ID:", paddedId);
+    // Redirect to order invoice page after 1 second
     setTimeout(function() {
-        window.location.href = "../includes/order-invoice.html?orderId=" + orderId;
+        window.location.href = "../pages/my-downloads.html";
     }, 1000);
 };
 
