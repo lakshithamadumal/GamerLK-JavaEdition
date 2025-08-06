@@ -28,7 +28,7 @@ async function loadSingleProductData() {
                 currency: 'USD',
                 minimumFractionDigits: 2
             });
-            document.getElementById("product-price").innerHTML = formattedPrice;
+            document.getElementById("product-price").innerHTML = formattedPrice + ` USD`;
 
             document.getElementById("product-category").innerHTML = json.product.category_id.name;
             document.getElementById("product-mode").innerHTML = json.product.mode_id.name;
