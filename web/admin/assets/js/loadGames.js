@@ -10,6 +10,8 @@ window.onload = async function () {
             tbody.innerHTML = "";
 
             json.productList.forEach(product => {
+                const isOffer = product.status_id && product.status_id.value === 'Offer';
+
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td class="text-reset">#${product.id}</td>
@@ -36,12 +38,14 @@ window.onload = async function () {
                         <a href="#" class="btn btn-sm btn-success link-btn game-info-btn" data-id="${product.id}">
                             <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Game information"></i>
                         </a>
+                        ${!isOffer ? `
                         <a href="#" class="btn btn-sm btn-info game-view-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Change Status">
                             <i class="fas fa-eye"></i>
                         </a>
                         <a href="#" class="btn btn-sm btn-warning game-edit-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Update Game">
                             <i class="fas fa-edit"></i>
                         </a>
+                        ` : ''}
                         <button class="btn btn-sm btn-danger game-delete-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Game">
                             <i class="fas fa-trash-alt"></i>
                         </button>
@@ -64,26 +68,6 @@ window.onload = async function () {
                         const cell = tr.querySelector('.rating-cell');
                         cell.innerText = data.status ? `${data.rating}` : '0.0';
                     });
-            });
-
-            // Info button event
-            document.querySelectorAll(".game-info-btn").forEach(btn => {
-                btn.addEventListener("click", async function (e) {
-                    e.preventDefault();
-                    const productId = this.getAttribute("data-id");
-                    const res = await fetch(`../LoadSingleProduct?id=${productId}`);
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.status) {
-                            document.getElementById("standard-modalLabel").innerText = data.product.title;
-                            document.querySelector("#info-modal img").src = `../assets/Games/${data.product.id}/thumb-image.jpg`;
-                            document.querySelector("#info-modal .game-description p").innerText = data.product.description;
-                            // Show modal
-                            const modal = new bootstrap.Modal(document.getElementById('info-modal'));
-                            modal.show();
-                        }
-                    }
-                });
             });
 
         } else {
@@ -127,11 +111,21 @@ document.addEventListener("click", function (e) {
                                 showConfirmButton: false
                             }).then(() => location.reload());
                         } else {
-                            Swal.fire("Error", data.message || "Failed to change status", "error").then(() => {
-                                if (data.message === "Admin not found") {
-                                    window.location.href = "auth-signin.html";
-                                }
-                            });
+                            // Check for invalid status value
+                            if (data.message && data.message.startsWith("Invalid status value")) {
+                                Swal.fire({
+                                    title: "Invalid Status",
+                                    text: data.message,
+                                    icon: "warning",
+                                    confirmButtonText: "OK"
+                                });
+                            } else {
+                                Swal.fire("Error", data.message || "Failed to change status", "error").then(() => {
+                                    if (data.message === "Admin not found") {
+                                        window.location.href = "auth-signin.html";
+                                    }
+                                });
+                            }
                         }
                     });
             }
@@ -235,4 +229,24 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
+});
+
+document.querySelector("#datatable-buttons tbody").addEventListener("click", async function (e) {
+    const btn = e.target.closest(".game-info-btn");
+    if (btn) {
+        e.preventDefault();
+        const productId = btn.getAttribute("data-id");
+        const res = await fetch(`../LoadSingleProduct?id=${productId}`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.status) {
+                document.getElementById("standard-modalLabel").innerText = data.product.title;
+                document.querySelector("#info-modal img").src = `../assets/Games/${data.product.id}/thumb-image.jpg`;
+                document.querySelector("#info-modal .game-description p").innerText = data.product.description;
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('info-modal'));
+                modal.show();
+            }
+        }
+    }
 });

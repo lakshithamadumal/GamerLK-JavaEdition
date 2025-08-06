@@ -34,12 +34,21 @@ public class AdminChangeGameStatusServlet extends HttpServlet {
                 if (p != null) {
                     Status currentStatus = p.getStatus_id();
                     Status newStatus;
-                    if (currentStatus != null && "Active".equalsIgnoreCase(currentStatus.getValue())) {
+                    String currentValue = currentStatus != null ? currentStatus.getValue() : "";
+
+                    if ("Active".equalsIgnoreCase(currentValue)) {
                         // If Active, set to Inactive (2)
                         newStatus = (Status) s.get(Status.class, 2);
-                    } else {
-                        // If Inactive or other, set to Active (1)
+                    } else if ("Inactive".equalsIgnoreCase(currentValue)) {
+                        // If Inactive, set to Active (1)
                         newStatus = (Status) s.get(Status.class, 1);
+                    } else {
+                        obj.addProperty("status", false);
+                        obj.addProperty("message", "Invalid status value: " + currentValue);
+                        s.close();
+                        response.setContentType("application/json");
+                        response.getWriter().write(obj.toString());
+                        return;
                     }
                     p.setStatus_id(newStatus);
                     s.update(p);
