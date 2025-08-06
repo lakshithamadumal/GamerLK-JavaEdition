@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
     "/admin/order-invoice.html",
     "/admin/Support-Community.html",
     "/admin/Support-Inquiry.html",
+    "/admin/General-Update-Game.html",
     "/admin/Support-Send-Email.html"
 })
 
