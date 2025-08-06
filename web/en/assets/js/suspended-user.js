@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "pages/support-center.html",
                 "pages/user-profile.html",
                 "pages/wishlist.html",
+                "pages/game-offer-details.html",
                 "pages/game-details.html"
             ];
 

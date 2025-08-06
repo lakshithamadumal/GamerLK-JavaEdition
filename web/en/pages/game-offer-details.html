@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gamerlk - Game Offer Info & Download</title>
+        <link rel="icon" href="../../assets/favicon.png" type="image/png">
+        <link href="https://fonts.googleapis.com/css?family=Outfit:400,600,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/loader.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Oxygen:700&display=swap" rel="stylesheet">
+        <!-- Alert -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    </head>
+    <style>
+  .price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .original-price {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .offer-price {
+    color: #4CAF50;
+    /* Green color for the offer */
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+  }
+
+  .offer-price::after {
+    content: "OFFER";
+    position: absolute;
+    top: -12px;
+    right: -35px;
+    background: linear-gradient(95deg, #ff6b27 0%, #df040a 98%);
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .release-date {
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.release-date i {
+  color: var(--accent-orange);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .release-date {
+    margin-top: 5px;
+  }
+}
+    </style>
+    <body onload="loadSingleOfferProductData();">
+        <div class="content">
+            <div class="loading">
+                <p>loading</p>
+                <span></span>
+            </div>
+        </div>
+        <div class="stars-dot"></div>
+        <div class="sidebar">
+            <div class="logo-section">
+                <span onclick="location.href='../index.html'" class="brand">
+                    GAMER
+                    <span class="sub-brand">L</span>K</span>
+            </div>
+            <nav>
+                <!-- Close button for mobile sidebar -->
+                <button class="close-sidebar" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="nav-links">
+                    <li onclick="location.href='../index.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Home
+                    </li>
+                    <li class="active" onclick="location.href='game-store.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-store"></i>
+                        </span>
+                        Store
+                    </li>
+                    <li onclick="location.href='shopping-cart.html'" class="CartTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        Cart
+                    </li>
+                    <li onclick="location.href='wishlist.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Wishlist
+                    </li>
+                    <li onclick="location.href='my-downloads.html'" class="DownloadTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        Library
+                    </li>
+                    <li onclick="location.href='community-board.html'" class="CommunityTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        Community
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li onclick="location.href='account-settings.html'" class="SettingsTo">
+                        <span class="nav-icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        Settings
+                    </li>
+                    <li onclick="location.href='support-center.html'">
+                        <span class="nav-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        Help
+                    </li>
+                    <li class="logout LogoutTo" onclick="LogOut();">
+                        <span class="nav-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        Logout
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <header>
+                <input class="search-bar" type="text" placeholder="Search orders">
+                <div class="header-icons">
+                    <button class="icon-btn icon-bell">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile ProfileTo" onclick="location.href='user-profile.html'">
+                        <img src="../../assets/avatar.png" alt="avatar">
+                        <span id="NavFullName"></span>
+                    </div>
+                    <div class="signup-row SignUpTo">
+                        <button onclick="location.href='../../en/pages/login.html'" class="signup-btn">CONNECT</button>
+                    </div>
+                </div>
+            </header>
+            <section class="single-game-area">
+                <div class="single-game-banner">
+                    <img
+                        id="thumb-image"
+                        src="../../assets/game-details.png"
+                        class="carousel-img"
+                        alt="Stray Cat Promo"
+                    >
+                    <div class="single-game-labels">
+                        <button id="product-category">~category~</button>
+                        <button id="product-mode">~mode~</button>
+                        <button id="product-tag">~tag~</button>
+                    </div>
+                    <div class="download-carousel-labels">
+                        <button id="product-download"> Downloads</button>
+                    </div>
+                    <div class="rating-carousel-labels">
+                        <button id="product-rating">
+                            ~rate~
+                            <i class="fas fa-star"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="details-container">
+                    <div class="SingleView-detail">
+                        <div class="card-gradient"></div>
+                        <div class="SingleView-detail-content">
+                            <h2 id="product-title">~title~</h2>
+                            <div class="release-date">
+                                <i>Released</i>
+                                <span id="release-date">~released~</span>
+                            </div>
+                            <!-- Offer Badge -->
+                            <div class="offer-label">100% OFF</div>
+                            <p id="product-description">
+                                ~description~
+                            </p>
+                            <div class="price-row">
+                                <!-- <p id="product-price">~price~</p> -->
+                                <!-- Offer -->
+                                <div class="price-wrapper">
+                                    <span class="original-price">$16.99 USD</span>
+                                    <span class="offer-price">$12.99 USD</span>
+                                </div>
+                            </div>
+                            <div class="btn-row">
+                                <button class="cart-btn" id="buy-now">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="SingleView-detail-dev">
+                        <div class="card-gradient"></div>
+                        <div class="SingleView-detail-content-dev">
+                            <div class="Star-row">
+                                <span id="product-developer">~developer~</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="SingleView-detail-dev">
+                        <div class="card-gradient"></div>
+                        <div class="SingleView-detail-content-dev">
+                            <div class="Star-row">
+                                <i class="fas fa-hdd"></i>
+                                <span id="product-size">~size~</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="requirements-section">
+                <div class="requirements-header">
+                    <h3>System Requirements</h3>
+                </div>
+                <div class="requirements-container">
+                    <div class="requirements-card">
+                        <div class="requirements-card-header">
+                            <i class="fas fa-desktop"></i>
+                            <h4>Minimum</h4>
+                        </div>
+                        <ul class="requirements-list">
+                            <li>
+                                <span class="requirement-label">OS:</span>
+                                <span class="requirement-value" id="minOs">~os~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Processor:</span>
+                                <span class="requirement-value" id="minProcessor">~Processor~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Memory:</span>
+                                <span class="requirement-value" id="minMemory">~memory~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Graphics:</span>
+                                <span class="requirement-value" id="minGraphics">~graphics~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Storage:</span>
+                                <span class="requirement-value" id="minStorage">~storage~</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="requirements-card">
+                        <div class="requirements-card-header">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Recommended</h4>
+                        </div>
+                        <ul class="requirements-list">
+                            <li>
+                                <span class="requirement-label">OS:</span>
+                                <span class="requirement-value" id="recOs">~os~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Processor:</span>
+                                <span class="requirement-value" id="recProcessor">~Processor~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Memory:</span>
+                                <span class="requirement-value" id="recMemory">~memory~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Graphics:</span>
+                                <span class="requirement-value" id="recGraphics">~graphics~</span>
+                            </li>
+                            <li>
+                                <span class="requirement-label">Storage:</span>
+                                <span class="requirement-value" id="recStorage">~storage~</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div id="footer"></div>
+        </div>
+        <!-- cursor-->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+        <script src="../assets/js/script.js" defer></script>
+        <script src="../assets/js/includes.js" defer></script>
+        <script src="../assets/js/loader.js" defer></script>
+        <script src="../assets/js/Single-offer-product-data.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../assets/js/pages-profile-to-signup-change.js" defer></script>
+        <script src="../assets/js/logout.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    </body>
+</html>
