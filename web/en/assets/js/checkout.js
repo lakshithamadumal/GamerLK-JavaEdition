@@ -33,11 +33,18 @@ async function Checkout() {
   });
 
   if (response.ok) {
-    const json = await response.json(); // <-- You need this line!
+    const json = await response.json();
     if (json.status) {
       payhere.startPayment(json.payhereJson);
     } else {
-      notyf.error(json.message || "Checkout failed...");
+      if (json.message && json.message.startsWith("Already purchased")) {
+        notyf.error(json.message);
+        setTimeout(function () {
+          window.location.href = "../pages/my-downloads.html";
+        }, 1500);
+      } else {
+        notyf.error(json.message || "Checkout failed...");
+      }
     }
   } else {
     notyf.error({

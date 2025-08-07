@@ -65,6 +65,27 @@ public class LoadCartSummary extends HttpServlet {
             JsonObject responseObject) {
 
         try {
+            Criteria criteriaCart = s.createCriteria(Cart.class);
+            criteriaCart.add(Restrictions.eq("user_id", user));
+            List<Cart> cartList = criteriaCart.list();
+
+            // Already purchased check for all cart items
+            for (Cart cart : cartList) {
+                Product product = cart.getProduct_id();
+
+                Criteria orderItemCriteria = s.createCriteria(OrderItem.class);
+                orderItemCriteria.createAlias("orders_id", "orders");
+                orderItemCriteria.add(Restrictions.eq("product_id", product));
+                orderItemCriteria.add(Restrictions.eq("orders.user_id", user));
+                List<OrderItem> existingItems = orderItemCriteria.list();
+
+                if (!existingItems.isEmpty()) {
+                    responseObject.addProperty("status", false);
+                    responseObject.addProperty("message", "Already purchased: " + product.getTitle());
+                    tr.rollback();
+                    return; // Stop checkout if any product is already purchased
+                }
+            }
 
             Orders orders = new Orders();
             orders.setCreated_at(new java.util.Date());
@@ -72,19 +93,11 @@ public class LoadCartSummary extends HttpServlet {
 
             int orderId = (int) s.save(orders);
 
-            Criteria criteriaCart = s.createCriteria(Cart.class);
-            criteriaCart.add(Restrictions.eq("user_id", user));
-            List<Cart> cartList = criteriaCart.list();
-
-//          ArrayList<JsonObject> cartItemList = new ArrayList<>();
             double totalPrice = 0.0;
-
             Status status = (Status) s.load(Status.class, 4);
 
             for (Cart cart : cartList) {
-
                 OrderItem orderItem = new OrderItem();
-
                 Product product = cart.getProduct_id();
                 totalPrice += product.getPrice();
 
@@ -94,9 +107,7 @@ public class LoadCartSummary extends HttpServlet {
                 orderItem.setOrders_id(orders);
 
                 s.save(orderItem);
-
                 s.delete(cart);
-
             }
 
             tr.commit();
@@ -138,7 +149,7 @@ public class LoadCartSummary extends HttpServlet {
             payHereJson.addProperty("country", "Sri Lanka");
 
             responseObject.addProperty("status", true);
-            responseObject.addProperty("message", "Cechkout completed");
+            responseObject.addProperty("message", "Checkout completed");
             responseObject.add("payhereJson", new Gson().toJsonTree(payHereJson));
 
         } catch (Exception e) {
