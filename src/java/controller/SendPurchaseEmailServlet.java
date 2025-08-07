@@ -19,12 +19,7 @@ public class SendPurchaseEmailServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String orderIdStr = request.getParameter("orderId");
-        if (orderIdStr == null || orderIdStr.isEmpty()) {
-            response.setStatus(400);
-            response.getWriter().write("Order ID required");
-            return;
-        }
-        System.out.println("Order object: " + orderIdStr);
+        System.out.println("Received orderId: " + orderIdStr);
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
@@ -51,22 +46,33 @@ public class SendPurchaseEmailServlet extends HttpServlet {
                     + "</div>"
                     + "<div style='padding:30px;'>"
                     + "<p>Hi " + user.getFirst_name() + ",</p>"
-                    + "<p>Your order has been confirmed and your games are ready to play. Below are your order details:</p>"
+                    + "<p>Your order has been confirmed and your games are ready to play.</p>"
+                    // Stylish Grid with Details
                     + "<div style='display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:30px;'>"
-                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'><h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Order Number</h3><p style='font-size:16px;font-weight:600;margin-bottom:0;'>GKLK-2025-" + order.getId() + "</p></div>"
-                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'><h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Order Date</h3><p style='font-size:16px;font-weight:600;margin-bottom:0;'>" + order.getCreated_at() + "</p></div>"
-                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'><h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Status</h3><p style='font-size:16px;font-weight:600;margin-bottom:0;'>Completed</p></div>"
-                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'><h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Payment Method</h3><p style='font-size:16px;font-weight:600;margin-bottom:0;'>Paid Online</p></div>"
+                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'>"
+                    + "<h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Status</h3>"
+                    + "<p style='font-size:16px;font-weight:600;margin-bottom:0;'>Completed</p></div>"
+                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'>"
+                    + "<h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Order ID</h3>"
+                    + "<p style='font-size:16px;font-weight:600;margin-bottom:0;'>GKLK-2025-" + order.getId() + "</p></div>"
+                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'>"
+                    + "<h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Name</h3>"
+                    + "<p style='font-size:16px;font-weight:600;margin-bottom:0;'>" + user.getFirst_name() + " " + user.getLast_name() + "</p></div>"
+                    + "<div style='background:#f9f9f9;border-radius:8px;padding:15px;'>"
+                    + "<h3 style='color:#ff6b27;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-top:0;'>Email</h3>"
+                    + "<p style='font-size:16px;font-weight:600;margin-bottom:0;'>" + user.getEmail() + "</p></div>"
                     + "</div>"
-                    + "<div style='margin-bottom:30px;'><h2 style='font-size:18px;margin-bottom:10px;color:#141415;'>Bill To:</h2><p>" + user.getFirst_name() + " " + user.getLast_name() + "<br>" + user.getEmail() + "</p></div>"
-                    + "<h2>Order Summary</h2>"
-                    + "<table style='width:100%;border-collapse:collapse;margin:25px 0;'><thead><tr><th style='text-align:left;padding:12px;background:#f5f5f5;font-weight:600;color:#141415;'>Game</th><th style='text-align:left;padding:12px;background:#f5f5f5;font-weight:600;color:#141415;'>Publisher</th><th style='text-align:left;padding:12px;background:#f5f5f5;font-weight:600;color:#141415;'>Price</th></tr></thead><tbody>"
-                    + "<tr><td colspan='2'>Total</td><td>$XX.XX</td></tr>"
-                    + "</tbody></table>"
-                    + "<p>Your invoice is attached to this email as a PDF for your records.</p>"
-                    + "<a href='#' style='display:inline-block;background:#141415;color:white;text-decoration:none;padding:12px 25px;border-radius:6px;font-weight:600;font-size:14px;margin-top:10px;'>Download Invoice</a>"
-                    + "<div style='text-align:center;margin-top:30px;'><a href='#' style='display:inline-block;background:linear-gradient(135deg,#df040a,#ff6b27);color:white;text-decoration:none;padding:14px 30px;border-radius:6px;font-weight:600;font-size:16px;margin:20px 0;'>START PLAYING NOW</a></div>"
+                    // Note instead of invoice
+                    + "<div style='margin-bottom:30px;'>"
+                    + "<h2 style='font-size:18px;margin-bottom:10px;color:#141415;'>Note:</h2>"
+                    + "<p style='font-size:15px;color:#333;'>You can view your purchased games in your <strong>Library</strong>.</p>"
                     + "</div>"
+                    // CTA Button
+                    + "<div style='text-align:center;margin-top:30px;'>"
+                    + "<a href='#' style='display:inline-block;background:linear-gradient(135deg,#df040a,#ff6b27);color:white;text-decoration:none;padding:14px 30px;border-radius:6px;font-weight:600;font-size:16px;margin:20px 0;'>START PLAYING NOW</a>"
+                    + "</div>"
+                    + "</div>"
+                    // Footer
                     + "<div style='background:#141415;padding:20px;text-align:center;color:rgba(255,255,255,0.7);font-size:12px;'>"
                     + "<p>© 2025 Gamerlk. All rights reserved.</p>"
                     + "<p>Having trouble with your order? <a href='#' style='color:#ff6b27;'>Contact Support</a></p>"

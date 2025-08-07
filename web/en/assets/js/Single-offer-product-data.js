@@ -90,8 +90,8 @@ async function loadSingleOfferProductData() {
       loadProductOrderCount(json.product.id);
 
       // Buy Now button click event එකෙන් විතරක් offerCheckout call කරන්න
-      document.querySelector(".cart-btn").onclick = function() {
-          offerCheckout(json.product.id);
+      document.querySelector(".cart-btn").onclick = function () {
+        offerCheckout(json.product.id);
       };
     } else {
       window.location = "../index.html";
@@ -138,46 +138,52 @@ async function loadProductOrderCount(productId) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Payment function
-var notyf = new Notyf({ position: { x: 'center', y: 'top' } });
+var notyf = new Notyf({ position: { x: "center", y: "top" } });
 
 // Payment completed. It can be a successful failure.
 payhere.onCompleted = function onCompleted(orderId) {
-    console.log("Payment completed. OrderID:" + orderId);
-    notyf.success("Payment completed!");
-    // Remove '#' if present at the start
-    if (orderId.startsWith("#")) {
-        orderId = orderId.substring(1);
-    }
-    // Remove leading zeros
-    let numericId = orderId.replace(/^0+/, "");
-    // Pad with zeros to make 4 digits
-    let paddedId = numericId.padStart(4, "0");
-    console.log("Order ID:", paddedId);
-    // Redirect to order invoice page after 1 second
-    setTimeout(function() {
-        window.location.href = "../pages/my-downloads.html";
-    }, 1000);
+  console.log("Payment completed. OrderID:" + orderId);
+  notyf.success("Payment completed!");
+  // Remove '#' if present at the start
+  if (orderId.startsWith("#")) {
+    orderId = orderId.substring(1);
+  }
+  // Remove leading zeros
+  let numericId = orderId.replace(/^0+/, "");
+  // Pad with zeros to make 4 digits
+  let paddedId = numericId.padStart(4, "0");
+  console.log("Order ID:", paddedId);
+  // Redirect to order invoice page after 1 second
+  setTimeout(function () {
+    window.location.href = "../pages/my-downloads.html";
+  }, 1000);
+
+  fetch("../../SendPurchaseEmail", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "orderId=" + encodeURIComponent(orderId),
+  });
 };
 
 // Payment window closed
 payhere.onDismissed = function onDismissed() {
-    // Note: Prompt user to pay again or show an error page
-    console.log("Payment dismissed");
-    notyf.error("Payment window closed without completing the payment.");
+  // Note: Prompt user to pay again or show an error page
+  console.log("Payment dismissed");
+  notyf.error("Payment window closed without completing the payment.");
 };
 
 // Error occurred
 payhere.onError = function onError(error) {
-    // Note: show an error page
-    console.log("Error:" + error);
-    notyf.error("An error occurred during payment: " + error);
+  // Note: show an error page
+  console.log("Error:" + error);
+  notyf.error("An error occurred during payment: " + error);
 };
 
 async function offerCheckout(productId) {
   const response = await fetch("../../LoadOfferummary", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "productId=" + encodeURIComponent(productId)
+    body: "productId=" + encodeURIComponent(productId),
   });
 
   if (response.ok) {
