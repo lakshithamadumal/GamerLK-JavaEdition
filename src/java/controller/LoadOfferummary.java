@@ -54,61 +54,72 @@ public class LoadOfferummary extends HttpServlet {
                     responseObject.addProperty("status", false);
                     responseObject.addProperty("message", "Offer product not found!");
                 } else {
-                    // 2. Offer % එකෙන් real price එක ගණනය කරන්න
-                    double price = product.getPrice();
-                    int offer = product.getOffer();
-                    double realPrice = price - (price * offer / 100.0);
+                    // 👉 Already purchased check
+                    Criteria orderItemCriteria = s.createCriteria(OrderItem.class);
+                    orderItemCriteria.createAlias("orders_id", "orders");
+                    orderItemCriteria.add(Restrictions.eq("product_id", product));
+                    orderItemCriteria.add(Restrictions.eq("orders.user_id", user));
+                    List<OrderItem> existingItems = orderItemCriteria.list();
 
-                    // 3. Orders, OrderItem, PayHere logic (ඔයාගේ project එකේ තියෙන විදියට)
-                    Orders orders = new Orders();
-                    orders.setCreated_at(new java.util.Date());
-                    orders.setUser_id(user);
-                    int orderId = (int) s.save(orders);
+                    if (!existingItems.isEmpty()) {
+                        responseObject.addProperty("status", false);
+                        responseObject.addProperty("message", "Already purchased");
+                    } else {
+                        // ...existing buy logic...
+                        double price = product.getPrice();
+                        int offer = product.getOffer();
+                        double realPrice = price - (price * offer / 100.0);
 
-                    Status status = (Status) s.load(Status.class, 4);
+                        Orders orders = new Orders();
+                        orders.setCreated_at(new java.util.Date());
+                        orders.setUser_id(user);
+                        int orderId = (int) s.save(orders);
 
-                    OrderItem orderItem = new OrderItem();
-                    orderItem.setRating(0);
-                    orderItem.setProduct_id(product);
-                    orderItem.setStatus_id(status);
-                    orderItem.setOrders_id(orders);
-                    s.save(orderItem);
+                        Status status = (Status) s.load(Status.class, 4);
 
-                    tr.commit();
+                        OrderItem orderItem = new OrderItem();
+                        orderItem.setRating(0);
+                        orderItem.setProduct_id(product);
+                        orderItem.setStatus_id(status);
+                        orderItem.setOrders_id(orders);
+                        s.save(orderItem);
 
-                    // 4. PayHere process
-                    double totalPriceUSD = realPrice * 300;
-                    String merahantID = "1231373";
-                    String merchantSecret = "MTU5MDE2NzYwNjMxNzYwMjA3MTQyNjAyMjAwMTM0MTA4NTc5MjQ=";
-                    String orderID = "#000" + orderId;
-                    String currency = "LKR";
-                    String formattedAmount = new DecimalFormat("0.00").format(totalPriceUSD);
-                    String merchantSecretMD5 = PayHere.generateMD5(merchantSecret);
-                    String hash = PayHere.generateMD5(merahantID + orderID + formattedAmount + currency + merchantSecretMD5);
+                        tr.commit();
 
-                    JsonObject payHereJson = new JsonObject();
-                    payHereJson.addProperty("sandbox", true);
-                    payHereJson.addProperty("merchant_id", merahantID);
-                    payHereJson.addProperty("return_url", "");
-                    payHereJson.addProperty("cancel_url", "");
-                    payHereJson.addProperty("notify_url", "https://33c0de43a61f.ngrok-free.app/GhostGamezHouse/VerifyPayments");
-                    payHereJson.addProperty("order_id", orderID);
-                    payHereJson.addProperty("items", product.getTitle());
-                    payHereJson.addProperty("amount", formattedAmount);
-                    payHereJson.addProperty("currency", currency);
-                    payHereJson.addProperty("hash", hash);
-                    payHereJson.addProperty("first_name", user.getFirst_name());
-                    payHereJson.addProperty("last_name", user.getLast_name());
-                    payHereJson.addProperty("email", user.getEmail());
-                    payHereJson.addProperty("phone", "0771234567");
-                    payHereJson.addProperty("address", "123 Street, City");
-                    payHereJson.addProperty("city", "Colombo");
-                    payHereJson.addProperty("country", "Sri Lanka");
+                        // ...PayHere logic...
+                        double totalPriceUSD = realPrice * 300;
+                        String merahantID = "1231373";
+                        String merchantSecret = "MTU5MDE2NzYwNjMxNzYwMjA3MTQyNjAyMjAwMTM0MTA4NTc5MjQ=";
+                        String orderID = "#000" + orderId;
+                        String currency = "LKR";
+                        String formattedAmount = new DecimalFormat("0.00").format(totalPriceUSD);
+                        String merchantSecretMD5 = PayHere.generateMD5(merchantSecret);
+                        String hash = PayHere.generateMD5(merahantID + orderID + formattedAmount + currency + merchantSecretMD5);
 
-                    responseObject.addProperty("status", true);
-                    responseObject.addProperty("message", "Checkout completed");
-                    responseObject.add("payhereJson", gson.toJsonTree(payHereJson));
-                    responseObject.addProperty("realPrice", realPrice);
+                        JsonObject payHereJson = new JsonObject();
+                        payHereJson.addProperty("sandbox", true);
+                        payHereJson.addProperty("merchant_id", merahantID);
+                        payHereJson.addProperty("return_url", "");
+                        payHereJson.addProperty("cancel_url", "");
+                        payHereJson.addProperty("notify_url", "https://33c0de43a61f.ngrok-free.app/GhostGamezHouse/VerifyPayments");
+                        payHereJson.addProperty("order_id", orderID);
+                        payHereJson.addProperty("items", product.getTitle());
+                        payHereJson.addProperty("amount", formattedAmount);
+                        payHereJson.addProperty("currency", currency);
+                        payHereJson.addProperty("hash", hash);
+                        payHereJson.addProperty("first_name", user.getFirst_name());
+                        payHereJson.addProperty("last_name", user.getLast_name());
+                        payHereJson.addProperty("email", user.getEmail());
+                        payHereJson.addProperty("phone", "0771234567");
+                        payHereJson.addProperty("address", "123 Street, City");
+                        payHereJson.addProperty("city", "Colombo");
+                        payHereJson.addProperty("country", "Sri Lanka");
+
+                        responseObject.addProperty("status", true);
+                        responseObject.addProperty("message", "Checkout completed");
+                        responseObject.add("payhereJson", gson.toJsonTree(payHereJson));
+                        responseObject.addProperty("realPrice", realPrice);
+                    }
                 }
             } catch (Exception e) {
                 tr.rollback();

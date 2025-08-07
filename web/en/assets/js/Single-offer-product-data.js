@@ -185,7 +185,6 @@ async function offerCheckout(productId) {
     if (json.status) {
       payhere.startPayment(json.payhereJson);
     } else {
-      // 👉 Special messages handle
       if (json.message === "Login Required") {
         notyf.error("Login Required");
         setTimeout(() => {
@@ -193,6 +192,11 @@ async function offerCheckout(productId) {
         }, 1500);
       } else if (json.message === "Suspended Account") {
         notyf.error("Suspended Account");
+      } else if (json.message === "Already purchased") {
+        notyf.error("Already purchased!");
+        setTimeout(() => {
+          window.location.href = "../pages/my-downloads.html";
+        }, 1500);
       } else {
         notyf.error(json.message || "Checkout failed...");
       }
