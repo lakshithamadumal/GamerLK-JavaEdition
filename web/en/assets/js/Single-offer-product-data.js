@@ -185,7 +185,17 @@ async function offerCheckout(productId) {
     if (json.status) {
       payhere.startPayment(json.payhereJson);
     } else {
-      notyf.error(json.message || "Checkout failed...");
+      // 👉 Special messages handle
+      if (json.message === "Login Required") {
+        notyf.error("Login Required");
+        setTimeout(() => {
+          window.location.href = "../pages/login.html";
+        }, 1500);
+      } else if (json.message === "Suspended Account") {
+        notyf.error("Suspended Account");
+      } else {
+        notyf.error(json.message || "Checkout failed...");
+      }
     }
   } else {
     notyf.error({ message: "Checkout failed..." });

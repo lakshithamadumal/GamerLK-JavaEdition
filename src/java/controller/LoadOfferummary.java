@@ -29,14 +29,19 @@ public class LoadOfferummary extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-
         String productId = request.getParameter("productId");
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
         Transaction tr = s.beginTransaction();
 
-        if (user != null && productId != null && productId.matches("\\d+")) {
+        if (user == null) {
+            responseObject.addProperty("status", false);
+            responseObject.addProperty("message", "Login Required");
+        } else if (user.getStatus() != null && "Inactive".equalsIgnoreCase(user.getStatus().getValue())) {
+            responseObject.addProperty("status", false);
+            responseObject.addProperty("message", "Suspended Account");
+        } else if (productId != null && productId.matches("\\d+")) {
             try {
                 // 1. Product එක Offer status එකද කියලා බලන්න
                 Criteria criteria = s.createCriteria(Product.class);
@@ -114,7 +119,7 @@ public class LoadOfferummary extends HttpServlet {
             }
         } else {
             responseObject.addProperty("status", false);
-            responseObject.addProperty("message", "User not found or invalid product id");
+            responseObject.addProperty("message", "Invalid product id");
         }
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json");
