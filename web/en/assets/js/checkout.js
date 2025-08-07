@@ -8,9 +8,18 @@ payhere.onCompleted = function onCompleted(orderId) {
   if (orderId.startsWith("#")) {
     orderId = orderId.substring(1);
   }
+  // Remove leading zeros (e.g. 00015 -> 15)
+  orderId = orderId.replace(/^0+/, "");
+
   setTimeout(function () {
     window.location.href = "../pages/my-downloads.html";
   }, 1000);
+
+  fetch("../../SendPurchaseEmail", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "orderId=" + encodeURIComponent(orderId),
+  });
 };
 
 // Payment window closed
